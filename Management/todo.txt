@@ -1,5 +1,5 @@
+
 - create tests
-- create basic classes
 
 - create all core components
 - add all other components
