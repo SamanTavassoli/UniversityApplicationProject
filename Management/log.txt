@@ -1,0 +1,4 @@
+26/07/20
+Created Gradle project with Spring Assistant
+Put Project on GitHub
+Create Management directory for log and todos
