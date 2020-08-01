@@ -19,3 +19,5 @@ Created CourseFactory methods
 Created CourseManager methods
 
 Added Database support, spring data & mysql
+Added application.properties such that it fetches credentials from environment variables for security
+Un-Abstracted the User class for now because I couldn't instantiate it from a json from postman - however got users to be able to be saved to database!

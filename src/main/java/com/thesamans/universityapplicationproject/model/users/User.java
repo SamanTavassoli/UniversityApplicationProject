@@ -1,17 +1,25 @@
 package com.thesamans.universityapplicationproject.model.users;
 
-import javax.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.persistence.*;
 
 @Entity
 /**
  * A User can log in the website and has access to further resources depending on it's type
  */
-public abstract class User {
+public class User {
 
     // Fields
 
+    @Id
+    @Column(name = "id")
+    @JsonProperty("id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
+    @JsonProperty("username")
     private String username;
+    @JsonProperty("password")
     private String password;
 
     // Get Set
