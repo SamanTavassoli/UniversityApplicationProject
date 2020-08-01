@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class ApplicationManager {
 
-
     public boolean sendApplication(Application application) {
 
         Student student = Locator.getStudent(application.getStudentId());

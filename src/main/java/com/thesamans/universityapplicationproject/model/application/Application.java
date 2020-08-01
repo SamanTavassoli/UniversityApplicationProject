@@ -11,6 +11,8 @@ public class Application {
     private int studentId;
     /** Id of the Course applied to */
     private int courseId;
+    /** Number given to the application */
+    private int applicationId;
 
     /** Date on which application was submitted by student */
     private Date dateOfApplication;
@@ -38,6 +40,14 @@ public class Application {
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
+    }
+
+    public int getApplicationId() {
+        return applicationId;
+    }
+
+    public void setApplicationId(int applicationNumber) {
+        this.applicationId = applicationNumber;
     }
 
     public Date getDateOfApplication() {

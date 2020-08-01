@@ -15,25 +15,29 @@ public class ApplicationFactory {
      * @return the new application if it could be created, otherwise null
      */
     public static Application newApplication(Student student, int courseId) {
-        Application application = new Application();
 
-        checkApplicationValidity(student.getStudentId(), courseId);
-
-        if (student.getApplicationsSent().size() >= 5) {
+        if (student.getApplicationsSent().size() >= 5 || !isValidApplication(courseId)) {
             return null;
         }
+
+        Application application = new Application();
 
         application.setStudentId(student.getStudentId());
         application.setCourseId(courseId);
         application.setApplicationStatus(ApplicationStatus.STARTED);
+        application.setApplicationId(generateApplicationId());
 
         return application;
     }
 
 
-    public static boolean checkApplicationValidity(int studentId, int courseId) {
-        return Locator.isValidStudentId(studentId)
-                & Locator.isValidCourseId(courseId);
+    public static boolean isValidApplication(int courseId) {
+        return Locator.isValidCourseId(courseId);
+    }
+
+    private static int generateApplicationId() {
+        // todo: implement when database is implemented
+        return 0;
     }
 
 }

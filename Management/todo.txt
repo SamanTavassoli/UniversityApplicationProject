@@ -1,5 +1,3 @@
-create application manager methods
-finalise application factory and manager for now
 
 course manager - holds list of courses for unis, removal of courses (admin approval)
 course factory - check requirements / who can create course /
