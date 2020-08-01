@@ -1,7 +1,7 @@
-package com.thesamas.universityapplicationproject.model.users;
+package com.thesamans.universityapplicationproject.model.users;
 
 
-import com.thesamas.universityapplicationproject.model.objects.Course;
+import com.thesamans.universityapplicationproject.model.objects.Course;
 
 import java.util.ArrayList;
 

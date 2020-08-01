@@ -1,5 +1,12 @@
 
 - create tests
+application manager - send application / check application requirements /
+application - required fields / changing fields
+application factory - who can create an application / check requirements / check setting the right university etc.
+
+course manager - holds list of courses for unis, removal of courses (admin approval)
+course factory - check requirements / who can create course /
+course - required fields / changing fields
 
 - create all core components
 - add all other components

@@ -1,5 +1,15 @@
 26/07/20
 Created Gradle project with Spring Assistant
 Put Project on GitHub
-Create Management directory for log and todos
-Create basic classes (users, course, application)
+Created Management directory for log and todos
+Created basic classes (users, course, application)
+
+01/08/20
+Created CourseFactory / CourseManager Class
+Designed Tests and create Test classes
+Created UniversityDao Interface
+Added not applied status application status
+Added application factory application generator method
+Added Locator class in utils
+Removed universityId from application as it can be accessed through course
+Deciding to not to test driven development because it's too confusing for now, will add tests later however

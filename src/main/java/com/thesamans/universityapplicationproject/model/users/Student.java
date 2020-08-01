@@ -1,6 +1,6 @@
-package com.thesamas.universityapplicationproject.model.users;
+package com.thesamans.universityapplicationproject.model.users;
 
-import com.thesamas.universityapplicationproject.model.Application.Application;
+import com.thesamans.universityapplicationproject.model.application.Application;
 
 import java.util.ArrayList;
 import java.util.Date;
