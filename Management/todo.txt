@@ -1,7 +1,8 @@
-
-course manager - holds list of courses for unis, removal of courses (admin approval)
-course factory - check requirements / who can create course /
-course - required fields / changing fields
+create databases
+1- table for universities
+1- table for users
+1- table for students
+1- table for activeRegisteredCourses
 
 - create all core components
 - add all other components

@@ -1,5 +1,8 @@
 package com.thesamans.universityapplicationproject.model.users;
 
+import javax.persistence.Entity;
+
+@Entity
 /**
  * A User can log in the website and has access to further resources depending on it's type
  */

@@ -17,3 +17,5 @@ Created ApplicationManager methods
 Created ApplicationFactory methods & small changes
 Created CourseFactory methods
 Created CourseManager methods
+
+Added Database support, spring data & mysql
