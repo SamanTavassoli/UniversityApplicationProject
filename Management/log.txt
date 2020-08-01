@@ -13,3 +13,5 @@ Added application factory application generator method
 Added Locator class in utils
 Removed universityId from application as it can be accessed through course
 Deciding to not to test driven development because it's too confusing for now, will add tests later however
+Creating ApplicationManager methods
+Creating ApplicationFactory methods & small changes

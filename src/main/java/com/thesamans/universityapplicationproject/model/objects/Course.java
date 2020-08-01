@@ -20,4 +20,11 @@ public class Course {
 
     private ArrayList<Application> applicationsReceived;
 
+    public ArrayList<Application> getApplicationsReceived() {
+        return applicationsReceived;
+    }
+
+    public void setApplicationsReceived(ArrayList<Application> applicationsReceived) {
+        this.applicationsReceived = applicationsReceived;
+    }
 }

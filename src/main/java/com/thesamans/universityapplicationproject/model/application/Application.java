@@ -1,8 +1,5 @@
 package com.thesamans.universityapplicationproject.model.application;
 
-import com.thesamans.universityapplicationproject.model.objects.Course;
-import com.thesamans.universityapplicationproject.model.users.University;
-
 import java.util.Date;
 
 /**
@@ -20,7 +17,7 @@ public class Application {
     /** Date on which the University confirmed they are reviewing the application */
     private Date dateOfReview;
     /** Date on which the University gave their verdict (accepted or rejected) */
-    private Date dateOfVerdict;
+    private Date dateOfDecision;
 
     private ApplicationStatus applicationStatus;
 
@@ -59,12 +56,12 @@ public class Application {
         this.dateOfReview = dateOfReview;
     }
 
-    public Date getDateOfVerdict() {
-        return dateOfVerdict;
+    public Date getDateOfDecision() {
+        return dateOfDecision;
     }
 
-    public void setDateOfVerdict(Date dateOfVerdict) {
-        this.dateOfVerdict = dateOfVerdict;
+    public void setDateOfDecision(Date dateOfDecision) {
+        this.dateOfDecision = dateOfDecision;
     }
 
     public ApplicationStatus getApplicationStatus() {

@@ -1,5 +1,9 @@
 package com.thesamans.universityapplicationproject.model.utils;
 
+import com.thesamans.universityapplicationproject.model.objects.Course;
+import com.thesamans.universityapplicationproject.model.users.Student;
+import com.thesamans.universityapplicationproject.model.users.University;
+
 public class Locator {
 
     /**
@@ -29,5 +33,16 @@ public class Locator {
         return false; // todo: implement when database is put in place
     }
 
+    public static Student getStudent(int studentId) {
+        return null; // todo: implement when database is put in place
+    }
+
+    public static Course getCourse(int courseId) {
+        return null; // todo: implement when database is put in place
+    }
+
+    public static University getUniversity(int universityId) {
+        return null; // todo: implement when database is put in place
+    }
 
 }
