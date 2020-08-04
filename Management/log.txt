@@ -21,3 +21,9 @@ Created CourseManager methods
 Added Database support, spring data & mysql
 Added application.properties such that it fetches credentials from environment variables for security
 Un-Abstracted the User class for now because I couldn't instantiate it from a json from postman - however got users to be able to be saved to database!
+
+04/08/20
+Adding University and Students in database, in the same user table
+Removed active registered courses as courses are just saved within University for now
+Removed possibility to add abstract user, now will have to be student, admin or university
+Added Student and University service, and changed User controller to Users Controller that calls the student, uni, user and admin services

@@ -1,7 +1,4 @@
 create databases
-1- table for universities
-1- table for users
-1- table for students
 1- table for activeRegisteredCourses
 
 - create all core components

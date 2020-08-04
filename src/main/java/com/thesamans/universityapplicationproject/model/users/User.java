@@ -8,13 +8,12 @@ import javax.persistence.*;
 /**
  * A User can log in the website and has access to further resources depending on it's type
  */
-public class User {
+public abstract class User {
 
     // Fields
 
     @Id
-    @Column(name = "id")
-    @JsonProperty("id")
+    @JsonProperty("userId")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
     @JsonProperty("username")
@@ -47,4 +46,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

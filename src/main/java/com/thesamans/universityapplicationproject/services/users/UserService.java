@@ -14,9 +14,7 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public User addUser(User user) {
-        return userDao.save(user);
-    }
+    // cannot add user directly, user is an abstract class
 
     public List<User> getUserList() {
         return userDao.findAll();
@@ -35,7 +33,4 @@ public class UserService {
     public void deleteUser(int userId) {
         userDao.deleteById(userId);
     }
-
-
-
 }

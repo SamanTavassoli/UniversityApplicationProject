@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Course {
 
+    private int courseId;
     private University university;
     private String courseName;
-    private int courseId;
 
     /** Maximum number of students that the course can take */
     private int availableSlots;
