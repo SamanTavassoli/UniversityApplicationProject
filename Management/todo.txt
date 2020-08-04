@@ -1,8 +1,7 @@
-create databases
-1- table for activeRegisteredCourses
 
-- create all core components
-- add all other components
+work on the generic service class
+
+start looking into front end
 
 - finish project
 - work on UX
