@@ -1,6 +1,6 @@
 package com.thesamans.universityapplicationproject.model.application;
 
-import com.thesamans.universityapplicationproject.model.objects.Course;
+import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.Student;
 import com.thesamans.universityapplicationproject.model.utils.Locator;
 

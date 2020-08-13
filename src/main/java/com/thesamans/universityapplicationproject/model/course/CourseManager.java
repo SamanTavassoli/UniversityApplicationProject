@@ -1,4 +1,4 @@
-package com.thesamans.universityapplicationproject.model.objects;
+package com.thesamans.universityapplicationproject.model.course;
 
 import java.util.ArrayList;
 

@@ -2,7 +2,7 @@ package com.thesamans.universityapplicationproject.model.users;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thesamans.universityapplicationproject.model.objects.Course;
+import com.thesamans.universityapplicationproject.model.course.Course;
 
 import javax.persistence.Entity;
 import java.util.ArrayList;

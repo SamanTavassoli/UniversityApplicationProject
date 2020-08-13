@@ -1,6 +1,4 @@
 
-work on the generic service class
-
 start looking into front end
 
 - finish project
