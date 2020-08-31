@@ -1,5 +1,13 @@
 
-start looking into front end
+get basic connection from angular to spring
+
+create basic front end
+connect basic front end to spring
+
+think about what kind of services I need for front end
+implement back end for the above and the front end calls and display them
+
+implement routing
 
 - finish project
 - work on UX

@@ -33,3 +33,11 @@ Changed the objects package to course which makes more sense
 
 13/08/20
 Added generic methods to SpecificUserService renamed to User service after refactoring to handle all users
+
+until 28/08/20
+Learned angular and starting to look into backend
+
+31/08/20
+Worked on basics of front end and getting connection to spring boot
+Added HttpClient module to FE
+Spring Boot didn't accept my rest calls so had to add CrossOrigins to UsersController

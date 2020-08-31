@@ -8,7 +8,7 @@ import javax.persistence.*;
 /**
  * A User can log in the website and has access to further resources depending on it's type
  */
-public abstract class User {
+public class User {
 
     // Fields
 
