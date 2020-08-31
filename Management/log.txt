@@ -41,3 +41,4 @@ Learned angular and starting to look into backend
 Worked on basics of front end and getting connection to spring boot
 Added HttpClient module to FE
 Spring Boot didn't accept my rest calls so had to add CrossOrigins to UsersController
+Got basic connection from angular to spring

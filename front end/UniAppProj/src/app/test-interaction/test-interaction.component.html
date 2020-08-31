@@ -1,1 +1,39 @@
-<p>test-interaction works!</p>
+
+<button (click)="searchUsers()">Get all users</button><br><br>
+
+userId: <input type="text" [(ngModel)]="userId"><br>
+<button (click)="searchUser()">Get specifc user</button>
+
+<div *ngIf="responseType=='user'">
+    <div *ngIf="response">
+        <p>
+            User:
+        </p>
+    <p>
+        userId: {{response.userId}}<br>
+        username: {{response.username}}<br> 
+        password: {{response.password}}</p>
+    </div>
+    <div *ngIf="!response">
+        <p>
+            No such user
+        </p>
+    </div>
+</div>
+
+<div *ngIf="responseType=='users'&&response">
+    <div *ngIf="response.length">
+        <p>
+            Users:
+        </p>
+        <p *ngFor="let user of response">
+            userId: {{user.userId}}<br>
+            username: {{user.username}}<br>
+            password: {{user.password}}</p><br><br>
+    </div>
+    <div *ngIf="!response.length">
+        <p>
+            No Users
+        </p>
+    </div>
+</div>

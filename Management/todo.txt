@@ -1,6 +1,4 @@
 
-get basic connection from angular to spring
-
 create basic front end
 connect basic front end to spring
 

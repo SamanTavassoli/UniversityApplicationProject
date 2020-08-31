@@ -3,16 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TestInteractionComponent } from './test-interaction/test-interaction.component';
+import { TestInteractionModule } from './test-interaction/test-interaction.module';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestInteractionComponent
   ],
   imports: [
     BrowserModule,
+    TestInteractionModule,
     HttpClientModule,
     AppRoutingModule
   ],

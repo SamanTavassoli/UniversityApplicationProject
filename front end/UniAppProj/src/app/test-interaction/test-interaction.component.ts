@@ -8,14 +8,28 @@ import { HttpClient } from '@angular/common/http';
 })
 export class TestInteractionComponent implements OnInit {
 
+  userId = "";
+  restBaseUrl = 'http://localhost:8080';
+  responseType = "none";
+  response: any;
+
   constructor(private http: HttpClient) {
 
    }
 
-  ngOnInit(): void {
-    let obs = this.http.get('http://localhost:8080/user')
-    obs.subscribe((response) => console.log(response));
-    
+  ngOnInit(): void {  
+  }
+
+  searchUser() {
+    let obs = this.http.get(this.restBaseUrl + '/user/' + this.userId);
+    this.responseType = "user";
+    obs.subscribe((response) => this.response = response);
+  }
+
+  searchUsers() {
+    let obs = this.http.get(this.restBaseUrl + '/user');
+    this.responseType = "users";
+    obs.subscribe((response) => this.response = response);
   }
 
 
