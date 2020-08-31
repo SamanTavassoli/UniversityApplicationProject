@@ -22,14 +22,20 @@ export class TestInteractionComponent implements OnInit {
 
   searchUser() {
     let obs = this.http.get(this.restBaseUrl + '/user/' + this.userId);
+    this.resetResponse();
     this.responseType = "user";
     obs.subscribe((response) => this.response = response);
   }
 
   searchUsers() {
     let obs = this.http.get(this.restBaseUrl + '/user');
+    this.resetResponse();
     this.responseType = "users";
     obs.subscribe((response) => this.response = response);
+  }
+
+  resetResponse() {
+    this.response = undefined;
   }
 
 

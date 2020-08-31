@@ -1,0 +1,11 @@
+.option {
+    border-style: solid;
+    border-radius: 10px;
+    text-align: center;
+    margin: 5px;
+}
+
+div:hover {
+    background-color: aquamarine;
+    cursor: pointer;
+}

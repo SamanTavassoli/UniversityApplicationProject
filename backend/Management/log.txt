@@ -43,3 +43,7 @@ Added HttpClient module to FE
 Spring Boot didn't accept my rest calls so had to add CrossOrigins to UsersController
 Got basic connection from angular to spring
 Created basic display of users or single user on angular
+
+Changed the file system so there's a clear frontend and a clear backend
+Made basic website layout plan
+Setup and add routing for basic header, home and search pages

@@ -22,7 +22,7 @@ userId: <input type="text" [(ngModel)]="userId"><br>
 </div>
 
 <div *ngIf="responseType=='users'&&response">
-    <div *ngIf="response.length">
+    <div *ngIf="response.length&&response.status!=0">
         <p>
             Users:
         </p>
@@ -31,7 +31,7 @@ userId: <input type="text" [(ngModel)]="userId"><br>
             username: {{user.username}}<br>
             password: {{user.password}}</p><br><br>
     </div>
-    <div *ngIf="!response.length">
+    <div *ngIf="!response.length||response.status==0">
         <p>
             No Users
         </p>

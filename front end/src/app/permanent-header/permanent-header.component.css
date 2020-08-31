@@ -1,0 +1,23 @@
+
+li {
+    display: inline;
+    font-size: 20px;
+    margin: 5px;
+    padding: 5px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+li:not(#websiteName):hover {
+    background-color: aquamarine;
+}
+
+li#websiteName {
+    color: red;
+    font-size: 30px;
+    border-style: none;
+}
