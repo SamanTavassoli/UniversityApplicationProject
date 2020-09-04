@@ -9,6 +9,7 @@ import { PermanentHeaderComponent } from './permanent-header/permanent-header.co
 import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
+import { CoursePageComponent } from './course-page/course-page.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FormsModule } from '@angular/forms';
     PermanentHeaderComponent,
     HomeComponent,
     SearchComponent,
+    CoursePageComponent,
   ],
   imports: [
     BrowserModule,

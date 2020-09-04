@@ -9,7 +9,7 @@ Search: <input type="text" [(ngModel)]="searchTerm">
 
 <ul id="results">
     Results:
-    <li>Result 1</li>
-    <li>Result 2</li>
-    <li>Result 3</li>
+    <li *ngFor="let course of results" routerLink="/course" [queryParams]="{ courseName: [course]}">
+        {{course}}
+    </li>
 </ul>

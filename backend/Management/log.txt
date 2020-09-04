@@ -47,3 +47,6 @@ Created basic display of users or single user on angular
 Changed the file system so there's a clear frontend and a clear backend
 Made basic website layout plan
 Setup and add routing for basic header, home and search pages
+
+04/09/20
+Created Course page, configuring router parameters to pass in inputs for courseName
