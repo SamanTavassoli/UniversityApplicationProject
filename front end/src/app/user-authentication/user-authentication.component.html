@@ -1,5 +1,28 @@
-<form (submit)="loginTest($event)">
-    <input type="text" placeholder="Username" id="username">
-    <input type="password" placeholder="Password" id="password">
-    <input type="submit" value="Submit">
-</form>
+<ul>
+    <li id="button" (click)="userType=UserType.Student">I'm a Student</li>
+    <li id="button" (click)="userType=UserType.University">I'm a University</li>
+</ul>
+<ul>
+    <li id="button" (click)="authentificationType=AuthentificationType.Login">Login</li>
+    <li id="button" (click)="authentificationType=AuthentificationType.Register">Register</li>
+</ul>
+<div *ngIf="userType==UserType.Student">
+    <div *ngIf="authentificationType==AuthentificationType.Login">
+        <form (submit)="login($event)">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="submit" value="login">
+        </form>
+    </div>
+    <div *ngIf="authentificationType==AuthentificationType.Register">
+        <form (submit)="registert($event)">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="submit" value="register">
+        </form>
+    </div>
+    
+</div>
+<div *ngIf="userType==UserType.University">
+    Needs to be implemented
+</div>
