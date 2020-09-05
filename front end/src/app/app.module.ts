@@ -13,8 +13,8 @@ import { CoursePageComponent } from './course-page/course-page.component';
 import { UserComponent } from './user/user.component';
 import { UserAuthenticationComponent } from './user-authentication/user-authentication.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { UserModule } from './user/user.module';
 import { UniversityPageComponent } from './university-page/university-page.component';
+import { AuthGuard } from './user-authentication/auth.guard';
 
 @NgModule({
   declarations: [
@@ -33,10 +33,9 @@ import { UniversityPageComponent } from './university-page/university-page.compo
     TestInteractionModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
-    UserModule
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

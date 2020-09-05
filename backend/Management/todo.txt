@@ -13,5 +13,5 @@ implement routing
 
 
 list of mappings to provide:
-/user/login -> JWT token
-/user/register
+post /user/login -> JWT token
+post /user/register

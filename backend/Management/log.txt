@@ -58,4 +58,4 @@ Looking into how I will manager users, need to finish the basic layout first nex
 06/09/20
 Briefly stopping working on creating accounts to finish front end
 Created UniversityPageComponent and made the search toggle between uni and course
-Added more to Login page with toggle for login, register / uni/student
+Added more to Login page with toggle for login, register / uni, student
