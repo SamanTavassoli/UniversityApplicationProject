@@ -9,3 +9,9 @@ implement routing
 
 - finish project
 - work on UX
+
+
+
+list of mappings to provide:
+/user/login -> JWT token
+/user/register

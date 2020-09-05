@@ -23,6 +23,7 @@ dependencies {
 	compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
     implementation 'junit:junit:4.12'
 	implementation 'junit:junit:4.12'

@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
+enum SearchType {
+  Course,
+  University,
+}
 
 @Component({
   selector: 'app-search',
@@ -9,8 +13,12 @@ import { NgModule } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+  SearchType = SearchType;
+
+  searchType: SearchType = SearchType.Course;
   searchTerm: string = '';
-  results = ['TestCourse 1', 'TestCourse 2', 'TestCourse 3'];
+  courses = ['TestCourse 1', 'TestCourse 2', 'TestCourse 3'];
+  universities = ['TestUni 1', 'TestUni 2', 'TestUni 3'];
 
   constructor() { }
 

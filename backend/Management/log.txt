@@ -49,4 +49,12 @@ Made basic website layout plan
 Setup and add routing for basic header, home and search pages
 
 04/09/20
-Created Course page, configuring router parameters to pass in inputs for courseName
+Created Course page, configuring router parameters to pass in inputs for courseName and going back a page using Location
+Added User, Authentication & profile Components, configuring routing for it
+Added User class to UserComponent
+Added User Authentication Service
+Looking into how I will manager users, need to finish the basic layout first next time before continuing this however
+
+06/09/20
+Briefly stopping working on creating accounts to finish front end
+Created UniversityPageComponent and made the search toggle between uni and course

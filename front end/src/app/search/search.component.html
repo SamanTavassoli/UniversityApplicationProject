@@ -1,7 +1,7 @@
 <ul>
     Browse by:
-    <li id="browse">Courses</li>
-    <li id="browse">Universities</li>
+    <li id="browse" (click)="searchType=SearchType.Course">Courses</li>
+    <li id="browse" (click)="searchType=SearchType.University">Universities</li>
 </ul>
 
 Search: <input type="text" [(ngModel)]="searchTerm">
@@ -9,7 +9,14 @@ Search: <input type="text" [(ngModel)]="searchTerm">
 
 <ul id="results">
     Results:
-    <li *ngFor="let course of results" routerLink="/course" [queryParams]="{ courseName: [course]}">
-        {{course}}
-    </li>
+    <div *ngIf="searchType==SearchType.Course">
+        <li *ngFor="let course of courses" routerLink="/course" [queryParams]="{ courseName: [course]}">
+            {{course}}
+        </li>
+    </div>
+    <div *ngIf="searchType==SearchType.University">
+        <li *ngFor="let university of universities" routerLink="/university" [queryParams]="{ universityName: [university]}">
+            {{university}}
+        </li>
+    </div> 
 </ul>
