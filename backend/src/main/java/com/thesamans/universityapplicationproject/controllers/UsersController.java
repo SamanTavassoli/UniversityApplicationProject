@@ -52,7 +52,7 @@ public class UsersController {
         return userService.addUser(university);
     }
 
-    @PostMapping(value = "/uni/{userId}")
+    @GetMapping(value = "/uni/{userId}")
     public University getUniversity(@PathVariable int userId) {
         return userService.getUser(userId);
     }

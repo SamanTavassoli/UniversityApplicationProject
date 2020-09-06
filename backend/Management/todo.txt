@@ -1,5 +1,4 @@
 
-create basic front end
 connect basic front end to spring
 
 think about what kind of services I need for front end
