@@ -29,10 +29,6 @@ public class MyUserDetails implements UserDetails {
                 .collect(Collectors.toList());
     }
 
-    public MyUserDetails() {
-
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

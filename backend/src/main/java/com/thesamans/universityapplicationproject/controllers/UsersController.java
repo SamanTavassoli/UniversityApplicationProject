@@ -17,6 +17,9 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value="test")
+    public String test() {return "test string"; }
+
     @GetMapping
     public List<User> getUserList() {
         return userService.getUserList();

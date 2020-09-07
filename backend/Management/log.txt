@@ -60,3 +60,9 @@ Briefly stopping working on creating accounts to finish front end
 Created UniversityPageComponent and made the search toggle between uni and course
 Added more to Login page with toggle for login, register / uni, student
 Working on backend by learning Spring Security
+
+07/09/20
+Changes to Security Configuration
+New MyUserDetailsService, MyUserDetails, changes to UserDao, addition of @EnableJPARepositories to main
+Implementing JWT authorisation
+Added jjwt dependency
