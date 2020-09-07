@@ -66,3 +66,6 @@ Changes to Security Configuration
 New MyUserDetailsService, MyUserDetails, changes to UserDao, addition of @EnableJPARepositories to main
 Implementing JWT authorisation
 Added jjwt dependency
+Implemented jwt token creation
+created api authorization call
+created and added request filter to look for jwt token

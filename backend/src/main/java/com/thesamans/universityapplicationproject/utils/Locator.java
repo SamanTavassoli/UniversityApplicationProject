@@ -1,4 +1,4 @@
-package com.thesamans.universityapplicationproject.model.utils;
+package com.thesamans.universityapplicationproject.utils;
 
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.Student;

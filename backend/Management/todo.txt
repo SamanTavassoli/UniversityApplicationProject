@@ -1,10 +1,10 @@
 
-connect basic front end to spring -> logging in and security first
+first clear up back end -> unused mappings, services
 
 think about what kind of services I need for front end
 implement back end for the above and the front end calls and display them
 
-implement routing
+connect basic front end to spring -> implement logging in front end
 
 - finish project
 - work on UX

@@ -1,4 +1,4 @@
-package com.thesamans.universityapplicationproject.model.utils;
+package com.thesamans.universityapplicationproject.utils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -5,7 +5,7 @@ import com.thesamans.universityapplicationproject.model.authentication.Authentic
 import com.thesamans.universityapplicationproject.model.users.Student;
 import com.thesamans.universityapplicationproject.model.users.University;
 import com.thesamans.universityapplicationproject.model.users.User;
-import com.thesamans.universityapplicationproject.model.utils.JwtUtil;
+import com.thesamans.universityapplicationproject.utils.JwtUtil;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
 import com.thesamans.universityapplicationproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +25,15 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private MyUserDetailsService userDetailsService;
+
+    @Autowired
+    private JwtUtil jwtTokenUtil;
 
     @GetMapping
     public List<User> getUserList() {
@@ -67,15 +76,6 @@ public class UsersController {
     }
 
     // authentication
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private MyUserDetailsService userDetailsService;
-
-    @Autowired
-    private JwtUtil jwtTokenUtil;
 
     @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
