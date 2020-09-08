@@ -1,5 +1,6 @@
 
-first clear up back end -> unused mappings, services
+rewatch security config tutorial and read documentation
+implement register, login apis for university, student, admin
 
 think about what kind of services I need for front end
 implement back end for the above and the front end calls and display them
@@ -12,5 +13,4 @@ connect basic front end to spring -> implement logging in front end
 
 
 list of mappings to provide:
-post /user/login -> JWT token
-post /user/register
+post /user/register as student or university -> provide required details -> return if account was created

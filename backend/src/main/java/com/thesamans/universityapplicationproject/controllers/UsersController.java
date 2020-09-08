@@ -5,6 +5,7 @@ import com.thesamans.universityapplicationproject.model.authentication.Authentic
 import com.thesamans.universityapplicationproject.model.users.Student;
 import com.thesamans.universityapplicationproject.model.users.University;
 import com.thesamans.universityapplicationproject.model.users.User;
+import com.thesamans.universityapplicationproject.services.StudentService;
 import com.thesamans.universityapplicationproject.utils.JwtUtil;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
 import com.thesamans.universityapplicationproject.services.UserService;
@@ -27,6 +28,9 @@ public class UsersController {
     private UserService userService;
 
     @Autowired
+    private StudentService studentService;
+
+    @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -42,7 +46,7 @@ public class UsersController {
 
     @GetMapping(value = "/{userId}")
     public User getUser(@PathVariable int userId) {
-        return userService.getUser(userId);
+        return userService.getUser(new User(), userId);
     }
 
     @DeleteMapping(value = "/{userId}")
@@ -52,14 +56,25 @@ public class UsersController {
 
     // students
 
+    /**
+     * Tries to register a student to the database
+     * @param student student to be registered
+     * @return true if student could be added
+     */
     @PostMapping(value = "/student")
-    public Student addStudent(@RequestBody Student student) {
-        return userService.addUser(student);
+    public Boolean registerStudent(@RequestBody Student student) {
+        return studentService.registerStudent(student);
     }
 
-    @GetMapping(value = "/student/{userId}")
-    public Student getStudent(@PathVariable int userId) {
-        return userService.getUser(userId);
+    @GetMapping(value = "/student/{studentId}")
+    public Student getStudent(@PathVariable int studentId) {
+        return studentService.getStudent(studentId);
+    }
+
+    /** For Admins to easily add students */
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
+        return studentService.addStudent(student);
     }
 
 
@@ -72,7 +87,7 @@ public class UsersController {
 
     @GetMapping(value = "/uni/{userId}")
     public University getUniversity(@PathVariable int userId) {
-        return userService.getUser(userId);
+        return userService.getUser(new University(), userId);
     }
 
     // authentication

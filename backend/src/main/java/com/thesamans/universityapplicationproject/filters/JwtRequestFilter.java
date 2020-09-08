@@ -25,9 +25,19 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtil jwtUtil;
 
+    /**
+     * Authenticates users if they have provided a valid JWT token
+     * It creates a UsernamePasswordAuthenticationToken if the user has been authenticated
+     * @param request request object
+     * @param response response object
+     * @param filterChain to call next filter in the filter chain after the end of this filter
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
+        // look for an authorization
         final String authorizationHeader = request.getHeader("Authorization");
 
         String username = null;
@@ -36,16 +46,28 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         // checking for jwt if we have "Bearer "
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7); // after "Bearer "
-            username = jwtUtil.extractUsername(jwt);
+            username = jwtUtil.extractUsername(jwt); // we get 'a' username, not sure if it is the right one
         }
 
+        // TODO: why do we check that user is not already authenticated
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+            // fetch user details to check if we extracted a correct username
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
+            // we finally check if the jwt returns the same username as userDetails
+            // this would check for more things if there were more elements other than username
             if (jwtUtil.validateTokens(jwt, userDetails)) {
+
+                // this is how we say that someone has been authenticated
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
+
+                // auth token saves details about the request
                 usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+
+                // "Security Context Holder is where Spring stores the details of who is authenticated"
+                // Get context for current user and set the authentication
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }

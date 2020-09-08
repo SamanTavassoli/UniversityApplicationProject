@@ -69,3 +69,7 @@ Added jjwt dependency
 Implemented jwt token creation
 created api authorization call
 created and added request filter to look for jwt token
+
+08/09/20
+The generic User service is a bit to complex for no reason so:
+- made separate student and uni daos and services for now

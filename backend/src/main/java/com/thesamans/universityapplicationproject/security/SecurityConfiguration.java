@@ -18,11 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity // added for web applications
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
-    // reference to database auto injected
-//    @Autowired
-//    DataSource dataSource;
-    // however when using jpa use UserDetailsService
     @Autowired
     UserDetailsService userDetailsService;
 
@@ -61,9 +56,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // how we add the request filter created to recognise jwts
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
-//        http.authorizeRequests()
-//                .antMatchers("/user").hasRole("ADMIN")
-//                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-//                .and().formLogin();
+        http.authorizeRequests()
+                .antMatchers("/user").hasRole("ADMIN")
+                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                .and().formLogin();
     }
 }

@@ -23,7 +23,13 @@ public class UserService {
         return userDao.save(user);
     }
 
-    public <T extends User> T getUser(int userId) {
+    /**
+     * Looks for a specific user in database
+     * @param userId User Id for the user requested
+     * @param <T> Type of user requested
+     * @return returns the casted user object
+     */
+    public <T extends User> T getUser(T UserType, int userId) {
         Optional<User> user = userDao.findById(userId);
 
         if (user.isEmpty()) {
