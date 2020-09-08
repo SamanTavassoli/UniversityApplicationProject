@@ -21,15 +21,12 @@ public class User {
     private String username;
     @JsonProperty("password")
     private String password;
-    /** Is user logged in */
-    @JsonProperty("active")
-    private Boolean active;
     /**
-     * Authority
+     * Authorities
      * Normally would be in a separate place but here for now
      */
     @JsonProperty("roles")
-    private String roles;
+    private String[] roles;
 
     // Get Set
 
@@ -57,19 +54,11 @@ public class User {
         this.password = password;
     }
 
-    public Boolean getActive() {
-        return active;
-    }
-
-    public void setActive(Boolean active) {
-        this.active = active;
-    }
-
-    public String getRoles() {
+    public String[] getRoles() {
         return roles;
     }
 
-    public void setRoles(String roles) {
+    public void setRoles(String[] roles) {
         this.roles = roles;
     }
 }

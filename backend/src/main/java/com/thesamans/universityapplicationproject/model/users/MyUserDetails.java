@@ -17,7 +17,6 @@ public class MyUserDetails implements UserDetails {
 
     private String username;
     private String password;
-    private boolean active;
     private List<GrantedAuthority> authorities;
 
     public MyUserDetails() {
@@ -27,10 +26,9 @@ public class MyUserDetails implements UserDetails {
     public MyUserDetails(User user) {
         this.username = user.getUsername();
         this.password = user.getPassword();
-//        this.active = user.getActive();
-//        this.authorities = Arrays.stream(user.getRoles().split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
+        this.authorities = Arrays.stream(user.getRoles())
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override

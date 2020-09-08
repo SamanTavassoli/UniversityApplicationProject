@@ -1,6 +1,6 @@
 
-rewatch security config tutorial and read documentation
 implement register, login apis for university, student, admin
+implement security configuration for the apis
 
 think about what kind of services I need for front end
 implement back end for the above and the front end calls and display them
@@ -9,8 +9,3 @@ connect basic front end to spring -> implement logging in front end
 
 - finish project
 - work on UX
-
-
-
-list of mappings to provide:
-post /user/register as student or university -> provide required details -> return if account was created

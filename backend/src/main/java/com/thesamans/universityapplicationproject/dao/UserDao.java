@@ -16,4 +16,6 @@ public interface UserDao extends CrudRepository<User, Integer> {
     // tell to jpa: give me a method that finds a user by username
     Optional<User> findByUsername(String username);
 
+    Boolean existsByUsername(String username);
+
 }

@@ -2,10 +2,7 @@ package com.thesamans.universityapplicationproject.controllers;
 
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationRequest;
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationResponse;
-import com.thesamans.universityapplicationproject.model.users.Student;
-import com.thesamans.universityapplicationproject.model.users.University;
-import com.thesamans.universityapplicationproject.model.users.User;
-import com.thesamans.universityapplicationproject.services.StudentService;
+import com.thesamans.universityapplicationproject.model.users.*;
 import com.thesamans.universityapplicationproject.utils.JwtUtil;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
 import com.thesamans.universityapplicationproject.services.UserService;
@@ -27,26 +24,9 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private StudentService studentService;
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private MyUserDetailsService userDetailsService;
-
-    @Autowired
-    private JwtUtil jwtTokenUtil;
-
     @GetMapping
     public List<User> getUserList() {
         return userService.getUserList();
-    }
-
-    @GetMapping(value = "/{userId}")
-    public User getUser(@PathVariable int userId) {
-        return userService.getUser(new User(), userId);
     }
 
     @DeleteMapping(value = "/{userId}")
@@ -54,59 +34,34 @@ public class UsersController {
         userService.deleteUser(userId);
     }
 
+    // admin
+
+    @PostMapping(value = "/admin/admin")
+    public Admin createAdmit(@RequestBody Admin admin) {
+        return userService.addUser(admin);
+    }
+
+    @GetMapping(value = "/admin/mainAdmin")
+    public Admin getAdmin() {
+        return userService.getUser(UserType.ADMIN, 19);
+    }
+
+    @PostMapping(value = "/admin/student")
+    public Student addStudent(@RequestBody Student student) {
+        return userService.addUser(student);
+    }
+
     // students
 
-    /**
-     * Tries to register a student to the database
-     * @param student student to be registered
-     * @return true if student could be added
-     */
     @PostMapping(value = "/student")
     public Boolean registerStudent(@RequestBody Student student) {
-        return studentService.registerStudent(student);
+        return userService.registerUser(student);
     }
 
     @GetMapping(value = "/student/{studentId}")
     public Student getStudent(@PathVariable int studentId) {
-        return studentService.getStudent(studentId);
+        return userService.getUser(UserType.STUDENT, studentId);
     }
-
-    /** For Admins to easily add students */
-    @PostMapping
-    public Student addStudent(@RequestBody Student student) {
-        return studentService.addStudent(student);
-    }
-
 
     // universities
-
-    @PostMapping(value = "/uni")
-    public University addUniversity(@RequestBody University university) {
-        return userService.addUser(university);
-    }
-
-    @GetMapping(value = "/uni/{userId}")
-    public University getUniversity(@PathVariable int userId) {
-        return userService.getUser(new University(), userId);
-    }
-
-    // authentication
-
-    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
-            );
-        } catch (BadCredentialsException e) {
-            throw new Exception("Incorrect username or password");
-        }
-
-        final UserDetails userDetails = userDetailsService
-                .loadUserByUsername(authenticationRequest.getUsername());
-
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
-
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
-    }
 }

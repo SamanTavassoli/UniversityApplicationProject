@@ -1,5 +1,9 @@
 package com.thesamans.universityapplicationproject.filters;
 
+import com.google.common.base.Enums;
+import com.google.common.base.Objects;
+import com.thesamans.universityapplicationproject.model.users.User;
+import com.thesamans.universityapplicationproject.model.users.UserType;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
 import com.thesamans.universityapplicationproject.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

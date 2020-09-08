@@ -71,5 +71,14 @@ created api authorization call
 created and added request filter to look for jwt token
 
 08/09/20
-The generic User service is a bit to complex for no reason so:
-- made separate student and uni daos and services for now
+The generic User service is a bit to complex for no reason so: (in the end not really as written below)
+- wanted to make separate student and uni daos and services for now
+- changed, no separate daos, easier for userdetailsservice to access one dao
+- same with services, it is easier in the end to have one service for users and later address different users' needs
+Polished controller with fewer apis for now
+Separated Authentication Controller form UsersController
+Added Admin creation
+Added an Admin in the system
+Fixed issue with getting a specific user cause there was an issue with checking the class of the retrieved user
+Removed "active" from users cause I didn't see the use for now
+Added in an admin for now

@@ -48,17 +48,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable().authorizeRequests().antMatchers("/user/authenticate").permitAll()
+        http
+                .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/user/admin/*").hasRole("ADMIN")
+                .antMatchers("/authenticate").permitAll()
                 .anyRequest().authenticated()
                 // no sessions, each request needs to provide a token
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // how we add the request filter created to recognise jwts
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-        http.authorizeRequests()
-                .antMatchers("/user").hasRole("ADMIN")
-                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-                .and().formLogin();
     }
 }
