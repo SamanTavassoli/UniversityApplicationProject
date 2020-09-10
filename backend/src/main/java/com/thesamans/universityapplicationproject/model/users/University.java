@@ -16,6 +16,10 @@ public class University extends User {
     @JsonProperty("availableCourses")
     private ArrayList<Course> availableCourses = new ArrayList<>();
 
+    public University() {
+
+    }
+
     public University(String username, String password, String email) {
         Objects.requireNonNull(username, "must specify username");
         Objects.requireNonNull(password, "must specify password");

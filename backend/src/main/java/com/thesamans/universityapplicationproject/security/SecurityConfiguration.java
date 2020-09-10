@@ -52,8 +52,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/*").hasRole("ADMIN")
-                .antMatchers("/user/*").hasRole("USER")
+                .antMatchers("/user/student/*").hasRole("STUDENT")
+                .antMatchers("/user/university/*").hasRole("UNIVERSITY")
                 .antMatchers("/authenticate", "/register").permitAll()
+                .antMatchers("**").denyAll()
                 .anyRequest().authenticated()
                 // no sessions, each request needs to provide a token
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

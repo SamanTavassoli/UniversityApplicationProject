@@ -18,7 +18,7 @@ public class AdminController {
     @Autowired
     RegistrationService registrationService;
 
-    @GetMapping
+    @GetMapping(value = "/users")
     public List<User> getUserList() {
         return userService.getUserList();
     }

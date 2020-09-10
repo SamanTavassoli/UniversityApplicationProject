@@ -11,10 +11,14 @@ import java.util.Objects;
 @Entity
 public class Student extends User {
 
-    @JsonProperty("dob")
+    @JsonProperty("dateOfBirth")
     private Date dateOfBirth;
     @JsonProperty("applicationsSent")
     private ArrayList<Application> applicationsSent;
+
+    public Student() {
+
+    }
 
     public Student(String username, String password, String email, Date dateOfBirth) {
         Objects.requireNonNull(username, "must specify username");
@@ -30,7 +34,7 @@ public class Student extends User {
 
         // not up to user
         // not setting userId as it is auto generated
-        this.setRoles(new String[] {"ROLE_USER"});
+        this.setRoles(new String[] {"ROLE_STUDENT"});
         this.setApplicationsSent(new ArrayList<>());
     }
 
