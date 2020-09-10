@@ -1,7 +1,6 @@
 package com.thesamans.universityapplicationproject.model.application;
 
 import com.thesamans.universityapplicationproject.model.users.Student;
-import com.thesamans.universityapplicationproject.utils.Locator;
 
 /**
  * Handles the creation of Applications
@@ -22,7 +21,7 @@ public class ApplicationFactory {
 
         Application application = new Application();
 
-        application.setStudentId(student.getStudentId());
+        application.setUserId(student.getUserId());
         application.setCourseId(courseId);
         application.setApplicationStatus(ApplicationStatus.STARTED);
         application.setApplicationId(generateApplicationId());
@@ -32,7 +31,7 @@ public class ApplicationFactory {
 
 
     public static boolean isValidApplication(int courseId) {
-        return Locator.isValidCourseId(courseId);
+        return true; // TODO: Implement
     }
 
     private static int generateApplicationId() {

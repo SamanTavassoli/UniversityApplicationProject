@@ -85,3 +85,6 @@ Added in an admin for now
 
 10/09/20
 Split UsersController into Users, Admin and Registration Controllers and added Registration Service
+Added registration utils, first method inside is to check if a user has given the correct info for registration
+Removed Student and Uni Id for now, setting up registration
+Removed Locator as it all pretty much had to be reimplemented, will implement when needed

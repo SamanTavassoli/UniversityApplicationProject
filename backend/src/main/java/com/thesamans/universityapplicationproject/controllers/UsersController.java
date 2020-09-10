@@ -33,5 +33,9 @@ public class UsersController {
 
     // universities
 
+    @GetMapping(value = "/university/{universityId}")
+    public University getUniversity(@PathVariable int universityID) {
+        return userService.getUser(UserType.UNIVERSITY, universityID);
+    }
 
 }

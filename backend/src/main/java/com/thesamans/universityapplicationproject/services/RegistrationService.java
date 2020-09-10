@@ -1,7 +1,9 @@
 package com.thesamans.universityapplicationproject.services;
 
 import com.thesamans.universityapplicationproject.dao.UserDao;
+import com.thesamans.universityapplicationproject.model.users.RegistrationUser;
 import com.thesamans.universityapplicationproject.model.users.User;
+import com.thesamans.universityapplicationproject.utils.RegistrationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,9 @@ public class RegistrationService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    RegistrationUtil registrationUtil;
 
     /** Admin service for ease of use */
     public <T extends User> T addUser(T user) {
@@ -22,15 +27,16 @@ public class RegistrationService {
 
     /** Registering student to student database
      *  Will register the student if they do not already exist
+     *  and if they have provided the correct details
      *
      * @param user Student to be added
-     * @return true if student could be added
+     * @return true if student was added
      */
-    public <T extends User> Boolean registerUser(T user) {
-        if (userDao.existsByUsername(user.getUsername())) {
+    public Boolean registerUser(RegistrationUser user) {
+        if (!registrationUtil.canCreateUser(user)) {
             return false;
         } else {
-            userDao.save(user);
+            registrationUtil.createUser(user);
             return true;
         }
     }

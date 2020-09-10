@@ -6,24 +6,32 @@ import com.thesamans.universityapplicationproject.model.application.Application;
 import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 public class Student extends User {
 
-    /** Student Id given on sign up, separate from user id, used for applications */
-    @JsonProperty("studentId")
-    private int studentId;
     @JsonProperty("dob")
     private Date dateOfBirth;
     @JsonProperty("applicationsSent")
     private ArrayList<Application> applicationsSent;
 
-    public int getStudentId() {
-        return studentId;
-    }
+    public Student(String username, String password, String email, Date dateOfBirth) {
+        Objects.requireNonNull(username, "must specify username");
+        Objects.requireNonNull(password, "must specify password");
+        Objects.requireNonNull(email, "must specify email");
+        Objects.requireNonNull(dateOfBirth, "must specify dateOfBirth");
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+        // up to the user
+        this.setUsername(username);
+        this.setPassword(password);
+        this.setEmail(email);
+        this.setDateOfBirth(dateOfBirth);
+
+        // not up to user
+        // not setting userId as it is auto generated
+        this.setRoles(new String[] {"ROLE_USER"});
+        this.setApplicationsSent(new ArrayList<>());
     }
 
     public Date getDateOfBirth() {

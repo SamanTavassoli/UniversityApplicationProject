@@ -8,7 +8,7 @@ import java.util.Date;
 public class Application {
 
     /** Id of the student that has applied */
-    private int studentId;
+    private int userId;
     /** Id of the Course applied to */
     private int courseId;
     /** Number given to the application */
@@ -26,12 +26,12 @@ public class Application {
 
     // Get Set
 
-    public int getStudentId() {
-        return studentId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getCourseId() {

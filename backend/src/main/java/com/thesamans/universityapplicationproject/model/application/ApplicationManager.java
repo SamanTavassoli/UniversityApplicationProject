@@ -1,18 +1,22 @@
 package com.thesamans.universityapplicationproject.model.application;
 
+import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.Student;
-import com.thesamans.universityapplicationproject.utils.Locator;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.Objects;
 
 public class ApplicationManager {
 
+    @Autowired
+    UserDao userDao;
+
     public boolean sendApplication(Application application) {
 
-        Student student = Locator.getStudent(application.getStudentId());
-        Course course = Locator.getCourse(application.getCourseId());
+        Student student = (Student) userDao.findById(application.getUserId()).get();
+        Course course = new Course(); // TODO : Implement fetch of actual course
 
         Objects.requireNonNull(student);
         Objects.requireNonNull(course);
