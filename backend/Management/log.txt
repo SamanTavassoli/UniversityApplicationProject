@@ -82,3 +82,6 @@ Added an Admin in the system
 Fixed issue with getting a specific user cause there was an issue with checking the class of the retrieved user
 Removed "active" from users cause I didn't see the use for now
 Added in an admin for now
+
+10/09/20
+Split UsersController into Users, Admin and Registration Controllers and added Registration Service

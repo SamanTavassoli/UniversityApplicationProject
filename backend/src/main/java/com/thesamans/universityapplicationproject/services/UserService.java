@@ -5,6 +5,7 @@ import com.thesamans.universityapplicationproject.model.users.User;
 import com.thesamans.universityapplicationproject.model.users.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,35 +14,11 @@ import java.util.Optional;
  * Generic class to handle students, universities and admins
  * Handles the appropriate level of detail to be added and retrieved to the userDao based on the type of user
  */
-@Component
+@Service
 public class UserService {
 
     @Autowired
     private UserDao userDao;
-
-    /** Admin service for ease of use */
-    public <T extends User> T addUser(T user) {
-        if (userDao.existsByUsername(user.getUsername())) {
-            return null;
-        } else {
-            return userDao.save(user);
-        }
-    }
-
-    /** Registering student to student database
-     *  Will register the student if they do not already exist
-     *
-     * @param user Student to be added
-     * @return true if student could be added
-     */
-    public <T extends User> Boolean registerUser(T user) {
-        if (userDao.existsByUsername(user.getUsername())) {
-            return false;
-        } else {
-            userDao.save(user);
-            return true;
-        }
-    }
 
     /**
      * Looks for a specific user in database
