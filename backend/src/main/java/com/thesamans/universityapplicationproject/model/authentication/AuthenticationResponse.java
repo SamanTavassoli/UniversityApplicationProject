@@ -10,7 +10,7 @@ public class AuthenticationResponse {
     private final String token;
 
 
-    public AuthenticationResponse(String username, String jwt, String userType) {
+    public AuthenticationResponse(String username, String userType, String jwt) {
         this.username = username;
         this.userType = userType;
         this.token = jwt;

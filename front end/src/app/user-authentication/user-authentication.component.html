@@ -15,7 +15,7 @@
         </form>
     </div>
     <div *ngIf="authentificationType==AuthentificationType.Register">
-        <form (submit)="registert($event, [userType])">
+        <form (submit)="register($event, [userType])">
             <input type="text" placeholder="Username" id="username">
             <input type="password" placeholder="Password" id="password">
             <input type="email" placeholder="Email" id="email">
@@ -34,7 +34,7 @@
         </form>
     </div>
     <div *ngIf="authentificationType==AuthentificationType.Register">
-        <form (submit)="registert($event, [userType])">
+        <form (submit)="register($event, [userType])">
             <input type="text" placeholder="Username" id="username">
             <input type="password" placeholder="Password" id="password">
             <input type="email" placeholder="Email" id="email">

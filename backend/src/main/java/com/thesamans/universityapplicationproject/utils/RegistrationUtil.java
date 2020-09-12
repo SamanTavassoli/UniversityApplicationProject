@@ -24,6 +24,7 @@ public class RegistrationUtil {
      * @return true if user details are allowed
      */
     public boolean canCreateUser(RegistrationUser user) {
+
         // checks for all users
         boolean userCheck =
                 validateUsername(user.getUsername())
@@ -31,17 +32,13 @@ public class RegistrationUtil {
                 && validateEmail(user.getEmail())
                 && !(userDao.existsByUsername(user.getUsername()));
 
-        // checks for students
-        boolean studentCheck = validateDateOfBirth(parseDateOfBirth(user.getDateOfBirth()));
-
-        // checks for universities
-        boolean universityCheck = true; // TODO: implement checks
-
         UserType userType = parseUserType(user.getUserType());
 
         if (userType.equals(UserType.STUDENT)) {
+            boolean studentCheck = validateDateOfBirth(parseDateOfBirth(user.getDateOfBirth()));
             return userCheck && studentCheck;
         } else if (userType.equals(UserType.UNIVERSITY)) {
+            boolean universityCheck = true; // TODO: implement checks
             return userCheck && universityCheck;
         } else {
             return false; // cannot create other kinds of users

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/auth")
+@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
 
     @Autowired
@@ -51,7 +52,7 @@ public class AuthenticationController {
     }
 
     @PostMapping(value = "/register")
-    public boolean register(@RequestBody RegistrationUser user) {
-        return registrationService.registerUser(user);
+    public ResponseEntity<?> register(@RequestBody RegistrationUser user) {
+        return ResponseEntity.ok(registrationService.registerUser(user));
     }
 }

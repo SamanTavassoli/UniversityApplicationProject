@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin/*").hasRole("ADMIN")
                 .antMatchers("/user/student/*").hasRole("STUDENT")
                 .antMatchers("/user/university/*").hasRole("UNIVERSITY")
-                .antMatchers("/auth").permitAll()
+                .antMatchers("/auth/*").permitAll()
                 .antMatchers("**").denyAll()
                 .anyRequest().authenticated()
                 // no sessions, each request needs to provide a token

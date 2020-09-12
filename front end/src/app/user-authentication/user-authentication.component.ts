@@ -70,18 +70,18 @@ export class UserAuthenticationComponent implements OnInit {
     const target = event.target
     const username = target.querySelector('#username').value
     const password = target.querySelector('#password').value
-    const email = target.querySelector('#username').value
+    const email = target.querySelector('#email').value
     var dateOfBirth;
     if (userType == UserType.Student) {
       dateOfBirth = target.querySelector('#dateOfBirth').value
     }
 
-    var registrationUser = new RegistrationUser(username, password, email, userType.toString(), dateOfBirth)
+    var registrationUser = new RegistrationUser(username, password, email, UserType[userType.toString()], dateOfBirth)
 
     this.authService.register(registrationUser).subscribe(answer => {
       if (answer == true) {
         // if registered now user should login
-        this.router.navigate(['user/login'])
+        window.location.reload()
       } else {
         window.alert('Error with registration')
       }

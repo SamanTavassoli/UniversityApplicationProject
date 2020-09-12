@@ -65,6 +65,6 @@ export class UserAuthenticationService {
    */
   register(registrationUser: RegistrationUser) {
 
-    return this.http.post<boolean>(AUTH_API_URL + '/register', {registrationUser})
+    return this.http.post<boolean>(AUTH_API_URL + '/register', registrationUser)
   }
 }
