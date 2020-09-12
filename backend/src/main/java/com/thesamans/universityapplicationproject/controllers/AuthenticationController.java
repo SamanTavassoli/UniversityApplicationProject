@@ -45,7 +45,8 @@ public class AuthenticationController {
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        // what is sent back to the front end as a confirmation of login
+        return ResponseEntity.ok(new AuthenticationResponse(authenticationRequest.getUsername(), jwt));
     }
 
     @PostMapping(value = "/register")

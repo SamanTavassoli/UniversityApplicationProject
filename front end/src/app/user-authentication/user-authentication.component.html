@@ -26,5 +26,19 @@
     
 </div>
 <div *ngIf="userType==UserType.University">
-    Needs to be implemented
+    <div *ngIf="authentificationType==AuthentificationType.Login">
+        <form (submit)="login($event)">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="submit" value="login">
+        </form>
+    </div>
+    <div *ngIf="authentificationType==AuthentificationType.Register">
+        <form (submit)="registert($event, [userType])">
+            <input type="text" placeholder="Username" id="username">
+            <input type="password" placeholder="Password" id="password">
+            <input type="email" placeholder="Email" id="email">
+            <input type="submit" value="register">
+        </form>
+    </div>
 </div>

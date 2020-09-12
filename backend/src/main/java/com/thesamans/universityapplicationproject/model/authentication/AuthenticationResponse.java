@@ -1,15 +1,30 @@
 package com.thesamans.universityapplicationproject.model.authentication;
 
+/**
+ * Corresponds to LoggedInUser on front end
+ */
 public class AuthenticationResponse {
 
-    private final String jwt;
+    private final String username;
+    private final String userType;
+    private final String token;
 
 
-    public AuthenticationResponse(String jwt) {
-        this.jwt = jwt;
+    public AuthenticationResponse(String username, String jwt, String userType) {
+        this.username = username;
+        this.userType = userType;
+        this.token = jwt;
     }
 
-    public String getJwt() {
-        return jwt;
+    public String getToken() {
+        return token;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getUserType() {
+        return userType;
     }
 }
