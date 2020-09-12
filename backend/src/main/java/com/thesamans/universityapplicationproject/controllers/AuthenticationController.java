@@ -2,7 +2,9 @@ package com.thesamans.universityapplicationproject.controllers;
 
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationRequest;
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationResponse;
+import com.thesamans.universityapplicationproject.model.users.RegistrationUser;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
+import com.thesamans.universityapplicationproject.services.RegistrationService;
 import com.thesamans.universityapplicationproject.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -22,9 +25,12 @@ public class AuthenticationController {
     private MyUserDetailsService userDetailsService;
 
     @Autowired
+    RegistrationService registrationService;
+
+    @Autowired
     private JwtUtil jwtTokenUtil;
 
-    @PostMapping(value = "/authenticate")
+    @PostMapping(value = "/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         try {
             authenticationManager.authenticate(
@@ -40,5 +46,10 @@ public class AuthenticationController {
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @PostMapping(value = "/register")
+    public boolean register(@RequestBody RegistrationUser user) {
+        return registrationService.registerUser(user);
     }
 }

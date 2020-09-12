@@ -89,3 +89,6 @@ Added registration utils, first method inside is to check if a user has given th
 Removed Student and Uni Id for now, setting up registration
 Removed Locator as it all pretty much had to be reimplemented, will implement when needed
 Finished registration and tested it, also added denial of all requests with antMatcher (**)
+
+12/09/20
+Removed Registration controller, all auth will be in auth controller, changed the api urls

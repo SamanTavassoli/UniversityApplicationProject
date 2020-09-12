@@ -15,9 +15,11 @@
         </form>
     </div>
     <div *ngIf="authentificationType==AuthentificationType.Register">
-        <form (submit)="registert($event)">
+        <form (submit)="registert($event, [userType])">
             <input type="text" placeholder="Username" id="username">
             <input type="password" placeholder="Password" id="password">
+            <input type="email" placeholder="Email" id="email">
+            <input type="dateOfBirth" placeholder="DateOfBirth" id="dateOfBirth">
             <input type="submit" value="register">
         </form>
     </div>
