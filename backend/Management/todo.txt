@@ -1,11 +1,11 @@
 
-implement register, login apis for university, student, admin
-implement security configuration for the apis
+implement logging in and registering front end
+front accessing user details,
+front / back adding/removing courses
+front / back applying courses
+front / back managing courses
 
-think about what kind of services I need for front end
-implement back end for the above and the front end calls and display them
-
-connect basic front end to spring -> implement logging in front end
 
 - finish project
 - work on UX
+
