@@ -2,6 +2,7 @@ package com.thesamans.universityapplicationproject.controllers;
 
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationRequest;
 import com.thesamans.universityapplicationproject.model.authentication.AuthenticationResponse;
+import com.thesamans.universityapplicationproject.model.users.MyUserDetails;
 import com.thesamans.universityapplicationproject.model.users.RegistrationUser;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
 import com.thesamans.universityapplicationproject.services.RegistrationService;
@@ -40,13 +41,13 @@ public class AuthenticationController {
             throw new Exception("Incorrect username or password");
         }
 
-        final UserDetails userDetails = userDetailsService
+        final MyUserDetails myUserDetails = userDetailsService
                 .loadUserByUsername(authenticationRequest.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String jwt = jwtTokenUtil.generateToken(myUserDetails);
 
         // what is sent back to the front end as a confirmation of login
-        return ResponseEntity.ok(new AuthenticationResponse(authenticationRequest.getUsername(), jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(myUserDetails.getUsername(), myUserDetails.getUserType(), jwt));
     }
 
     @PostMapping(value = "/register")

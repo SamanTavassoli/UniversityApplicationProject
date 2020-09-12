@@ -92,3 +92,4 @@ Finished registration and tested it, also added denial of all requests with antM
 
 12/09/20
 Removed Registration controller, all auth will be in auth controller, changed the api urls
+Working on log in and logout on FE and BE

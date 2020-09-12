@@ -21,7 +21,7 @@ public class MyUserDetailsService implements UserDetailsService {
     UserDao userDao;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public MyUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = userDao.findByUsername(username);
 
         // if optional is empty
