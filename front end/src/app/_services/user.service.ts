@@ -12,7 +12,7 @@ export class UserService {
 
   // only student accounts should be able to retrieve this
   testStudent() {
-    return this.http.get<string>(TEST_API_URL + '/student/test');
+    return this.http.get<[string]>(TEST_API_URL + '/student/test');
   }
 
   // only uni accounts should be able to retrieve this

@@ -14,9 +14,12 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @EnableWebSecurity // added for web applications
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     @Autowired
     UserDetailsService userDetailsService;
@@ -49,6 +52,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                .cors()
+                .and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/*").hasRole("ADMIN")
@@ -62,5 +67,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         // how we add the request filter created to recognise jwts
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    /**
+     * Cors configuration
+     * Configures cors for all controllers
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:4200");
     }
 }

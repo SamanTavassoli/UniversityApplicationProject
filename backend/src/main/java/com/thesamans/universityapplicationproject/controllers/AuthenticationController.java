@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/auth")
-@CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
 
     @Autowired
@@ -39,7 +38,6 @@ public class AuthenticationController {
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
-            System.err.println(authenticationRequest.getUsername() + " " + authenticationRequest.getPassword());
             throw new Exception("Incorrect username or password");
         }
 
@@ -49,7 +47,8 @@ public class AuthenticationController {
         final String jwt = jwtTokenUtil.generateToken(myUserDetails);
 
         // what is sent back to the front end as a confirmation of login
-        return ResponseEntity.ok(new AuthenticationResponse(myUserDetails.getUsername(), myUserDetails.getUserType(), jwt));
+        String userType = myUserDetails.getUserType().substring(myUserDetails.getUserType().lastIndexOf(".") + 1);
+        return ResponseEntity.ok(new AuthenticationResponse(myUserDetails.getUsername(), userType, jwt));
     }
 
     @PostMapping(value = "/register")

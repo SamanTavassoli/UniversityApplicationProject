@@ -95,3 +95,7 @@ Removed Registration controller, all auth will be in auth controller, changed th
 Working on log in and logout on FE and BE -> can now login and register from FE, users get registered to BE
 
 13/09/20
+Add interceptor on FE to add jwt token in authorization header
+Setup login logout FE
+Add basic fetch data for uni and student when logged in
+
