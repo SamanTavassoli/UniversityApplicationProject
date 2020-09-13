@@ -12,20 +12,20 @@ const AUTH_API_URL = 'http://localhost:8080/auth'
 })
 export class UserAuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<LoggedInUser>;
-  public currentUser: Observable<LoggedInUser>;
+  private userSubject: BehaviorSubject<LoggedInUser>;
+  public user: Observable<LoggedInUser>;
 
   /**
-   * When the service is called it automatically looks for the currentUser in local storage
+   * When the service is called it automatically looks for the user in local storage
    * to check if the user is already logged in
    */
   constructor(private http: HttpClient) { 
-    this.currentUserSubject = new BehaviorSubject<LoggedInUser>(JSON.parse(localStorage.getItem('currentUser')))
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.userSubject = new BehaviorSubject<LoggedInUser>(JSON.parse(localStorage.getItem('user')))
+    this.user = this.userSubject.asObservable();
   }
 
-  public get currentUserValue(): LoggedInUser {
-    return this.currentUserSubject.value;
+  public get userValue(): LoggedInUser {
+    return this.userSubject.value;
 }
 
 /**
@@ -44,8 +44,8 @@ export class UserAuthenticationService {
     .pipe(map(user => {
       // local storage item current user is how we know we are logged in
       // local storage persists so logged in until jwt expires or logout
-      localStorage.setItem('currentUser', JSON.stringify(user))
-      this.currentUserSubject.next(user)
+      localStorage.setItem('user', JSON.stringify(user))
+      this.userSubject.next(user)
       return user;
     }));
   }
@@ -54,8 +54,8 @@ export class UserAuthenticationService {
    * Log out by removing user json which has the jwt token from local storage
    */
   logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    localStorage.removeItem('user');
+    this.userSubject.next(null);
   }
 
   /**

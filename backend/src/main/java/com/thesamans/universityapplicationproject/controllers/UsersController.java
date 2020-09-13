@@ -18,10 +18,16 @@ public class UsersController {
     @Autowired
     private UserService userService;
 
+    // test
 
-    @DeleteMapping(value = "/{userId}")
-    public void deleteUser(@PathVariable int userId) {
-        userService.deleteUser(userId);
+    @GetMapping(value = "/student/test")
+    public String testStudent() {
+        return "test student success";
+    }
+
+    @GetMapping(value = "/university/test")
+    public String testUniversity() {
+        return "test uni success";
     }
 
     // students

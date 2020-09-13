@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'user', 
     component: UserComponent, 
     children: [
-      {path: '', redirectTo: 'profile', pathMatch: 'full'},
+      {path: '', redirectTo: 'authentication', pathMatch: 'full'},
       {path: 'authentication', component: UserAuthenticationComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: UserProfileComponent},
       {path: '**', redirectTo: 'profile', pathMatch: 'full'}

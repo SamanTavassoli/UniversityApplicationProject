@@ -55,7 +55,8 @@ export class UserAuthenticationComponent implements OnInit {
   }
 
   logout(event) {
-    
+    this.authService.logout();
+    this.router.navigate(['user/authentication'])
   }
 
   /**
