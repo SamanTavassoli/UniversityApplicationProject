@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserAuthenticationService } from '../_services/user-authentication.service';
 
 @Component({
   selector: 'app-permanent-header',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PermanentHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: UserAuthenticationService) { 
+    this.loggedIn = this.authService.isLoggedIn();
+  }
+
+  loggedIn = false;
 
   ngOnInit(): void {
+    this.loggedIn = this.authService.isLoggedIn();
+  }
+
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
 
 }

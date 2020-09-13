@@ -39,6 +39,7 @@ public class AuthenticationController {
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
         } catch (BadCredentialsException e) {
+            System.err.println(authenticationRequest.getUsername() + " " + authenticationRequest.getPassword());
             throw new Exception("Incorrect username or password");
         }
 

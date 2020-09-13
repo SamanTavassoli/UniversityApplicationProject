@@ -14,12 +14,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     // cannot access authentication page if already logged in
-      if (this.authService.currentUserValue) {
-        return false;
-    }
-
-    // if not logged in then can access athentication page
-    return true;
+      return !this.authService.isLoggedIn();
   }
   
 }

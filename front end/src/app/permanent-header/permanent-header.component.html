@@ -2,6 +2,7 @@
   <ul>
     <li id="websiteName" routerLink="/home">University Application Project</li>
     <li>Account</li>
-    <li routerLink="/user/authentication">login</li>
+    <li *ngIf="loggedIn" (click)="logout()" >logout</li>
+    <li *ngIf="!loggedIn" routerLink="/user/authentication">login</li>
   </ul>  
 </div>

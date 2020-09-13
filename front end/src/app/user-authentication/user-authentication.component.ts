@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { UserAuthenticationService } from '../_services/user-authentication.service';
 import { Router } from '@angular/router';
 import { User } from '../user/user.component';
@@ -43,6 +43,7 @@ export class UserAuthenticationComponent implements OnInit {
     const target = event.target
     const username = target.querySelector('#username').value
     const password = target.querySelector('#password').value
+
 
     this.authService.login(username, password).subscribe(data => {
       if (data['token']) {

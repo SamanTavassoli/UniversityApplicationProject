@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LoggedInUser } from '../_models/logged-in-user';
 import { RegistrationUser } from '../_models/registration-user';
+import { LoginRequestUser } from '../_models/login-request-user';
 
 const AUTH_API_URL = 'http://localhost:8080/auth'
 
@@ -26,7 +27,11 @@ export class UserAuthenticationService {
 
   public get userValue(): LoggedInUser {
     return this.userSubject.value;
-}
+  }
+
+  isLoggedIn() {
+    return (this.userValue != null);
+  }
 
 /**
  * Log the user in by making a rest call and getting a user json back
@@ -36,11 +41,10 @@ export class UserAuthenticationService {
  * If the authentication fails then get null reply
  */
   login(username: string, password: string) {
-    let params = new HttpParams()
-      .set('username', username)
-      .set('password', password)
 
-    return this.http.post<LoggedInUser>(AUTH_API_URL + '/login', {params})
+    const loginRequestUser: LoginRequestUser = new LoginRequestUser(username, password);
+
+    return this.http.post<LoggedInUser>(AUTH_API_URL + '/login', loginRequestUser)
     .pipe(map(user => {
       // local storage item current user is how we know we are logged in
       // local storage persists so logged in until jwt expires or logout
