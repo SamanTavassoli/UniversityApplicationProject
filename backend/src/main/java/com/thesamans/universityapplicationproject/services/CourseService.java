@@ -3,11 +3,14 @@ package com.thesamans.universityapplicationproject.services;
 import com.thesamans.universityapplicationproject.dao.CourseDao;
 import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.course.Course;
+import com.thesamans.universityapplicationproject.model.users.MyUserDetails;
+import com.thesamans.universityapplicationproject.model.users.University;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -22,6 +25,11 @@ public class CourseService {
         return courseDao.findById(courseId).get();
     }
 
+    public List<Course> getAllCoursesForUni(int universityId) {
+        return getAllCourses().stream().filter(course -> course.getUniversityId() == universityId).collect(Collectors.toList());
+    }
+
+    /** Returns all courses for all universities */
     public List<Course> getAllCourses() {
         return courseDao.findAll();
     }
@@ -33,10 +41,8 @@ public class CourseService {
         String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName();
         String courseUniversity = userDao.findById(course.getUniversityId()).get().getUsername(); // university tied to the course
         if (courseDao.existsByCourseName(course.getCourseName()) && authenticatedUniversity.equals(courseUniversity)) {
-            System.err.println("didn't add");
             return false;
         } else {
-            System.err.println("added");
             courseDao.save(course);
             return true;
         }

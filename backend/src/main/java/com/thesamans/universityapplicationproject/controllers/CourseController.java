@@ -14,14 +14,24 @@ public class CourseController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping("/{courseId}")
+    @PostMapping("/add")
+    public boolean addCourse(@RequestBody Course course) {
+        return courseService.addCourse(course);
+    }
+
+    @GetMapping("/public/singleCourse/{courseId}")
     public Course getCourse(@PathVariable int courseId) {
         return courseService.getCourse(courseId);
     }
 
-    @PostMapping("/add")
-    public boolean addCourse(@RequestBody Course course) {
-        return courseService.addCourse(course);
+    @GetMapping("/public/allCourses")
+    public List<Course> getAllCourses() {
+        return courseService.getAllCourses();
+    }
+
+    @GetMapping("/public/allCoursesForUni/{universityId}")
+    public List<Course> getAllCoursesForUni(@PathVariable int universityId) {
+        return courseService.getAllCoursesForUni(universityId);
     }
 
 }

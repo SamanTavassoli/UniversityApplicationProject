@@ -56,10 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/admin/*", "/courses/**").hasRole("ADMIN")
                 .antMatchers("/user/student/*").hasRole("STUDENT")
-                .antMatchers("/user/university/*", "/courses/*").hasRole("UNIVERSITY")
-                .antMatchers("/auth/*").permitAll()
+                .antMatchers("/user/university/*", "/courses/**").hasRole("UNIVERSITY")
+                .antMatchers("/auth/*", "/courses/public/**").permitAll()
                 .antMatchers("**").denyAll()
                 .anyRequest().authenticated()
                 // no sessions, each request needs to provide a token

@@ -10,9 +10,16 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
 })
 export class UniversityCourseManagerComponent implements OnInit {
 
+  courses: Course[]
+
   constructor(private authService: UserAuthenticationService, private courseService: CourseService) { }
 
   ngOnInit(): void {
+    this.courseService.getAllCoursesForUni(this.authService.userValue.userId).subscribe(
+      courses => {
+        this.courses = courses
+      }
+    )
   }
 
   addCourse(event) {

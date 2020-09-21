@@ -12,22 +12,22 @@ const COURSE_API = 'http://localhost:8080/courses'
 })
 export class CourseService {
 
+  courses: Course[]
+
   constructor(private http: HttpClient) { }
 
   getCourse(courseId: number) {
-    return this.http.get<Course>(COURSE_API + '/' + courseId.toString)
+    return this.http.get<Course>(COURSE_API + '/public/' + courseId)
   }
 
-  // testUni = new University('test uni')
-  // testCourses = [
-  //   new Course(1, this.testUni, 'course1', 1, 1, 1),
-  //   new Course(1, this.testUni, 'course2', 1, 1, 1),
-  //   new Course(1, this.testUni, 'course2', 1, 1, 1)]
-  courses: Course[]
+  getAllCoursesForUni(universityId: number) {
+    return this.http.get<Course[]>(COURSE_API + '/public/allCoursesForUni/' + universityId)
+  }
 
+  /** Get all the courses for all universities */
   getAllCourses() {
     if (!sessionStorage.getItem('testCourses')) {  // fetch from server if sessionStorage doesn't contain data
-      this.http.get<Course[]>(COURSE_API + '/allCourses')
+      this.http.get<Course[]>(COURSE_API + '/public/allCourses')
       .subscribe(courses => {
         sessionStorage.setItem('courses', JSON.stringify(courses))
         this.courses = courses;

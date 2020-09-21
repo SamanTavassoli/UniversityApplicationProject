@@ -47,9 +47,4 @@ public class AdminController {
     public University addUniversity(@RequestBody University university) {
         return registrationService.addUser(university);
     }
-
-    @GetMapping("/courses")
-    public List<Course> getAllCourses() {
-        return courseService.getAllCourses();
-    }
 }
