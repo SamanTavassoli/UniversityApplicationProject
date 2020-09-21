@@ -3,9 +3,7 @@ package com.thesamans.universityapplicationproject.controllers;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +17,11 @@ public class CourseController {
     @GetMapping("/allCourses")
     public List<Course> getAllCourses() {
         return courseService.getAllCourses();
+    }
+
+    @PostMapping("/add")
+    public boolean addCourse(@RequestBody Course course) {
+        return courseService.addCourse(course);
     }
 
 }

@@ -12,4 +12,6 @@ public interface CourseDao extends CrudRepository<Course, Integer> {
 
     @Override
     List<Course> findAll();
+
+    Boolean existsByCourseName(String courseName);
 }

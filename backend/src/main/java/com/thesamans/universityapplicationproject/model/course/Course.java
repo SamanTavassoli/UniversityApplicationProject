@@ -3,10 +3,15 @@ package com.thesamans.universityapplicationproject.model.course;
 import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.users.University;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
 public class Course {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int courseId;
     private University university;
     private String courseName;
