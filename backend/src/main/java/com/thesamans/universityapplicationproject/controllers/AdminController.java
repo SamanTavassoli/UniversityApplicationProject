@@ -1,6 +1,8 @@
 package com.thesamans.universityapplicationproject.controllers;
 
+import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.*;
+import com.thesamans.universityapplicationproject.services.CourseService;
 import com.thesamans.universityapplicationproject.services.RegistrationService;
 import com.thesamans.universityapplicationproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class AdminController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CourseService courseService;
 
     @Autowired
     RegistrationService registrationService;
@@ -41,5 +46,10 @@ public class AdminController {
     @PostMapping(value = "/uni")
     public University addUniversity(@RequestBody University university) {
         return registrationService.addUser(university);
+    }
+
+    @GetMapping("/courses")
+    public List<Course> getAllCourses() {
+        return courseService.getAllCourses();
     }
 }

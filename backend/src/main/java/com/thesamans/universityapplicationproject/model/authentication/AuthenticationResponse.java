@@ -5,15 +5,21 @@ package com.thesamans.universityapplicationproject.model.authentication;
  */
 public class AuthenticationResponse {
 
+    private final int userId;
     private final String username;
     private final String userType;
     private final String token;
 
 
-    public AuthenticationResponse(String username, String userType, String jwt) {
+    public AuthenticationResponse(int userId, String username, String userType, String jwt) {
+        this.userId = userId;
         this.username = username;
         this.userType = userType;
         this.token = jwt;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public String getToken() {

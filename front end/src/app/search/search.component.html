@@ -11,7 +11,7 @@ Search: <input type="text" [(ngModel)]="searchTerm">
     Results:
     <div *ngIf="searchType==SearchType.Course">
         <li *ngFor="let course of courses" routerLink="/course" [queryParams]="{courseName: [course]}">
-            {{course._courseName}}
+            {{course.courseName}}
         </li>
     </div>
     <div *ngIf="searchType==SearchType.University">

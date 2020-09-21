@@ -41,8 +41,8 @@ public class UsersController {
     // universities
 
     @GetMapping(value = "/university/{universityId}")
-    public University getUniversity(@PathVariable int universityID) {
-        return userService.getUser(UserType.UNIVERSITY, universityID);
+    public University getUniversity(@PathVariable int universityId) {
+        return userService.getUser(UserType.UNIVERSITY, universityId);
     }
 
 }

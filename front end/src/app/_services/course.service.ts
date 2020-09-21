@@ -40,5 +40,9 @@ export class CourseService {
     return this.courses
   }
 
+  addCourse(course: Course) {
+    return this.http.post<boolean>(COURSE_API + '/add', course)
+  }
+
 
 }

@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
  */
 public class MyUserDetails implements UserDetails {
 
+    private int userId;
     private String username;
     private String password;
     private String userType;
@@ -25,6 +26,7 @@ public class MyUserDetails implements UserDetails {
     }
 
     public MyUserDetails(User user) {
+        this.userId = user.getUserId();
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.userType = user.getClass().getTypeName();
@@ -46,6 +48,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public String getUsername() {
         return username;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public String getUserType() {

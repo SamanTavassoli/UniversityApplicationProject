@@ -14,9 +14,9 @@ public class CourseController {
     @Autowired
     CourseService courseService;
 
-    @GetMapping("/allCourses")
-    public List<Course> getAllCourses() {
-        return courseService.getAllCourses();
+    @GetMapping("/{courseId}")
+    public Course getCourse(@PathVariable int courseId) {
+        return courseService.getCourse(courseId);
     }
 
     @PostMapping("/add")

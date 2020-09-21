@@ -1,19 +1,22 @@
 package com.thesamans.universityapplicationproject.model.course;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.users.University;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int courseId;
-    private University university;
+    private int universityId;
     private String courseName;
 
     /** Maximum number of students that the course can take */
@@ -25,12 +28,12 @@ public class Course {
 
     private ArrayList<Application> applicationsReceived;
 
-    public University getUniversity() {
-        return university;
+    public int getUniversityId() {
+        return universityId;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
+    public void setUniversityId(int universityId) {
+        this.universityId = universityId;
     }
 
     public String getCourseName() {

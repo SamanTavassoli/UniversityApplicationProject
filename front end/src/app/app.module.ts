@@ -14,7 +14,8 @@ import { UserAuthenticationComponent } from './user-authentication/user-authenti
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UniversityPageComponent } from './university-page/university-page.component';
 import { AuthGuard } from './user-authentication/auth.guard';
-import { authInterceptorProviders } from './_helpers/auth.interceptor'
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { UniversityCourseManagerComponent } from './university-course-manager/university-course-manager.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor'
     UserComponent,
     UserAuthenticationComponent,
     UserProfileComponent,
-    UniversityPageComponent
+    UniversityPageComponent,
+    UniversityCourseManagerComponent
   ],
   imports: [
     BrowserModule,

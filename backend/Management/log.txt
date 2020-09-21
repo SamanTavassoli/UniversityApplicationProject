@@ -107,3 +107,4 @@ Continuing setting up courses front end
 Working on setting up courses back end, Course dao, service, controller
 Removed course manager and factory and their tests
 Universities can add courses BE, must be same uni that's authenticated
+Had to change courses to reference university id not actual university instance
