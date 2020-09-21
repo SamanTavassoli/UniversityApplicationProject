@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
+import { Course } from '../_models/course';
+import { CourseService } from '../_services/course.service';
+
 enum SearchType {
   Course,
   University,
@@ -17,12 +20,13 @@ export class SearchComponent implements OnInit {
 
   searchType: SearchType = SearchType.Course;
   searchTerm: string = '';
-  courses = ['TestCourse 1', 'TestCourse 2', 'TestCourse 3'];
+  courses: Course[];  
   universities = ['TestUni 1', 'TestUni 2', 'TestUni 3'];
 
-  constructor() { }
+  constructor(private courseService: CourseService) { }
 
   ngOnInit(): void {
+    this.courses = this.courseService.getAllCourses();
   }
 
   search() {

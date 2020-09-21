@@ -6,7 +6,7 @@ import { LoggedInUser } from '../_models/logged-in-user';
 import { RegistrationUser } from '../_models/registration-user';
 import { LoginRequestUser } from '../_models/login-request-user';
 
-const AUTH_API_URL = 'http://localhost:8080/auth'
+const AUTH_API = 'http://localhost:8080/auth'
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,7 @@ export class UserAuthenticationService {
 
     const loginRequestUser: LoginRequestUser = new LoginRequestUser(username, password);
 
-    return this.http.post<LoggedInUser>(AUTH_API_URL + '/login', loginRequestUser)
+    return this.http.post<LoggedInUser>(AUTH_API + '/login', loginRequestUser)
     .pipe(map(user => {
       // local storage item current user is how we know we are logged in
       // local storage persists so logged in until jwt expires or logout
@@ -69,6 +69,6 @@ export class UserAuthenticationService {
    */
   register(registrationUser: RegistrationUser) {
 
-    return this.http.post<boolean>(AUTH_API_URL + '/register', registrationUser)
+    return this.http.post<boolean>(AUTH_API + '/register', registrationUser)
   }
 }

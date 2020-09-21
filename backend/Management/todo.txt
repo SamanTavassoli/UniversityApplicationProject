@@ -1,6 +1,5 @@
 
-implement logging in and registering front end
-front accessing user details,
+front - seeing courses
 front / back adding/removing courses
 front / back applying courses
 front / back managing courses

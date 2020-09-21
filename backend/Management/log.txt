@@ -99,3 +99,8 @@ Add interceptor on FE to add jwt token in authorization header
 Setup login logout FE
 Add basic fetch data for uni and student when logged in
 
+19/09/20
+Setting up courses front end
+
+21/09/20
+Continuing setting up courses front end

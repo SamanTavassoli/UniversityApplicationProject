@@ -10,8 +10,8 @@ Search: <input type="text" [(ngModel)]="searchTerm">
 <ul id="results">
     Results:
     <div *ngIf="searchType==SearchType.Course">
-        <li *ngFor="let course of courses" routerLink="/course" [queryParams]="{ courseName: [course]}">
-            {{course}}
+        <li *ngFor="let course of courses" routerLink="/course" [queryParams]="{courseName: [course]}">
+            {{course._courseName}}
         </li>
     </div>
     <div *ngIf="searchType==SearchType.University">
