@@ -27,7 +27,7 @@ export class CourseService {
 
   getAllCourses() {
     if (!sessionStorage.getItem('testCourses')) {  // fetch from server if sessionStorage doesn't contain data
-      this.http.get<[Course]>(COURSE_API + '/allCourses')
+      this.http.get<Course[]>(COURSE_API + '/allCourses')
       .subscribe(courses => {
         sessionStorage.setItem('courses', JSON.stringify(courses))
         this.courses = courses;
