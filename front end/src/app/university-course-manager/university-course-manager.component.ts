@@ -38,7 +38,23 @@ export class UniversityCourseManagerComponent implements OnInit {
         window.alert('Could not add course')
       }
     })
-    
+  }
+
+  deleteCourse(event) {
+    const target = event.target
+    const courseId = target.querySelector('#courseId').value
+
+    if (courseId == '') {
+      window.alert('Must provide course to delete')
+      return
+    }
+    this.courseService.deleteCourse(courseId).subscribe(didRemove => {
+      if (didRemove == true) {
+        window.location.reload()
+      } else {
+        window.alert('Could no delete course')
+      }
+    })
   }
 
 }

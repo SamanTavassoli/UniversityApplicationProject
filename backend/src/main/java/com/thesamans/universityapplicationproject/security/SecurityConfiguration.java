@@ -56,9 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/*", "/courses/**").hasRole("ADMIN")
+                .antMatchers("/admin/*").hasRole("ADMIN")
+                .antMatchers("/courses/**").hasAnyRole("ADMIN", "UNIVERSITY")
                 .antMatchers("/user/student/*").hasRole("STUDENT")
-                .antMatchers("/user/university/*", "/courses/**").hasRole("UNIVERSITY")
+                .antMatchers("/user/university/*").hasRole("UNIVERSITY")
                 .antMatchers("/auth/*", "/courses/public/**").permitAll()
                 .antMatchers("**").denyAll()
                 .anyRequest().authenticated()
@@ -76,6 +77,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:4200");
+                .allowedOrigins("http://localhost:4200")
+                .allowedMethods("*");
     }
 }

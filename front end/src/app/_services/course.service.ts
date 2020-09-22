@@ -44,5 +44,9 @@ export class CourseService {
     return this.http.post<boolean>(COURSE_API + '/add', course)
   }
 
+  deleteCourse(courseId: number) {
+    return this.http.delete<boolean>(COURSE_API + '/delete/' + courseId)
+  }
+
 
 }

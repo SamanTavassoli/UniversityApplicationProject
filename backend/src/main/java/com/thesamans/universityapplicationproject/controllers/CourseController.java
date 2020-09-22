@@ -19,6 +19,11 @@ public class CourseController {
         return courseService.addCourse(course);
     }
 
+    @DeleteMapping("/delete/{courseId}")
+    public boolean deleteCourse(@PathVariable int courseId) {
+        return courseService.deleteCourse(courseId);
+    }
+
     @GetMapping("/public/singleCourse/{courseId}")
     public Course getCourse(@PathVariable int courseId) {
         return courseService.getCourse(courseId);

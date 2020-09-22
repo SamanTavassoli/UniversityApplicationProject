@@ -108,3 +108,8 @@ Working on setting up courses back end, Course dao, service, controller
 Removed course manager and factory and their tests
 Universities can add courses BE, must be same uni that's authenticated
 Had to change courses to reference university id not actual university instance
+Changed around mappings and authorities for courses api, each uni can now view their courses on their profile automatically
+
+22/09/20
+Universities can delete their own courses
+CourseService adds and removes courses from the universities' accounts

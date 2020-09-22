@@ -14,10 +14,9 @@ public class University extends User {
 
     /** Courses that the University has on offer */
     @JsonProperty("availableCourses")
-    private ArrayList<Course> availableCourses = new ArrayList<>();
+    private ArrayList<Course> availableCourses;
 
     public University() {
-
     }
 
     public University(String username, String password, String email) {
@@ -37,6 +36,9 @@ public class University extends User {
     }
 
     public ArrayList<Course> getAvailableCourses() {
+        if (Objects.isNull(availableCourses)) {
+            availableCourses = new ArrayList<>();
+        }
         return availableCourses;
     }
 

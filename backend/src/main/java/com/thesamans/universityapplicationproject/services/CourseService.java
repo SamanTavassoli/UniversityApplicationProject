@@ -36,15 +36,42 @@ public class CourseService {
 
     /**
      * Adds a course if not other course shares that course name
+     * The uni specified by course must be authenticated
+     * Adds to uni's course list
+     * @return true if did add
      */
     public boolean addCourse(Course course) {
-        String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName();
-        String courseUniversity = userDao.findById(course.getUniversityId()).get().getUsername(); // university tied to the course
-        if (courseDao.existsByCourseName(course.getCourseName()) && authenticatedUniversity.equals(courseUniversity)) {
+        University university = (University) userDao.findById(course.getUniversityId()).get();
+        String universityFromDAO = university.getUsername(); // uni specified by course
+        String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName(); // uni authed
+        if (courseDao.existsByCourseName(course.getCourseName())
+                && authenticatedUniversity.equals(universityFromDAO)) {
             return false;
         } else {
             courseDao.save(course);
+            university.getAvailableCourses().add(course);
             return true;
+        }
+    }
+
+    /**
+     * Deletes a course
+     * The uni specified by course must be authenticated
+     * Removes course from uni's list
+     * @return true if did delete
+     */
+    public boolean deleteCourse(int courseId) {
+        Course course = courseDao.findById(courseId).get(); // find registered course
+        University university = (University) userDao.findById(course.getUniversityId()).get();
+        String universityFromDAO = university.getUsername(); // uni specified by course
+        String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName(); // uni authed
+        if (courseDao.existsByCourseName(course.getCourseName())
+                && authenticatedUniversity.equals(universityFromDAO)) {
+            courseDao.delete(course);
+            university.getAvailableCourses().remove(course);
+            return true;
+        } else {
+            return false;
         }
     }
 }

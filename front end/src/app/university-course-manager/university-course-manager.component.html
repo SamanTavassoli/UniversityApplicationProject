@@ -6,4 +6,9 @@
     <input type="submit" value="add course">
 </form>
 
-<p *ngFor="let course of courses">{{course.courseName}}</p>
+<form (submit)="deleteCourse($event)">
+    <input type="number" placeholder="Course Id" id="courseId">
+    <input type="submit" value="delete course">
+</form>
+
+<p *ngFor="let course of courses">{{course.courseName}} course Id: {{course.courseId}}</p>
