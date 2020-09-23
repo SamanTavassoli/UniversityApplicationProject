@@ -13,8 +13,4 @@ export class ApplicationService {
     private http: HttpClient,
     private authService: UserAuthenticationService
     ) { }
-
-  addToApplications(courseId: number) {
-    return this.http.post<boolean>(APPLICATION_API + '/addToApplications/' + courseId, this.authService.userValue.userId)
-  }
 }

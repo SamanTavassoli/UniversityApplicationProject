@@ -37,7 +37,7 @@ public class CourseService {
     /**
      * Adds a course if not other course shares that course name
      * The uni specified by course must be authenticated
-     * Adds to uni's course list
+     * Adds course to course dao
      * @return true if did add
      */
     public boolean addCourse(Course course) {
@@ -49,7 +49,6 @@ public class CourseService {
             return false;
         } else {
             courseDao.save(course);
-            university.getAvailableCourses().add(course);
             return true;
         }
     }
@@ -57,7 +56,7 @@ public class CourseService {
     /**
      * Deletes a course
      * The uni specified by course must be authenticated
-     * Removes course from uni's list
+     * Removes course from course dao
      * @return true if did delete
      */
     public boolean deleteCourse(int courseId) {
@@ -68,7 +67,6 @@ public class CourseService {
         if (courseDao.existsByCourseName(course.getCourseName())
                 && authenticatedUniversity.equals(universityFromDAO)) {
             courseDao.delete(course);
-            university.getAvailableCourses().remove(course);
             return true;
         } else {
             return false;

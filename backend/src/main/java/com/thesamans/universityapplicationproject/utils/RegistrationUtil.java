@@ -1,12 +1,15 @@
 package com.thesamans.universityapplicationproject.utils;
 
 import com.thesamans.universityapplicationproject.dao.UserDao;
+import com.thesamans.universityapplicationproject.model.application.Application;
+import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
@@ -54,9 +57,17 @@ public class RegistrationUtil {
     public void createUser(RegistrationUser user) {
         UserType userType = parseUserType(user.getUserType());
         if (userType.equals(UserType.STUDENT)) {
-            userDao.save(new Student(user.getUsername(), user.getPassword(), user.getEmail(), parseDateOfBirth(user.getDateOfBirth())));
+            userDao.save(new Student(
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getEmail(),
+                    parseDateOfBirth(user.getDateOfBirth()),
+                    new ArrayList<>()));
         } else if (userType.equals(UserType.UNIVERSITY)) {
-            userDao.save(new University(user.getUsername(), user.getPassword(), user.getEmail()));
+            userDao.save(new University(
+                    user.getUsername(),
+                    user.getPassword(),
+                    user.getEmail()));
         } else {
             throw new IllegalArgumentException("UserType must either be STUDENT or UNIVERSITY");
         }

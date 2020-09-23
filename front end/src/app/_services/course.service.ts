@@ -12,8 +12,6 @@ const COURSE_API = 'http://localhost:8080/courses'
 })
 export class CourseService {
 
-  courses: Course[]
-
   constructor(private http: HttpClient) { }
 
   getCourse(courseId: number) {
@@ -26,18 +24,7 @@ export class CourseService {
 
   /** Get all the courses for all universities */
   getAllCourses() {
-    if (!sessionStorage.getItem('courses')) {
-      this.http.get<Course[]>(COURSE_API + '/public/allCourses')
-      .subscribe(courses => {
-        sessionStorage.setItem('courses', JSON.stringify(courses))
-        this.courses = courses;
-      })
-      // this.courses = this.testCourses
-      // sessionStorage.setItem('testCourses', JSON.stringify(this.testCourses))
-    } else {
-      this.courses = JSON.parse(sessionStorage.getItem('courses'))
-    }
-    return this.courses
+    return this.http.get<Course[]>(COURSE_API + '/public/allCourses')
   }
 
   addCourse(course: Course) {

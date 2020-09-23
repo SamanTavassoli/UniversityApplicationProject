@@ -38,6 +38,21 @@ public class UsersController {
         return userService.getUser(UserType.STUDENT, studentId);
     }
 
+    @PostMapping(value = "/student/addToConsideredCourses/{courseId}/{userId}")
+    public boolean addToConsideredCourses(@PathVariable int courseId, @PathVariable int userId) {
+        return userService.addToConsideredCourses(courseId, userId);
+    }
+
+    @PostMapping(value = "/student/removeFromConsideredCourses/{courseId}/{userId}")
+    public boolean removeFromConsideredCourses(@PathVariable int courseId, @PathVariable int userId) {
+        return userService.removeFromConsideredCourses(courseId, userId);
+    }
+
+    @GetMapping(value = "/student/isConsideredCourse/{courseId}/{userId}")
+    public boolean isConsideredCourse(@PathVariable int courseId, @PathVariable int userId) {
+        return userService.isConsideredCourse(courseId, userId);
+    }
+
     // universities
 
     @GetMapping(value = "/university/{universityId}")

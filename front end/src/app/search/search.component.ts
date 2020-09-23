@@ -25,11 +25,13 @@ export class SearchComponent implements OnInit{
   universities = ['TestUni 1', 'TestUni 2', 'TestUni 3'];
 
   constructor(private courseService: CourseService) { 
-    this.courses = this.courseService.getAllCourses();
+
   }
 
   ngOnInit(): void {
-    this.courses = this.courseService.getAllCourses();
+    this.courseService.getAllCourses().subscribe( allCourses => {
+      this.courses = allCourses
+    });
   }
 
   search() {

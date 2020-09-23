@@ -15,9 +15,7 @@ public class ApplicationFactory {
      */
     public static Application newApplication(Student student, int courseId) {
 
-        if (student.getApplicationsSent().size() >= 5 || !isValidApplication(courseId)) {
-            return null;
-        }
+        // TODO: check max 5 application
 
         Application application = new Application();
 

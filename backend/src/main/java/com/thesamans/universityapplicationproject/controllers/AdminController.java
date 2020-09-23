@@ -28,6 +28,11 @@ public class AdminController {
         return userService.getUserList();
     }
 
+    @GetMapping(value = "/users/{userId}")
+    public User getUser(@PathVariable int userId) {
+        return userService.getUser(userId);
+    }
+
     @GetMapping(value = "/mainAdmin")
     public Admin getMainAdmin() {
         return userService.getUser(UserType.ADMIN, 19);

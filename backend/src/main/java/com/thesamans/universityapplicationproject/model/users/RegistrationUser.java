@@ -1,5 +1,9 @@
 package com.thesamans.universityapplicationproject.model.users;
 
+import com.thesamans.universityapplicationproject.model.application.Application;
+import com.thesamans.universityapplicationproject.model.course.Course;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,7 +15,9 @@ public class RegistrationUser {
     private String password;
     private String email;
     private String userType;
-    private String dateOfBirth; // only for students
+
+    // only for students
+    private String dateOfBirth;
 
     public String getUsername() {
         return username;

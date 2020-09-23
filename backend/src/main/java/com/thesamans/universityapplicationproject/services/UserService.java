@@ -1,13 +1,17 @@
 package com.thesamans.universityapplicationproject.services;
 
+import com.thesamans.universityapplicationproject.dao.CourseDao;
 import com.thesamans.universityapplicationproject.dao.UserDao;
+import com.thesamans.universityapplicationproject.model.users.Student;
 import com.thesamans.universityapplicationproject.model.users.User;
 import com.thesamans.universityapplicationproject.model.users.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -19,6 +23,9 @@ public class UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private CourseDao courseDao;
 
     /**
      * Looks for a specific user in database
@@ -45,7 +52,64 @@ public class UserService {
         } else {
             return null;
         }
+    }
 
+    /**
+     * Admin method
+     * This does the same as above but isn't given a user type to check against as an extra security step
+     */
+    public User getUser(int userId) {
+        Optional<User> user = userDao.findById(userId);
+
+        if (user.isEmpty()) {
+            System.err.println("No such user");
+            return null;
+        }
+
+        return user.get();
+    }
+
+    /**
+     * Adds a courseId to a student's list of considered courses
+     * The course must be valid
+     * The student must exist
+     * The student must not already have that course in their considered courses
+     * @return true if course was added to considered courses for student
+     */
+    public boolean addToConsideredCourses(int courseId, int userId) {
+        Student student = (Student) getUser(UserType.STUDENT, userId);
+        if (!Objects.isNull(student)
+                && courseDao.existsByCourseId(courseId)
+                && !student.getCoursesConsidered().contains(courseId)) {
+            if (Objects.isNull(student.getCoursesConsidered())) {
+                student.setCoursesConsidered(new ArrayList<>());
+            }
+            student.getCoursesConsidered().add(courseId);
+            userDao.save(student);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean removeFromConsideredCourses(int courseId, int userId) {
+        Student student = (Student) getUser(UserType.STUDENT, userId);
+        if (!Objects.isNull(student)
+                && courseDao.existsByCourseId(courseId)
+                && student.getCoursesConsidered().contains(courseId)) {
+            student.getCoursesConsidered().remove(student.getCoursesConsidered().indexOf(courseId));
+            userDao.save(student);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isConsideredCourse(int courseId, int userId) {
+        Student student = (Student) getUser(UserType.STUDENT, userId);
+        return !Objects.isNull(student)
+                && courseDao.existsByCourseId(courseId)
+                && student.getCoursesConsidered().contains(courseId);
     }
 
     // todo: implement getter that returns all students from userDao

@@ -12,10 +12,6 @@ import java.util.Objects;
 @Entity
 public class University extends User {
 
-    /** Courses that the University has on offer */
-    @JsonProperty("availableCourses")
-    private ArrayList<Course> availableCourses;
-
     public University() {
     }
 
@@ -32,19 +28,5 @@ public class University extends User {
         // not up to user
         // not setting userId as it is auto generated
         this.setRoles(new String[] {"ROLE_UNIVERSITY"});
-        this.setAvailableCourses(new ArrayList<>());
-    }
-
-    // Not sure how jpa instantiates my classes,
-    // gotta create the courses arraylist in the getter for now
-    public ArrayList<Course> getAvailableCourses() {
-        if (Objects.isNull(availableCourses)) {
-            availableCourses = new ArrayList<>();
-        }
-        return availableCourses;
-    }
-
-    public void setAvailableCourses(ArrayList<Course> availableCourses) {
-        this.availableCourses = availableCourses;
     }
 }

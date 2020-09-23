@@ -27,7 +27,7 @@ public class ApplicationManager {
         application.setDateOfApplication(applicationDate);
         application.setApplicationStatus(ApplicationStatus.APPLIED);
 
-        student.getApplicationsSent().add(application);
+        // TODO: add application to application dao
         course.getApplicationsReceived().add(application);
 
         return true;
