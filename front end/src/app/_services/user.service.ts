@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { University } from '../_models/university';
 
 const TEST_API = 'http://localhost:8080/user'
 

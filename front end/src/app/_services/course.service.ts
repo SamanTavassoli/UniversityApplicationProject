@@ -17,7 +17,7 @@ export class CourseService {
   constructor(private http: HttpClient) { }
 
   getCourse(courseId: number) {
-    return this.http.get<Course>(COURSE_API + '/public/' + courseId)
+    return this.http.get<Course>(COURSE_API + '/public/singleCourse/' + courseId)
   }
 
   getAllCoursesForUni(universityId: number) {
@@ -26,7 +26,7 @@ export class CourseService {
 
   /** Get all the courses for all universities */
   getAllCourses() {
-    if (!sessionStorage.getItem('testCourses')) {  // fetch from server if sessionStorage doesn't contain data
+    if (!sessionStorage.getItem('courses')) {
       this.http.get<Course[]>(COURSE_API + '/public/allCourses')
       .subscribe(courses => {
         sessionStorage.setItem('courses', JSON.stringify(courses))
@@ -35,7 +35,7 @@ export class CourseService {
       // this.courses = this.testCourses
       // sessionStorage.setItem('testCourses', JSON.stringify(this.testCourses))
     } else {
-      this.courses = JSON.parse(sessionStorage.getItem('testCourses'))
+      this.courses = JSON.parse(sessionStorage.getItem('courses'))
     }
     return this.courses
   }

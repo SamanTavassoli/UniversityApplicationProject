@@ -113,3 +113,7 @@ Changed around mappings and authorities for courses api, each uni can now view t
 22/09/20
 Universities can delete their own courses
 CourseService adds and removes courses from the universities' accounts
+
+23/09/20
+Setup application for courses front end, application service and application from course page
+

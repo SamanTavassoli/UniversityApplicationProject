@@ -13,7 +13,7 @@ export class University {
     courses: [number]
 
     constructor(
-        private name: string,
+        public name: string,
     ) {
     
     }

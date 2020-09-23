@@ -35,6 +35,8 @@ public class University extends User {
         this.setAvailableCourses(new ArrayList<>());
     }
 
+    // Not sure how jpa instantiates my classes,
+    // gotta create the courses arraylist in the getter for now
     public ArrayList<Course> getAvailableCourses() {
         if (Objects.isNull(availableCourses)) {
             availableCourses = new ArrayList<>();

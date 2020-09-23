@@ -1,5 +1,4 @@
 
-front / back removing courses
 front / back applying courses
 front / back managing courses
 

@@ -1,0 +1,18 @@
+#courseDetails {
+    display: inline-block;
+}
+
+li#specialButton {
+    display: inline-block;
+    border-style: solid;
+    padding: 5px;
+    margin: 15px;
+    margin-left: 100px;
+    border-radius: 10px;
+
+}
+
+li#specialButton:hover {
+    cursor: pointer;
+    background-color: aquamarine;
+}
