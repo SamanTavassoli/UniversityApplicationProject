@@ -1,18 +1,25 @@
 package com.thesamans.universityapplicationproject.model.application;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
  * Application that a student makes for a University
  */
+@Entity
 public class Application {
 
+    /** Number given to the application */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int applicationId;
     /** Id of the student that has applied */
     private int userId;
     /** Id of the Course applied to */
     private int courseId;
-    /** Number given to the application */
-    private int applicationId;
 
     /** Date on which application was submitted by student */
     private Date dateOfApplication;

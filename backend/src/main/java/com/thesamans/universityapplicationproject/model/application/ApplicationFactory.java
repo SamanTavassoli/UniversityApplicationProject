@@ -1,11 +1,22 @@
 package com.thesamans.universityapplicationproject.model.application;
 
+import com.thesamans.universityapplicationproject.dao.ApplicationDao;
 import com.thesamans.universityapplicationproject.model.users.Student;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Handles the creation of Applications
  */
+@Component
 public class ApplicationFactory {
+
+    @Autowired
+    ApplicationDao applicationDao;
 
     /**
      * Start a new application
@@ -13,28 +24,37 @@ public class ApplicationFactory {
      * @param courseId Course for which application is being started
      * @return the new application if it could be created, otherwise null
      */
-    public static Application newApplication(int studentId, int courseId) {
-
-        // TODO: check max 5 application
+    public Application newApplication(int studentId, int courseId) {
 
         Application application = new Application();
 
         application.setUserId(studentId);
         application.setCourseId(courseId);
         application.setApplicationStatus(ApplicationStatus.STARTED);
-        application.setApplicationId(generateApplicationId());
 
         return application;
     }
 
+    // TODO: make it so creation of new application automatically calls this method (doesn't need to be called on it's own)
+    /**
+     * Does checks on application before it gets created
+     * Should be called before creation of new application
+     * @param userId user applying
+     * @param courseId course being applied to
+     * @return true if application meets criteria
+     */
+    public boolean applicationMeetsCriteria(int userId, int courseId) {
 
-    public static boolean isValidApplication(int courseId) {
-        return true; // TODO: Implement
-    }
+        // this check isn't necessary if user can only apply once
+        // check that courseId does not match any other courseId for user's applications
+        List<Optional<Application>> applications = applicationDao.findByUserId(userId);
+        for (Optional<Application> application : applications) {
+            if (application.get().getCourseId() == courseId) {
+                return false;
+            }
+        }
 
-    private static int generateApplicationId() {
-        // todo: implement when database is implemented
-        return 0;
+        return true; // TODO: Implement more criteria
     }
 
 }

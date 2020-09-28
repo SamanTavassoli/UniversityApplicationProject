@@ -35,8 +35,6 @@ export class StudentApplicationManagerComponent implements OnInit {
 
   chose(course) {
     this.coursesSelected[this.coursesConsidered.indexOf(course)] = true;
-    console.log(this.coursesConsidered.indexOf(course))
-    console.log(this.coursesSelected[this.coursesConsidered.indexOf(course)])
   }
 
   unchose(course) {

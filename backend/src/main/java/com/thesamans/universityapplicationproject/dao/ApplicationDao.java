@@ -1,7 +1,7 @@
 package com.thesamans.universityapplicationproject.dao;
 
+import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.course.Course;
-import com.thesamans.universityapplicationproject.model.users.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CourseDao extends CrudRepository<Course, Integer> {
+public interface ApplicationDao extends CrudRepository<Application, Integer> {
 
     @Override
-    List<Course> findAll();
+    List<Application> findAll();
 
-    Boolean existsByCourseName(String courseName);
+    Optional<Application> findByApplicationId(int applicationId);
 
-    Boolean existsByCourseId(int courseId);
+    List<Optional<Application>> findByUserId(int userId);
 }

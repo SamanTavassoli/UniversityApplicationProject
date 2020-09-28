@@ -1,5 +1,7 @@
 package com.thesamans.universityapplicationproject.controllers;
 
+import com.thesamans.universityapplicationproject.dao.ApplicationDao;
+import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.*;
 import com.thesamans.universityapplicationproject.services.CourseService;
@@ -21,6 +23,9 @@ public class AdminController {
     CourseService courseService;
 
     @Autowired
+    ApplicationDao applicationDao;
+
+    @Autowired
     RegistrationService registrationService;
 
     @GetMapping(value = "/users")
@@ -36,6 +41,11 @@ public class AdminController {
     @GetMapping(value = "/mainAdmin")
     public Admin getMainAdmin() {
         return userService.getUser(UserType.ADMIN, 19);
+    }
+
+    @GetMapping(value = "/applications")
+    public List<Application> getAllApplications() {
+        return applicationDao.findAll();
     }
 
     @PostMapping(value = "/admin")
