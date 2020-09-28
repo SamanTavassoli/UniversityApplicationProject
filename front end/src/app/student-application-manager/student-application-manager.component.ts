@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Course } from '../_models/course';
+import { ApplicationService } from '../_services/application.service';
 import { CourseService } from '../_services/course.service';
 import { UserService } from '../_services/user.service';
 
@@ -13,7 +14,7 @@ export class StudentApplicationManagerComponent implements OnInit {
   coursesConsidered: Course[];
   coursesSelected: boolean[]; // holds boolean values for which courses in coursesConsidered have been selected
 
-  constructor(private userService: UserService, private courseService: CourseService) {
+  constructor(private userService: UserService, private courseService: CourseService, private applicationService: ApplicationService) {
     this.userService.getConsideredCourses().subscribe( courses => {
       this.coursesConsidered = [];
       for (let courseId of courses) {
@@ -60,6 +61,12 @@ export class StudentApplicationManagerComponent implements OnInit {
       window.alert('You must choose between 1 and 5 courses')
       return
     }
+
+    this.applicationService.sendApplications(coursesToSend).subscribe(response => {
+      if (response == false) {
+        window.alert('Applications did not go through successfully')
+      }
+    })    
   }
 
 }

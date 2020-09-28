@@ -13,4 +13,8 @@ export class ApplicationService {
     private http: HttpClient,
     private authService: UserAuthenticationService
     ) { }
+
+  sendApplications(coursesToSend) {
+    return this.http.post<boolean>(APPLICATION_API + '/sendApplications/' + this.authService.userValue.userId, coursesToSend)
+  }
 }
