@@ -1,4 +1,3 @@
-show considered courses on profile
 choose 5 - create application form for each -> backend creation
 
 student status -> applied

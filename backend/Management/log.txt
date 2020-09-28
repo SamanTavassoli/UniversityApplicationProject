@@ -123,3 +123,5 @@ Implemented adding/removing courses from courses considered for each student
 28/09/20
 added application status to student
 
+
+changed courses to only hold application ids not actual applications, applications go in application dao

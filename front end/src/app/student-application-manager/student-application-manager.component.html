@@ -1,10 +1,20 @@
-<p>student-application-manager works!</p>
 
-<h3>Courses Considered:</h3>
-<p *ngFor="let course of coursesConsidered">
-    Course name: {{course.courseName}}, <br>
-    available slots: {{course.availableSlots}} <br> 
-    course duration: {{course.courseDuration}} <br>
-    fees: {{course.fees}} <br>
-    course id: {{course.courseId}}
-</p>
+<p id="button">View Application Details</p> 
+
+<div>
+
+    <h3>Courses Considered:</h3>
+    
+    
+    <div *ngFor="let course of coursesConsidered">
+        <p>course name: {{course.courseName}}</p>
+        <p>available slots: {{course.availableSlots}}</p>
+        <p>course duration: {{course.courseDuration}}</p>
+        <p>fees: {{course.fees}}</p>
+        <p>course id: {{course.courseId}}</p>
+        <p id="button" *ngIf="!didChose(course)" (click)="chose(course)">Choose</p>
+        <p id="button" *ngIf="didChose(course)" (click)="unchose(course)">UnChoose</p>
+    </div>
+    <br> <br> 
+    <p id="button" (click)="sendApplication()">Send Application</p>
+</div>

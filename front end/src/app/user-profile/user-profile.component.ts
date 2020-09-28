@@ -14,26 +14,10 @@ export class UserProfileComponent implements OnInit {
   constructor(private authService: UserAuthenticationService, private userService: UserService) { }
 
   ngOnInit(): void {
-    if (this.getUserType() == 'Student') {
-      this.getTestStudentMessage();
-    } else if (this.getUserType() == 'University') {
-      this.getTestUniversityMessage();
-    }
   }
 
   getUserType() {
     return this.authService.userValue.userType;
   }
-
-  getTestStudentMessage() {
-    this.userService.testStudent().subscribe(message =>
-      this.message = message[0])
-  }
-
-  getTestUniversityMessage() {
-    this.userService.testUni().subscribe(message =>
-      this.message = message)
-  }
-
 
 }

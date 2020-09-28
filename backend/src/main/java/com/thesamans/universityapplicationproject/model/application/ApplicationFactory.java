@@ -9,17 +9,17 @@ public class ApplicationFactory {
 
     /**
      * Start a new application
-     * @param student Student that is starting the application
+     * @param studentId StudentId for student that is starting the application
      * @param courseId Course for which application is being started
      * @return the new application if it could be created, otherwise null
      */
-    public static Application newApplication(Student student, int courseId) {
+    public static Application newApplication(int studentId, int courseId) {
 
         // TODO: check max 5 application
 
         Application application = new Application();
 
-        application.setUserId(student.getUserId());
+        application.setUserId(studentId);
         application.setCourseId(courseId);
         application.setApplicationStatus(ApplicationStatus.STARTED);
         application.setApplicationId(generateApplicationId());
