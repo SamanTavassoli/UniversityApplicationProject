@@ -1,6 +1,13 @@
+show considered courses on profile
+choose 5 - create application form for each -> backend creation
 
-front / back applying courses
-front / back managing courses
+student status -> applied
+
+add to course applications
+
+
+sending applications (student) (FE application section in profile, BE application controller, manager, dao)
+accepting applications (uni) (FE application per course section, list of applicants, list of accepted / rejected, BE )
 
 
 - finish project

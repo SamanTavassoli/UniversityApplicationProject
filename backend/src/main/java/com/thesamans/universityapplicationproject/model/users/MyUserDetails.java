@@ -20,6 +20,7 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private String userType;
     private List<GrantedAuthority> authorities;
+    private boolean hasApplied;
 
     public MyUserDetails() {
 
@@ -33,6 +34,10 @@ public class MyUserDetails implements UserDetails {
         this.authorities = Arrays.stream(user.getRoles())
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
+        if (user instanceof Student) {
+            Student student = (Student) user;
+            this.hasApplied = student.hasApplied();
+        }
     }
 
     @Override
@@ -79,5 +84,9 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean hasApplied() {
+        return hasApplied;
     }
 }

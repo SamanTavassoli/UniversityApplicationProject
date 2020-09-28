@@ -48,7 +48,7 @@ public class AuthenticationController {
 
         // what is sent back to the front end as a confirmation of login
         String userType = myUserDetails.getUserType().substring(myUserDetails.getUserType().lastIndexOf(".") + 1);
-        return ResponseEntity.ok(new AuthenticationResponse(myUserDetails.getUserId(), myUserDetails.getUsername(), userType, jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(myUserDetails.getUserId(), myUserDetails.getUsername(), userType, jwt, myUserDetails.hasApplied()));
     }
 
     @PostMapping(value = "/register")

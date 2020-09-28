@@ -119,3 +119,7 @@ Setup application for courses front end, application service and application fro
 Removed coursesList on university cause there's already a dao, removed application tracking on students
 Students will now only track courses they are considering (not applications)
 Implemented adding/removing courses from courses considered for each student
+
+28/09/20
+added application status to student
+

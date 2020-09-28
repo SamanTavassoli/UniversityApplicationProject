@@ -58,4 +58,6 @@ public class RegistrationUser {
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
+
+
 }

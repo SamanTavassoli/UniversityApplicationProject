@@ -14,6 +14,7 @@ public class Student extends User {
 
     private Date dateOfBirth;
     private ArrayList<Integer> coursesConsidered;
+    private boolean hasApplied;
 
 
     public Student() {
@@ -36,6 +37,7 @@ public class Student extends User {
         // not up to user
         // not setting userId as it is auto generated
         this.setRoles(new String[] {"ROLE_STUDENT"});
+        this.setHasApplied(false);
     }
 
     public Date getDateOfBirth() {
@@ -52,6 +54,14 @@ public class Student extends User {
 
     public void setCoursesConsidered(ArrayList<Integer> coursesConsidered) {
         this.coursesConsidered = coursesConsidered;
+    }
+
+    public boolean hasApplied() {
+        return hasApplied;
+    }
+
+    public void setHasApplied(boolean hasApplied) {
+        this.hasApplied = hasApplied;
     }
 }
 
