@@ -122,6 +122,11 @@ Implemented adding/removing courses from courses considered for each student
 
 28/09/20
 added application status to student
-
-
+added display of considered courses FE
+created application user interface FE
+added api calls from front end
 changed courses to only hold application ids not actual applications, applications go in application dao
+refactored app manager and factory, made them into beans
+added auto creation of empty array list of applications on init of courses in course service
+implemented adding applications back end
+

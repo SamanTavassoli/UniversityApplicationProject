@@ -1,13 +1,10 @@
-choose 5 - create application form for each -> backend creation
 
-student status -> applied
-
-add to course applications
-
-
-sending applications (student) (FE application section in profile, BE application controller, manager, dao)
 accepting applications (uni) (FE application per course section, list of applicants, list of accepted / rejected, BE )
+    implement viewing courses
+    implement viewing applications for courses
+    implement modifying application status for different applications
 
+implement viewing application progress for student
 
 - finish project
 - work on UX
