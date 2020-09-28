@@ -2,6 +2,7 @@ package com.thesamans.universityapplicationproject.services;
 
 import com.thesamans.universityapplicationproject.dao.CourseDao;
 import com.thesamans.universityapplicationproject.dao.UserDao;
+import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.Student;
 import com.thesamans.universityapplicationproject.model.users.User;
 import com.thesamans.universityapplicationproject.model.users.UserType;
@@ -67,6 +68,11 @@ public class UserService {
         }
 
         return user.get();
+    }
+
+    public List<Integer> getConsideredCourses(int studentId) {
+        Student student = (Student) userDao.findById(studentId).get();
+        return student.getCoursesConsidered();
     }
 
     /**

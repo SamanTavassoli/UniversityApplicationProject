@@ -1,5 +1,6 @@
 package com.thesamans.universityapplicationproject.controllers;
 
+import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.*;
 import com.thesamans.universityapplicationproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,11 @@ public class UsersController {
     @GetMapping(value = "/student/{studentId}")
     public Student getStudent(@PathVariable int studentId) {
         return userService.getUser(UserType.STUDENT, studentId);
+    }
+
+    @GetMapping(value = "/student/getConsideredCourses/{userId}")
+    public List<Integer> getConsideredCourses(@PathVariable int userId) {
+        return userService.getConsideredCourses(userId);
     }
 
     @PostMapping(value = "/student/addToConsideredCourses/{courseId}/{userId}")

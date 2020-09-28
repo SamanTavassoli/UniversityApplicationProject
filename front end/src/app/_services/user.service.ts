@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Course } from '../_models/course';
 import { University } from '../_models/university';
 import { UserAuthenticationService } from './user-authentication.service';
 
@@ -15,6 +16,10 @@ export class UserService {
   // only student accounts should be able to retrieve this
   testStudent() {
     return this.http.get<[string]>(USER_API + '/student/test');
+  }
+
+  getConsideredCourses() {
+    return this.http.get<number[]>(USER_API + '/student/getConsideredCourses/' + this.authService.userValue.userId)
   }
 
   addToConsideredCourses(courseId: number) {

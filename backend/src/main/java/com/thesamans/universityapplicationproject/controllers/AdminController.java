@@ -43,6 +43,13 @@ public class AdminController {
         return registrationService.addUser(admin);
     }
 
+    @PostMapping(value = "/admin/base")
+    public Admin addBaseAdmin() {
+        return registrationService.addUser(
+                new Admin("admin", "admin", "admin")
+        );
+    }
+
     @PostMapping(value = "/student")
     public Student addStudent(@RequestBody Student student) {
         return registrationService.addUser(student);
