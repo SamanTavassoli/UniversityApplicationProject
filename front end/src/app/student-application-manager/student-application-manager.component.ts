@@ -53,7 +53,7 @@ export class StudentApplicationManagerComponent implements OnInit {
     var coursesToSend = [];
     for (let pick in this.coursesSelected) {
       if (this.coursesSelected[pick] == true) {
-        coursesToSend.push(this.coursesConsidered[pick])
+        coursesToSend.push(this.coursesConsidered[pick].courseId)
       }
     }
 
