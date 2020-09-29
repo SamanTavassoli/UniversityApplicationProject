@@ -12,4 +12,7 @@
 </form>
 
 <p>List of courses:</p>
-<p *ngFor="let course of courses">{{course.courseName}} id: {{course.courseId}}</p>
+<div *ngFor="let course of courses" routerLink="/user/university/course-view" [queryParams]="{courseId: [course.courseId]}">
+    <p>{{course.courseName}} id: {{course.courseId}}</p>
+    <p id="button"> check out course</p>
+</div>

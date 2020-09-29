@@ -1,0 +1,12 @@
+<button (click)="back()">Back</button>
+<h1>{{course.courseName}}</h1>
+<div>
+    Course details:
+    <p>available slots: {{course.availableSlots}}</p>
+    <p>course duration: {{course.courseDuration}}</p>
+    <p>fees: {{course.fees}}</p>
+    <p>course id: {{course.courseId}}</p>
+</div>
+
+<h1>Applications</h1>
+<p *ngFor="let application of applications">{{application.applicationId}}</p>

@@ -1,6 +1,5 @@
 
 accepting applications (uni)
-    implement viewing courses
     implement viewing applications for courses
     implement modifying application status for different applications
 

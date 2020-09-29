@@ -21,7 +21,7 @@ export class CoursePageComponent implements OnInit {
   
   constructor(
     private route: ActivatedRoute,
-    private _location: Location,
+    private location: Location,
     private courseService: CourseService,
     private authService: UserAuthenticationService,
     private userService: UserService) { 
@@ -45,7 +45,7 @@ export class CoursePageComponent implements OnInit {
   }
 
   back() {
-    this._location.back();
+    this.location.back();
   }
 
   addToConsideredCourses() {

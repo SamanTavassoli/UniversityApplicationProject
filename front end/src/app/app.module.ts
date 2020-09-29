@@ -17,6 +17,7 @@ import { AuthGuard } from './user-authentication/auth.guard';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UniversityCourseManagerComponent } from './university-course-manager/university-course-manager.component';
 import { StudentApplicationManagerComponent } from './student-application-manager/student-application-manager.component';
+import { UniversityCourseManagerCourseViewComponent } from './university-course-manager-course-view/university-course-manager-course-view.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { StudentApplicationManagerComponent } from './student-application-manage
     UserProfileComponent,
     UniversityPageComponent,
     UniversityCourseManagerComponent,
-    StudentApplicationManagerComponent
+    StudentApplicationManagerComponent,
+    UniversityCourseManagerCourseViewComponent
   ],
   imports: [
     BrowserModule,

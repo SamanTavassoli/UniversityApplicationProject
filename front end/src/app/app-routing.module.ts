@@ -8,6 +8,7 @@ import { UserAuthenticationComponent } from './user-authentication/user-authenti
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UniversityPageComponent } from './university-page/university-page.component';
 import { AuthGuard } from './user-authentication/auth.guard';
+import { UniversityCourseManagerCourseViewComponent } from './university-course-manager-course-view/university-course-manager-course-view.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -22,6 +23,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'authentication', pathMatch: 'full'},
       {path: 'authentication', component: UserAuthenticationComponent, canActivate: [AuthGuard]},
       {path: 'profile', component: UserProfileComponent},
+      {path: 'university/course-view', component: UniversityCourseManagerCourseViewComponent},
       {path: '**', redirectTo: 'profile', pathMatch: 'full'}
     ]
     },

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UserAuthenticationService } from './user-authentication.service';
+import { Application } from '../_models/application';
 
 const APPLICATION_API = 'http://localhost:8080/application'
 
@@ -16,5 +17,9 @@ export class ApplicationService {
 
   sendApplications(coursesToSend) {
     return this.http.post<boolean>(APPLICATION_API + '/sendApplications/' + this.authService.userValue.userId, coursesToSend)
+  }
+
+  getApplicationsForUni() {
+    return this.http.get<Application[]>(APPLICATION_API + '/getApplicationsForUni' + this.authService.userValue.userId);
   }
 }
