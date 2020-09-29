@@ -1,1 +1,14 @@
 <button (click)="back()">Back</button>
+
+<p>username: {{username}}</p>
+<p>applicationId: {{application.applicationId}}</p>
+<p>userId: {{application.userId}}</p>
+<p>courseId: {{application.courseId}}</p>
+<p>dateOfApplication: {{application.dateOfApplication}}</p>
+<p>dateOfReview: {{application.dateOfReview}}</p>
+<p>dateOfDecision: {{application.dateOfDecision}}</p>
+<p>applicationStatus: {{application.applicationStatus}}</p>
+
+<p id="button" (click)="setInReview()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.APPLIED]">Set as in Review</p>
+<p id="button" (click)="setAccepted()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Accept Application</p>
+<p id="button" (click)="setDeclined()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Decline Application</p>

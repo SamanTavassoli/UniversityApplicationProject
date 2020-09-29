@@ -43,12 +43,13 @@ public class ApplicationManager {
     /**
      * Finds the application through the application Id and sets it to in review for that date
      */
-    public void applicationInReview(int applicationId) {
+    public boolean applicationInReview(int applicationId) {
         Application application = applicationDao.findByApplicationId(applicationId).get();
         Date reviewDate = new Date();
         application.setApplicationStatus(ApplicationStatus.IN_REVIEW);
         application.setDateOfReview(reviewDate);
         applicationDao.save(application);
+        return true; // can return false if setting application in review fails
     }
 
     /**

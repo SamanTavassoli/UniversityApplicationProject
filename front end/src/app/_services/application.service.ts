@@ -15,11 +15,19 @@ export class ApplicationService {
     private authService: UserAuthenticationService
     ) { }
 
-  sendApplications(coursesToSend) {
+  sendApplications(coursesToSend: number[]) {
     return this.http.post<boolean>(APPLICATION_API + '/student/sendApplications/' + this.authService.userValue.userId, coursesToSend)
   }
 
-  getApplicationsForCourse(courseId) {
+  getApplicationsForCourse(courseId: number) {
     return this.http.get<Application[]>(APPLICATION_API + '/uni/getApplicationsForCourse/' + courseId);
+  }
+
+  getApplication(applicationId: number) {
+    return this.http.get<Application>(APPLICATION_API + '/uni/getApplicationForId/' + applicationId)
+  }
+
+  setApplicationToInReview(applicationId: number) {
+    return this.http.get<boolean>(APPLICATION_API + '/uni/setApplicationToInReview/' + applicationId)
   }
 }

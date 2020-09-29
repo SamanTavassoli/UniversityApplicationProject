@@ -76,4 +76,12 @@ public class ApplicationService {
         return optApplications.stream().map(Optional::get).collect(Collectors.toList());
     }
 
+    public Application getApplicationForId(int applicationId) {
+        return applicationDao.findByApplicationId(applicationId).get();
+    }
+
+    public boolean setApplicationToInReview(int applicationId) {
+        return applicationManager.applicationInReview(applicationId);
+    }
+
 }
