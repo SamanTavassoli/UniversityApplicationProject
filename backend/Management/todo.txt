@@ -1,11 +1,16 @@
 
-accepting applications (uni) (FE application per course section, list of applicants, list of accepted / rejected, BE )
+accepting applications (uni)
     implement viewing courses
     implement viewing applications for courses
     implement modifying application status for different applications
 
 implement viewing application progress for student
 
-- finish project
-- work on UX
+implement searching by university
 
+implement sorting and searching of courses
+
+- finish project - think about any other important features, work on issues
+- work on UX
+   simple theme
+   doesn't have to be adaptable

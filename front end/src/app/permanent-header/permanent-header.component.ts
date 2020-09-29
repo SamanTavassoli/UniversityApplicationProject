@@ -9,18 +9,21 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
 export class PermanentHeaderComponent implements OnInit {
 
   constructor(private authService: UserAuthenticationService) { 
-    this.loggedIn = this.authService.isLoggedIn();
   }
 
-  loggedIn = false;
+  loggedIn() {
+    return this.authService.isLoggedIn();
+  }
 
   ngOnInit(): void {
-    this.loggedIn = this.authService.isLoggedIn();
+
   }
 
   logout() {
     this.authService.logout();
     window.location.reload();
   }
+
+
 
 }
