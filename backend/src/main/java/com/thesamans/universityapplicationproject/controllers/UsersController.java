@@ -1,6 +1,7 @@
 package com.thesamans.universityapplicationproject.controllers;
 
 import com.thesamans.universityapplicationproject.model.course.Course;
+import com.thesamans.universityapplicationproject.model.requests_responses.UsernameForStudentResponse;
 import com.thesamans.universityapplicationproject.model.users.*;
 import com.thesamans.universityapplicationproject.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,19 +19,6 @@ public class UsersController {
 
     @Autowired
     private UserService userService;
-
-    // test
-
-    /** Returning an array because the json gets messed up if I just send a string */
-    @GetMapping(value = "/student/test")
-    public ResponseEntity<String[]> testStudent() {
-        return ResponseEntity.ok(new String[] {"test student success"});
-    }
-
-    @GetMapping(value = "/university/test")
-    public ResponseEntity<String[]> testUniversity() {
-        return ResponseEntity.ok(new String[] {"test uni success"});
-    }
 
     // students
 
@@ -64,6 +52,11 @@ public class UsersController {
     @GetMapping(value = "/university/{universityId}")
     public University getUniversity(@PathVariable int universityId) {
         return userService.getUser(UserType.UNIVERSITY, universityId);
+    }
+
+    @GetMapping(value = "/university/usernameForStudent/{studentId}")
+    public ResponseEntity<?> getStudentUsername(@PathVariable int studentId) {
+        return ResponseEntity.ok(new UsernameForStudentResponse(userService.getStudentUsername(studentId)));
     }
 
 }

@@ -9,4 +9,7 @@
 </div>
 
 <h1>Applications</h1>
-<p *ngFor="let application of applications">{{application.applicationId}}</p>
+<div *ngFor="let application of applications">
+    <p>{{application.applicationId}} - {{getUsername(application)}}</p>
+    <p id="button" routerLink="/user/university/application-view" [queryParams]="{applicationId : [application.applicationId]}"> check out application</p>
+</div>

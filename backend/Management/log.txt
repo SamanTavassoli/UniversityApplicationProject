@@ -130,3 +130,6 @@ refactored app manager and factory, made them into beans
 added auto creation of empty array list of applications on init of courses in course service
 implemented adding applications back end
 
+29/09/20
+
+

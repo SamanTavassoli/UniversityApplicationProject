@@ -18,6 +18,7 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { UniversityCourseManagerComponent } from './university-course-manager/university-course-manager.component';
 import { StudentApplicationManagerComponent } from './student-application-manager/student-application-manager.component';
 import { UniversityCourseManagerCourseViewComponent } from './university-course-manager-course-view/university-course-manager-course-view.component';
+import { UniversityCourseManagerApplicationViewComponent } from './university-course-manager-application-view/university-course-manager-application-view.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { UniversityCourseManagerCourseViewComponent } from './university-course-
     UniversityPageComponent,
     UniversityCourseManagerComponent,
     StudentApplicationManagerComponent,
-    UniversityCourseManagerCourseViewComponent
+    UniversityCourseManagerCourseViewComponent,
+    UniversityCourseManagerApplicationViewComponent
   ],
   imports: [
     BrowserModule,

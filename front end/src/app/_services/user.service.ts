@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UsernameForStudentResponse } from '../university-course-manager-course-view/university-course-manager-course-view.component';
 import { Course } from '../_models/course';
 import { University } from '../_models/university';
 import { UserAuthenticationService } from './user-authentication.service';
@@ -12,11 +13,6 @@ const USER_API = 'http://localhost:8080/user'
 export class UserService {
 
   constructor(private http: HttpClient, private authService: UserAuthenticationService) { }
-
-  // only student accounts should be able to retrieve this
-  testStudent() {
-    return this.http.get<[string]>(USER_API + '/student/test');
-  }
 
   getConsideredCourses() {
     return this.http.get<number[]>(USER_API + '/student/getConsideredCourses/' + this.authService.userValue.userId)
@@ -34,9 +30,8 @@ export class UserService {
     return this.http.get<boolean>(USER_API + '/student/isConsideredCourse/' + courseId + '/' + this.authService.userValue.userId)
   }
 
-  // only uni accounts should be able to retrieve this
-  testUni() {
-    return this.http.get<string>(USER_API + '/university/test');
+  getStudentUsername(studentId: number) {
+    return this.http.get<UsernameForStudentResponse>(USER_API + '/university/usernameForStudent/' + studentId)
   }
 
 }

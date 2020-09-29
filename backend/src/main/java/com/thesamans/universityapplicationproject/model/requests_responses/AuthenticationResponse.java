@@ -1,4 +1,4 @@
-package com.thesamans.universityapplicationproject.model.authentication;
+package com.thesamans.universityapplicationproject.model.requests_responses;
 
 /**
  * Corresponds to LoggedInUser on front end

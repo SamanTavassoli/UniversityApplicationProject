@@ -1,4 +1,4 @@
-package com.thesamans.universityapplicationproject.model.authentication;
+package com.thesamans.universityapplicationproject.model.requests_responses;
 
 public class AuthenticationRequest {
 

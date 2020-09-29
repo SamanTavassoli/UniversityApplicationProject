@@ -28,6 +28,10 @@ public class UserService {
     @Autowired
     private CourseDao courseDao;
 
+    public String getStudentUsername(int studentId) {
+        return userDao.findById(studentId).get().getUsername();
+    }
+
     /**
      * Looks for a specific user in database
      * @param userId User Id for the user requested

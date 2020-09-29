@@ -1,7 +1,7 @@
 package com.thesamans.universityapplicationproject.controllers;
 
-import com.thesamans.universityapplicationproject.model.authentication.AuthenticationRequest;
-import com.thesamans.universityapplicationproject.model.authentication.AuthenticationResponse;
+import com.thesamans.universityapplicationproject.model.requests_responses.AuthenticationRequest;
+import com.thesamans.universityapplicationproject.model.requests_responses.AuthenticationResponse;
 import com.thesamans.universityapplicationproject.model.users.MyUserDetails;
 import com.thesamans.universityapplicationproject.model.users.RegistrationUser;
 import com.thesamans.universityapplicationproject.services.MyUserDetailsService;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,5 +1,6 @@
 package com.thesamans.universityapplicationproject.services;
 
+import com.thesamans.universityapplicationproject.dao.ApplicationDao;
 import com.thesamans.universityapplicationproject.dao.CourseDao;
 import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.application.Application;
@@ -12,6 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ApplicationService {
@@ -21,6 +25,9 @@ public class ApplicationService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    ApplicationDao applicationDao;
 
     @Autowired
     ApplicationManager applicationManager;
@@ -57,6 +64,16 @@ public class ApplicationService {
 //        student.setHasApplied(true);
 //        userDao.save(student);
         return true;
+    }
+
+    public List<Application> getApplicationsForCourse(int courseId) {
+
+        ArrayList<Application> applications = new ArrayList<Application>();
+        List<Optional<Application>> optApplications = applicationDao.findByCourseId(courseId);
+//        for (Optional<Application> optApplication : optApplications) {
+//            applications.add(optApplication.get());
+//        }
+        return optApplications.stream().map(Optional::get).collect(Collectors.toList());
     }
 
 }

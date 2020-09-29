@@ -59,8 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/auth/*", "/courses/public/**").permitAll()
                 .antMatchers("/courses/**").hasAnyRole("ADMIN", "UNIVERSITY")
-                .antMatchers("/user/student/**", "/application/**").hasRole("STUDENT")
-                .antMatchers("/user/university/**").hasRole("UNIVERSITY")
+                .antMatchers("/user/student/**", "/application/student/**").hasRole("STUDENT")
+                .antMatchers("/user/university/**", "/application/uni/**").hasRole("UNIVERSITY")
                 .antMatchers("**").denyAll()
 //                .anyRequest().authenticated() not every request needs to be authed, some public requests specified
                 // no sessions, each request needs to provide a token

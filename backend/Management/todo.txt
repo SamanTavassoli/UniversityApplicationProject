@@ -1,7 +1,6 @@
-
 accepting applications (uni)
-    implement viewing applications for courses
-    implement modifying application status for different applications
+    implement modifying application status for different applications in application page
+    implement viewing application status in application list in course page
 
 implement viewing application progress for student
 
@@ -13,3 +12,4 @@ implement sorting and searching of courses
 - work on UX
    simple theme
    doesn't have to be adaptable
+   angular component

@@ -16,10 +16,10 @@ export class ApplicationService {
     ) { }
 
   sendApplications(coursesToSend) {
-    return this.http.post<boolean>(APPLICATION_API + '/sendApplications/' + this.authService.userValue.userId, coursesToSend)
+    return this.http.post<boolean>(APPLICATION_API + '/student/sendApplications/' + this.authService.userValue.userId, coursesToSend)
   }
 
-  getApplicationsForUni() {
-    return this.http.get<Application[]>(APPLICATION_API + '/getApplicationsForUni' + this.authService.userValue.userId);
+  getApplicationsForCourse(courseId) {
+    return this.http.get<Application[]>(APPLICATION_API + '/uni/getApplicationsForCourse/' + courseId);
   }
 }

@@ -17,4 +17,6 @@ public interface ApplicationDao extends CrudRepository<Application, Integer> {
     Optional<Application> findByApplicationId(int applicationId);
 
     List<Optional<Application>> findByUserId(int userId);
+
+    List<Optional<Application>> findByCourseId(int courseId);
 }
