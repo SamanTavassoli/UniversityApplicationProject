@@ -45,7 +45,7 @@ export class UniversityCourseManagerApplicationViewComponent implements OnInit {
   setInReview() {
     this.applicationService.setApplicationToInReview(this.application.applicationId).subscribe(success => {
       if (success) {
-
+        this.ngOnInit()
       } else {
         window.alert('This shouldn\' fail')
       }
@@ -53,10 +53,27 @@ export class UniversityCourseManagerApplicationViewComponent implements OnInit {
   }
 
   setAccepted() {
-    
+    this.setDecisionMade(true);
   }
 
   setDeclined() {
-    
+    this.setDecisionMade(false);
+  }
+
+  setDecisionMade(accepted: boolean) {
+    this.applicationService.setApplicationDecisionMade(this.application.applicationId, accepted).subscribe(success => {
+      if (success) {
+        this.ngOnInit()
+      } else {
+        window.alert('This shouldn\' fail')
+      }
+    })
+  }
+
+  reset() {
+    this.applicationService.resetApplication(this.application.applicationId).subscribe( response => {
+      this.ngOnInit();
+    }
+    );
   }
 }

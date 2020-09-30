@@ -6,6 +6,7 @@ import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.application.ApplicationFactory;
 import com.thesamans.universityapplicationproject.model.application.ApplicationManager;
+import com.thesamans.universityapplicationproject.model.application.ApplicationStatus;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.Student;
 import org.apache.catalina.core.ApplicationContext;
@@ -82,6 +83,20 @@ public class ApplicationService {
 
     public boolean setApplicationToInReview(int applicationId) {
         return applicationManager.applicationInReview(applicationId);
+    }
+
+    public boolean setApplicationDecisionMade(int applicationId, boolean accepted) {
+        ApplicationStatus applicationStatus;
+        if (accepted) {
+            applicationStatus = ApplicationStatus.ACCEPTED;
+        } else {
+            applicationStatus = ApplicationStatus.REJECTED;
+        }
+        return applicationManager.applicationDecisionMade(applicationId, applicationStatus);
+    }
+
+    public void resetApplication(int applicationId) {
+        applicationManager.resetApplication(applicationId);
     }
 
 }

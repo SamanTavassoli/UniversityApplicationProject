@@ -30,9 +30,18 @@ public class ApplicationController {
         return applicationService.getApplicationForId(applicationId);
     }
 
-    @GetMapping(value = "/uni/setApplicationToInReview/{applicationId}")
+    @PostMapping(value = "/uni/setApplicationToInReview/{applicationId}")
     public boolean setApplicationToInReview(@PathVariable int applicationId) {
         return applicationService.setApplicationToInReview(applicationId);
     }
 
+    @PostMapping(value = "/uni/setApplicationDecisionMade/{applicationId}/{accepted}")
+    public boolean setApplicationDecisionMade(@PathVariable int applicationId, @PathVariable boolean accepted) {
+        return applicationService.setApplicationDecisionMade(applicationId, accepted);
+    }
+
+    @PostMapping(value = "/uni/resetApplication/{applicationId}")
+    public void resetApplication(@PathVariable int applicationId) {
+        applicationService.resetApplication(applicationId);
+    }
 }

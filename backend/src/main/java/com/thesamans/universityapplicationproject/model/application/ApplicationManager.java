@@ -57,19 +57,21 @@ public class ApplicationManager {
      * @param applicationId application on which decision has been made
      * @param applicationStatus Accepted or Rejected
      */
-    public void applicationDecisionMade(int applicationId, ApplicationStatus applicationStatus) {
+    public boolean applicationDecisionMade(int applicationId, ApplicationStatus applicationStatus) {
         Application application = applicationDao.findByApplicationId(applicationId).get();
         Date decisionDate = new Date();
         application.setApplicationStatus(applicationStatus);
         application.setDateOfDecision(decisionDate);
         applicationDao.save(application);
+        return true; // can return false if setting fails
     }
 
-    private ApplicationStatus changeStatus(int applicationId, ApplicationStatus status) {
+    public void resetApplication(int applicationId) {
         Application application = applicationDao.findByApplicationId(applicationId).get();
-        application.setApplicationStatus(status);
+        application.setApplicationStatus(ApplicationStatus.APPLIED);
+        application.setDateOfReview(null);
+        application.setDateOfDecision(null);
         applicationDao.save(application);
-        return application.getApplicationStatus();
     }
 
 }

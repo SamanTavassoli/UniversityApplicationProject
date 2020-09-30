@@ -28,6 +28,14 @@ export class ApplicationService {
   }
 
   setApplicationToInReview(applicationId: number) {
-    return this.http.get<boolean>(APPLICATION_API + '/uni/setApplicationToInReview/' + applicationId)
+    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationToInReview/' + applicationId, {})
+  }
+
+  setApplicationDecisionMade(applicationId: number, accepted: boolean) {
+    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationDecisionMade/' + applicationId + '/' + accepted, {} )
+  }
+
+  resetApplication(applicationId: number) {
+    return this.http.post(APPLICATION_API + '/uni/resetApplication/' + applicationId, {})
   }
 }
