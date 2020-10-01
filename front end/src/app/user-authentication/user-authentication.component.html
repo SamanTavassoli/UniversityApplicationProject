@@ -1,10 +1,10 @@
 <ul>
-    <li id="button" (click)="userType=UserType.Student">I'm a Student</li>
-    <li id="button" (click)="userType=UserType.University">I'm a University</li>
-</ul>
-<ul>
     <li id="button" (click)="authentificationType=AuthentificationType.Login">Login</li>
     <li id="button" (click)="authentificationType=AuthentificationType.Register">Register</li>
+</ul>
+<ul *ngIf="authentificationType==AuthentificationType.Register">
+    <li id="button" (click)="userType=UserType.Student">I'm a Student</li>
+    <li id="button" (click)="userType=UserType.University">I'm a University</li>
 </ul>
 <div *ngIf="userType==UserType.Student">
     <div *ngIf="authentificationType==AuthentificationType.Login">
