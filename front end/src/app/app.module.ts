@@ -19,6 +19,7 @@ import { UniversityCourseManagerComponent } from './university-course-manager/un
 import { StudentApplicationManagerComponent } from './student-application-manager/student-application-manager.component';
 import { UniversityCourseManagerCourseViewComponent } from './university-course-manager-course-view/university-course-manager-course-view.component';
 import { UniversityCourseManagerApplicationViewComponent } from './university-course-manager-application-view/university-course-manager-application-view.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { UniversityCourseManagerApplicationViewComponent } from './university-co
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [AuthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]

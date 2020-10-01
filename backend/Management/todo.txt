@@ -1,6 +1,4 @@
 
-implement sorting and searching of courses
-
 - finish project - think about any other important features, work on issues
 - work on UX
    simple theme

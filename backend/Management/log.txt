@@ -137,5 +137,5 @@ implemented setting to review, making decision and resetting application for uni
 
 01/10/20
 implemented viewing application status in application list in course page
-
-
+Implemented university search
+Implemented uni / course search filter with ng2-search-filter

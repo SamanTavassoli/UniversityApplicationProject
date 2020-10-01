@@ -4,26 +4,25 @@
     <li id="button" (click)="searchType=SearchType.University">Universities</li>
 </ul>
 
-Search: <input type="text" [(ngModel)]="searchTerm">
-<button (click)="search()">Search</button>
+Search: <input class="form-control" type="text" [(ngModel)]="searchTerm" name="search" (click)="search()">
 
 <ul id="results">
     Results:
     <div *ngIf="searchType==SearchType.Course">
-        <li *ngFor="let course of courses" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">
+        <li *ngFor="let course of courses | filter:searchTerm" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">
             <ul>
-                <li id="courseDetails">Course name: {{course.courseName}}, <br>
+                <li id="courseDetails">Course name: {{course.courseName}} <br>
                     available slots: {{course.availableSlots}} <br> 
                     course duration: {{course.courseDuration}} <br>
                     fees: {{course.fees}} <br>
-                    course id: {{course.courseId}}
+                    <!-- course id: {{course.courseId}} -->
                 </li>
                 <li id="specialButton"> check out course</li>
             </ul> 
         </li>
     </div>
     <div *ngIf="searchType==SearchType.University">
-        <li *ngFor="let university of universities" routerLink="/university" [queryParams]="{ universityId: [university.universityId]}">
+        <li *ngFor="let university of universities | filter:searchTerm" routerLink="/university" [queryParams]="{ universityId: [university.universityId]}">
             {{university.username}} <br>
             {{university.universityId}}
         </li>
