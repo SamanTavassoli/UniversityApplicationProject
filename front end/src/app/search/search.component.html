@@ -23,8 +23,9 @@ Search: <input type="text" [(ngModel)]="searchTerm">
         </li>
     </div>
     <div *ngIf="searchType==SearchType.University">
-        <li *ngFor="let university of universities" routerLink="/university" [queryParams]="{ universityName: [university]}">
-            {{university}}
+        <li *ngFor="let university of universities" routerLink="/university" [queryParams]="{ universityId: [university.universityId]}">
+            {{university.username}} <br>
+            {{university.universityId}}
         </li>
     </div> 
 </ul>

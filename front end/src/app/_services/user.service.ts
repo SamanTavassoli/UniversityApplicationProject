@@ -4,6 +4,7 @@ import { UsernameForStudentResponse } from '../university-course-manager-course-
 import { Course } from '../_models/course';
 import { University } from '../_models/university';
 import { UserAuthenticationService } from './user-authentication.service';
+import { UniversityPublicInfo } from '../_models/university-public-info';
 
 const USER_API = 'http://localhost:8080/user'
 
@@ -32,6 +33,14 @@ export class UserService {
 
   getStudentUsername(studentId: number) {
     return this.http.get<UsernameForStudentResponse>(USER_API + '/university/usernameForStudent/' + studentId)
+  }
+
+  getAllUniversityPublicInfo() {
+    return this.http.get<UniversityPublicInfo[]>(USER_API + '/university/allPublicInfo/')
+  }
+
+  getUniversityPublicInfo(universityId: number) {
+    return this.http.get<UniversityPublicInfo>(USER_API + '/university/publicInfo/' + universityId)
   }
 
 }

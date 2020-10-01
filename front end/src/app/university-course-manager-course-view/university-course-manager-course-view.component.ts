@@ -45,6 +45,7 @@ export class UniversityCourseManagerCourseViewComponent implements OnInit {
           for (let application of applications) {
             this.userService.getStudentUsername(application.userId).subscribe(response => {
               this.studentNames.push((response).username)
+              
             })
           }
         }

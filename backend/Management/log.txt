@@ -133,6 +133,9 @@ implemented adding applications back end
 29/09/20
 fixed issue with login button on login not switching to logout
 implemented display of applications list and individual applications for uni
-implemented setting to review, making decision and reseting application for uni
+implemented setting to review, making decision and resetting application for uni
+
+01/10/20
+implemented viewing application status in application list in course page
 
 

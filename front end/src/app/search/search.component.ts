@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { Course } from '../_models/course';
 import { CourseService } from '../_services/course.service';
 import { UserService } from '../_services/user.service';
+import { UniversityPublicInfo } from '../_models/university-public-info';
 
 enum SearchType {
   Course,
@@ -22,9 +23,9 @@ export class SearchComponent implements OnInit{
   searchType: SearchType = SearchType.Course;
   searchTerm: string = '';
   courses: Course[] = [];
-  universities = ['TestUni 1', 'TestUni 2', 'TestUni 3'];
+  universities: UniversityPublicInfo[] = [];
 
-  constructor(private courseService: CourseService) { 
+  constructor(private courseService: CourseService, private userService: UserService) { 
 
   }
 
@@ -32,6 +33,10 @@ export class SearchComponent implements OnInit{
     this.courseService.getAllCourses().subscribe( allCourses => {
       this.courses = allCourses
     });
+
+    this.userService.getAllUniversityPublicInfo().subscribe( allPublicInfo => {
+      this.universities = allPublicInfo;
+    })
   }
 
   search() {

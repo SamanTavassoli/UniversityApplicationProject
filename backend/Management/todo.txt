@@ -1,5 +1,4 @@
 
-implement searching by university
 implement sorting and searching of courses
 
 - finish project - think about any other important features, work on issues

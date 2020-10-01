@@ -3,9 +3,7 @@ package com.thesamans.universityapplicationproject.services;
 import com.thesamans.universityapplicationproject.dao.CourseDao;
 import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.course.Course;
-import com.thesamans.universityapplicationproject.model.users.Student;
-import com.thesamans.universityapplicationproject.model.users.User;
-import com.thesamans.universityapplicationproject.model.users.UserType;
+import com.thesamans.universityapplicationproject.model.users.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -14,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Generic class to handle students, universities and admins
@@ -122,16 +121,25 @@ public class UserService {
                 && student.getCoursesConsidered().contains(courseId);
     }
 
-    // todo: implement getter that returns all students from userDao
-
-    // todo: implement getter that returns all universities from userDao
-
     public List<User> getUserList() {
         return userDao.findAll();
     }
 
     public void deleteUser(int userId) {
         userDao.deleteById(userId);
+    }
+
+    public List<UniversityPublicInfo> getAllUniversityPublicInfo() {
+        List<UniversityPublicInfo> universityPublicInfo = userDao.findAll().stream()
+                .filter(user -> user instanceof University)
+                .map(user -> new UniversityPublicInfo(user.getUsername(), user.getUserId()))
+                .collect(Collectors.toList());
+        return universityPublicInfo;
+    }
+
+    public UniversityPublicInfo getUniversityPublicInfo(int universityId) {
+        University university = (University) userDao.findById(universityId).get();
+        return new UniversityPublicInfo(university.getUsername(), universityId);
     }
 
 }
