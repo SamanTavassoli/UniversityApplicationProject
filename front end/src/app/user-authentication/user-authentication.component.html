@@ -1,44 +1,53 @@
 <ul>
-    <li id="button" (click)="authentificationType=AuthentificationType.Login">Login</li>
-    <li id="button" (click)="authentificationType=AuthentificationType.Register">Register</li>
+    <button mat-raised-button color="primary" (click)="authentificationType=AuthentificationType.Login">Login</button>
+    <button mat-raised-button  color="primary" (click)="authentificationType=AuthentificationType.Register">Register</button>
 </ul>
 <ul *ngIf="authentificationType==AuthentificationType.Register">
-    <li id="button" (click)="userType=UserType.Student">I'm a Student</li>
-    <li id="button" (click)="userType=UserType.University">I'm a University</li>
+    <button mat-raised-button color="primary" (click)="userType=UserType.Student">I'm a Student</button>
+    <button mat-raised-button color="primary" (click)="userType=UserType.University">I'm a University</button>
 </ul>
-<div *ngIf="userType==UserType.Student">
-    <div *ngIf="authentificationType==AuthentificationType.Login">
-        <form (submit)="login($event)">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <input type="submit" value="login">
-        </form>
-    </div>
-    <div *ngIf="authentificationType==AuthentificationType.Register">
-        <form (submit)="register($event, [userType])">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <input type="email" placeholder="Email" id="email">
-            <input type="dateOfBirth" placeholder="DateOfBirth" id="dateOfBirth">
-            <input type="submit" value="register">
-        </form>
-    </div>
-    
+
+<div *ngIf="authentificationType==AuthentificationType.Login">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <table cellspacing="0"><tr>
+            <td><mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput formControlName="username" type="text" required>
+            </mat-form-field></td>
+            <td><mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput formControlName="password" type="password" required>
+            </mat-form-field></td>
+            <td>
+                <button mat-raised-button type="submit" [disabled]="!loginForm.valid">submit</button>
+            </td>
+        </tr></table>
+    </form>
 </div>
-<div *ngIf="userType==UserType.University">
-    <div *ngIf="authentificationType==AuthentificationType.Login">
-        <form (submit)="login($event)">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <input type="submit" value="login">
-        </form>
-    </div>
-    <div *ngIf="authentificationType==AuthentificationType.Register">
-        <form (submit)="register($event, [userType])">
-            <input type="text" placeholder="Username" id="username">
-            <input type="password" placeholder="Password" id="password">
-            <input type="email" placeholder="Email" id="email">
-            <input type="submit" value="register">
-        </form>
-    </div>
+<div *ngIf="authentificationType==AuthentificationType.Register">
+    <form [formGroup]="registerForm" (ngSubmit)="register([userType])">
+        <table cellspacing="0"><tr>
+                <td><mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput formControlName="username" type="text" required>
+                </mat-form-field></td>
+                <td><mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput formControlName="password" type="password" required>
+                </mat-form-field></td>
+            </tr><tr>
+                <td><mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" type="text" required>
+                </mat-form-field></td>
+                <td *ngIf="userType==UserType.Student"><mat-form-field>
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput formControlName="dateOfBirth" type="text" required>
+                </mat-form-field></td>
+            </tr><tr>
+                <td>
+                    <button mat-raised-button type="submit" [disabled]="!registerForm.valid">submit</button>
+                </td>
+        </tr></table>
+    </form>
 </div>

@@ -1,30 +1,29 @@
-<ul>
-    Browse by:
-    <li id="button" (click)="searchType=SearchType.Course">Courses</li>
-    <li id="button" (click)="searchType=SearchType.University">Universities</li>
-</ul>
+<mat-button-toggle-group>
+    <mat-button-toggle color="primary" (click)="searchType=SearchType.Course">Courses</mat-button-toggle>
+    <mat-button-toggle color="primary" (click)="searchType=SearchType.University">Universities</mat-button-toggle>
+</mat-button-toggle-group>
 
-Search: <input class="form-control" type="text" [(ngModel)]="searchTerm" name="search" (click)="search()">
+<br>
 
-<ul id="results">
-    Results:
-    <div *ngIf="searchType==SearchType.Course">
-        <li *ngFor="let course of courses | filter:searchTerm" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">
-            <ul>
-                <li id="courseDetails">Course name: {{course.courseName}} <br>
-                    available slots: {{course.availableSlots}} <br> 
-                    course duration: {{course.courseDuration}} <br>
-                    fees: {{course.fees}} <br>
-                    course id: {{course.courseId}}
-                </li>
-                <li id="specialButton"> check out course</li>
-            </ul> 
-        </li>
-    </div>
-    <div *ngIf="searchType==SearchType.University">
-        <li *ngFor="let university of universities | filter:searchTerm" routerLink="/university" [queryParams]="{ universityId: [university.universityId]}">
+<mat-form-field>
+    <mat-label *ngIf="searchType==SearchType.Course">Filter Courses</mat-label>
+    <mat-label *ngIf="searchType==SearchType.University">Filter Universities</mat-label>
+    <input matInput [(ngModel)]="searchTerm" (click)="search()">
+</mat-form-field>
+
+<div>
+    <p>Results:</p>
+    <mat-selection-list [multiple]="false" *ngIf="searchType==SearchType.Course">
+        <mat-list-option *ngFor="let course of courses | filter:searchTerm" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">
+            <div>
+                <p>Course name: {{course.courseName}} | available slots: {{course.availableSlots}} | course duration: {{course.courseDuration}} | fees: {{course.fees}} | course id: {{course.courseId}}</p>
+            </div>
+        </mat-list-option>
+    </mat-selection-list>
+    <mat-selection-list [multiple]="false" *ngIf="searchType==SearchType.University">
+        <mat-list-option *ngFor="let university of universities | filter:searchTerm" routerLink="/university" [queryParams]="{universityId: [university.universityId]}">
             {{university.username}} <br>
             {{university.universityId}}
-        </li>
-    </div> 
-</ul>
+        </mat-list-option>
+    </mat-selection-list>
+</div>

@@ -59,12 +59,12 @@ public class UsersController {
         return ResponseEntity.ok(new UsernameForStudentResponse(userService.getStudentUsername(studentId)));
     }
 
-    @GetMapping(value = "/university/allPublicInfo/")
+    @GetMapping(value = "/university/public/allPublicInfo/")
     public List<UniversityPublicInfo> getAllUniversityPublicInfo() {
         return userService.getAllUniversityPublicInfo();
     }
 
-    @GetMapping(value = "/university/publicInfo/{universityId}")
+    @GetMapping(value = "/university/public/publicInfo/{universityId}")
     public UniversityPublicInfo getUniversityPublicInfo(@PathVariable int universityId) {
         return userService.getUniversityPublicInfo(universityId);
     }

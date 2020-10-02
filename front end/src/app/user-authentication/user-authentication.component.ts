@@ -3,6 +3,7 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
 import { Router } from '@angular/router';
 import { User } from '../user/user.component';
 import { RegistrationUser } from '../_models/registration-user';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 enum AuthentificationType {
   Login,
@@ -21,6 +22,9 @@ enum UserType {
 })
 export class UserAuthenticationComponent implements OnInit {
 
+  loginForm: FormGroup;
+  registerForm: FormGroup;
+
   AuthentificationType = AuthentificationType;
   authentificationType: AuthentificationType = AuthentificationType.Login;
 
@@ -32,6 +36,18 @@ export class UserAuthenticationComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.loginForm = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+    })
+
+    this.registerForm = new FormGroup({
+      username: new FormControl(''),
+      password: new FormControl(''),
+      email: new FormControl('', [Validators.email]),
+      dateOfBirth: new FormControl('00/00/0000'),
+    })
+    
   }
 
   /**
@@ -39,10 +55,10 @@ export class UserAuthenticationComponent implements OnInit {
    * If data is received it means the authentication worked
    * Otherwise authentication failed
    */
-  login(event) {
-    const target = event.target
-    const username = target.querySelector('#username').value
-    const password = target.querySelector('#password').value
+  login() {
+    const form = this.loginForm.value
+    const username = form.username
+    const password = form.password  
 
 
     this.authService.login(username, password).subscribe(data => {
@@ -55,11 +71,6 @@ export class UserAuthenticationComponent implements OnInit {
     });
   }
 
-  logout(event) {
-    this.authService.logout();
-    this.router.navigate(['user/authentication'])
-  }
-
   /**
    * Register a particular User
    * 
@@ -68,14 +79,14 @@ export class UserAuthenticationComponent implements OnInit {
    * @param event Contains the information about the user
    * @param userType Type of User to be registered
    */
-  register(event, userType: UserType) {
-    const target = event.target
-    const username = target.querySelector('#username').value
-    const password = target.querySelector('#password').value
-    const email = target.querySelector('#email').value
+  register(userType: UserType) {
+    const form = this.registerForm.value
+    const username = form.username
+    const password = form.password  
+    const email = form.email
     var dateOfBirth;
     if (userType == UserType.Student) {
-      dateOfBirth = target.querySelector('#dateOfBirth').value
+      dateOfBirth = form.dateOfBirth
     }
 
     var registrationUser = new RegistrationUser(username, password, email, UserType[userType.toString()], dateOfBirth)

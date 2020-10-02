@@ -1,5 +1,5 @@
 
-<p id="button">View Application Details</p> 
+<button mat-raised-button color="primary">View Application Details</button> 
 
 <div>
 
@@ -12,9 +12,9 @@
         <p>course duration: {{course.courseDuration}}</p>
         <p>fees: {{course.fees}}</p>
         <p>course id: {{course.courseId}}</p>
-        <p id="button" *ngIf="!didChose(course)" (click)="chose(course)">Choose</p>
-        <p id="button" *ngIf="didChose(course)" (click)="unchose(course)">UnChoose</p>
+        <button mat-raised-button color="primary" *ngIf="!didChose(course)" (click)="chose(course)">Choose</button>
+        <button mat-raised-button color="primary" *ngIf="didChose(course)" (click)="unchose(course)">UnChoose</button>
     </div>
     <br> <br> 
-    <p id="button" (click)="sendApplication()">Send Application</p>
+    <button mat-raised-button color="primary" (click)="sendApplication()">Send Application</button>
 </div>

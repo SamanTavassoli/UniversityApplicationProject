@@ -21,6 +21,13 @@ import { UniversityCourseManagerCourseViewComponent } from './university-course-
 import { UniversityCourseManagerApplicationViewComponent } from './university-course-manager-application-view/university-course-manager-application-view.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +49,14 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    BrowserAnimationsModule,
+    
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatListModule,
+    MatButtonToggleModule
   ],
   providers: [AuthGuard, authInterceptorProviders],
   bootstrap: [AppComponent]

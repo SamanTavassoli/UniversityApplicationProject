@@ -23,6 +23,4 @@ export class PermanentHeaderComponent implements OnInit {
     this.authService.logout();
   }
 
-
-
 }

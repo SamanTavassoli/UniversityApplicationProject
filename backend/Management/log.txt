@@ -139,3 +139,5 @@ implemented setting to review, making decision and resetting application for uni
 implemented viewing application status in application list in course page
 Implemented university search
 Implemented uni / course search filter with ng2-search-filter
+fixing issues on github
+Implementing better UI with Angular material

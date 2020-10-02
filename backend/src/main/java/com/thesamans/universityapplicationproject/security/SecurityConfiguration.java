@@ -57,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/auth/*", "/courses/public/**").permitAll()
+                .antMatchers("/auth/*", "/courses/public/**", "/user/university/public/**").permitAll()
                 .antMatchers("/courses/**").hasAnyRole("ADMIN", "UNIVERSITY")
                 .antMatchers("/user/student/**", "/application/student/**").hasRole("STUDENT")
                 .antMatchers("/user/university/**", "/application/uni/**").hasRole("UNIVERSITY")

@@ -36,11 +36,11 @@ export class UserService {
   }
 
   getAllUniversityPublicInfo() {
-    return this.http.get<UniversityPublicInfo[]>(USER_API + '/university/allPublicInfo/')
+    return this.http.get<UniversityPublicInfo[]>(USER_API + '/university/public/allPublicInfo/')
   }
 
   getUniversityPublicInfo(universityId: number) {
-    return this.http.get<UniversityPublicInfo>(USER_API + '/university/publicInfo/' + universityId)
+    return this.http.get<UniversityPublicInfo>(USER_API + '/university/public/publicInfo/' + universityId)
   }
 
 }

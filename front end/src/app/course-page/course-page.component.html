@@ -1,4 +1,4 @@
-<button (click)="back()">Back</button>
+<button mat-raised-button color="primary" (click)="back()">Back</button>
 <h1>{{course.courseName}}</h1>
 <div>
     Course details:
@@ -8,9 +8,9 @@
     <p>course id: {{course.courseId}}</p>
 </div>
 <br>
-<p id="button" *ngIf="isStudent&&(isConsidered===false)" (click)="addToConsideredCourses()">
+<button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===false)" (click)="addToConsideredCourses()">
     Add to considered courses
-</p>
-<p id="button" *ngIf="isStudent&&(isConsidered===true)" (click)="removeFromConsideredCourses()">
+</button>
+<button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===true)" (click)="removeFromConsideredCourses()">
     Remove from considered courses
-</p>
+</button>

@@ -1,6 +1,7 @@
 
-- finish project - think about any other important features, work on issues
 - work on UX
    simple theme
    doesn't have to be adaptable
    angular component
+
+documentation

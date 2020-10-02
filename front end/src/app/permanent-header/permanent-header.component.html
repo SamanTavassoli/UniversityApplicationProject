@@ -1,8 +1,8 @@
 <div>
   <ul>
-    <li id="websiteName" routerLink="/home">University Application Project</li>
-    <li routerLink="/user/profile">Account</li>
-    <li *ngIf="loggedIn()" (click)="logout()" routerLink="/user/authentication" >logout</li>
-    <li *ngIf="!loggedIn()" (click)="login()" routerLink="/user/authentication">login</li>
+    <li><button mat-raised-button color="accent" id="websiteName" routerLink="/home">University Application Project</button></li>
+    <li><button mat-raised-button color="primary" [disabled]="!loggedIn()" routerLink="/user/profile">Account</button></li>
+    <li><button mat-raised-button color="primary" *ngIf="loggedIn()" (click)="logout()" routerLink="/user/authentication" >logout</button></li>
+    <li><button mat-raised-button color="primary" *ngIf="!loggedIn()" routerLink="/user/authentication">login</button></li>
   </ul>  
 </div>
