@@ -1,7 +1,7 @@
 <div>
   <ul>
     <li><button mat-raised-button color="accent" id="websiteName" routerLink="/home">University Application Project</button></li>
-    <li><button mat-raised-button color="primary" [disabled]="!loggedIn()" routerLink="/user/profile">Account</button></li>
+    <li><button mat-raised-button color="primary" [disabled]="!loggedIn()" routerLink="/user/profile">{{username}}</button></li>
     <li><button mat-raised-button color="primary" *ngIf="loggedIn()" (click)="logout()" routerLink="/user/authentication" >logout</button></li>
     <li><button mat-raised-button color="primary" *ngIf="!loggedIn()" routerLink="/user/authentication">login</button></li>
   </ul>  

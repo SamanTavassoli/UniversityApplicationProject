@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../_models/course';
 import { CourseService } from '../_services/course.service'
 import { UserAuthenticationService } from '../_services/user-authentication.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-university-course-manager',
@@ -9,6 +10,9 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
   styleUrls: ['./university-course-manager.component.css']
 })
 export class UniversityCourseManagerComponent implements OnInit {
+
+  courseAdditionForm: FormGroup;
+  courseDeletionForm: FormGroup;
 
   courses: Course[]
 
@@ -20,14 +24,25 @@ export class UniversityCourseManagerComponent implements OnInit {
         this.courses = courses
       }
     )
+
+    this.courseAdditionForm = new FormGroup({
+      courseName: new FormControl(''),
+      availableSlots: new FormControl(''),
+      courseDuration: new FormControl(''),
+      fees: new FormControl('')
+    })
+
+    this.courseDeletionForm = new FormGroup({
+      courseId: new FormControl('')
+    })
   }
 
-  addCourse(event) {
-    const target = event.target
-    const courseName = target.querySelector('#courseName').value
-    const availableSlots = target.querySelector('#availableSlots').value
-    const courseDuration = target.querySelector('#courseDuration').value
-    const fees = target.querySelector('#fees').value
+  addCourse() {
+    const form = this.courseAdditionForm.value;
+    const courseName = form.courseName;
+    const availableSlots = form.availableSlots;
+    const courseDuration = form.courseDuration;
+    const fees = form.fees;
 
     const course = new Course(this.authService.userValue.userId, courseName, availableSlots, courseDuration, fees)
 
@@ -40,9 +55,9 @@ export class UniversityCourseManagerComponent implements OnInit {
     })
   }
 
-  deleteCourse(event) {
-    const target = event.target
-    const courseId = target.querySelector('#courseId').value
+  deleteCourse() {
+    const form = this.courseDeletionForm.value;
+    const courseId = form.courseId
 
     if (courseId == '') {
       window.alert('Must provide course to delete')

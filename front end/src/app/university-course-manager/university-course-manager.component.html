@@ -1,18 +1,43 @@
-<form (submit)="addCourse($event)">
-    <input type="text" placeholder="Course Name" id="courseName">
-    <input type="text" placeholder="Available slots" id="availableSlots">
-    <input type="text" placeholder="Course Duration" id="courseDuration">
-    <input type="text" placeholder="Fees" id="fees">
-    <input type="submit" value="add course">
+<form [formGroup]="courseAdditionForm" (ngSubmit)="addCourse()">
+    <table cellspacing="0"><tr>
+        <td><mat-form-field>
+            <mat-label>Course Name</mat-label>
+            <input matInput formControlName="courseName" type="text" required>
+        </mat-form-field></td>
+        <td><mat-form-field>
+            <mat-label>Available slots</mat-label>
+            <input matInput formControlName="availableSlots" type="text" required>
+        </mat-form-field></td>
+        <td><mat-form-field>
+            <mat-label>Course Duration (Years)</mat-label>
+            <input matInput formControlName="courseDuration" type="text" required>
+        </mat-form-field></td>
+        <td><mat-form-field>
+            <mat-label>Fees ($ / year)</mat-label>
+            <input matInput formControlName="fees" type="text" required>
+        </mat-form-field></td>
+        <td>
+            <button mat-raised-button type="submit" [disabled]="!courseAdditionForm.valid">Add course</button>
+        </td>
+    </tr></table>
 </form>
 
-<form (submit)="deleteCourse($event)">
-    <input type="number" placeholder="Course Id" id="courseId">
-    <input type="submit" value="delete course">
+<form [formGroup]="courseDeletionForm" (ngSubmit)="deleteCourse()">
+    <table cellspacing="0"><tr>
+        <td><mat-form-field>
+            <mat-label>Course Id</mat-label>
+            <input matInput formControlName="courseId" required>
+        </mat-form-field></td>
+        <td>
+            <button mat-raised-button type="submit" [disabled]="!courseDeletionForm.valid" value="delete course">Delete course</button>
+        </td>
+    </tr></table>
 </form>
 
-<p>List of courses:</p>
-<div *ngFor="let course of courses" routerLink="/user/university/course-view" [queryParams]="{courseId: [course.courseId]}">
+<h2>List of courses</h2>
+<div *ngFor="let course of courses">
     <p>{{course.courseName}} id: {{course.courseId}}</p>
-    <p id="button"> check out course</p>
+    <button mat-raised-button color="primary" routerLink="/user/university/course-view" [queryParams]="{courseId: [course.courseId]}">
+        check out course
+    </button>
 </div>

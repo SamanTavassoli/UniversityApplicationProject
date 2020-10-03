@@ -8,6 +8,8 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
 })
 export class PermanentHeaderComponent implements OnInit {
 
+  username = '';
+
   constructor(private authService: UserAuthenticationService) { 
   }
 
@@ -16,7 +18,7 @@ export class PermanentHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.username = this.authService.userValue.username;
   }
 
   logout() {

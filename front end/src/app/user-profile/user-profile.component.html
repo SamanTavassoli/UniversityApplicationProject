@@ -1,7 +1,4 @@
 <h2>Account info</h2>
 
 <app-university-course-manager *ngIf="getUserType()=='University'"></app-university-course-manager>
-
-<div *ngIf="getUserType()=='Student'">
-    <app-student-application-manager></app-student-application-manager>
-</div>
+<app-student-application-manager *ngIf="getUserType()=='Student'"></app-student-application-manager>

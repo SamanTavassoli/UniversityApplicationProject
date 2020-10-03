@@ -140,4 +140,4 @@ implemented viewing application status in application list in course page
 Implemented university search
 Implemented uni / course search filter with ng2-search-filter
 fixing issues on github
-Implementing better UI with Angular material
+Implementing better UI with Angular material - buttons, button toggle, tables, reactive forms, form validation,

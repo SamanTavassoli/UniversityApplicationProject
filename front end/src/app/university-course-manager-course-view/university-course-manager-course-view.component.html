@@ -1,4 +1,4 @@
-<button (click)="back()">Back</button>
+<button mat-raised-button (click)="back()">Back</button>
 <h1>{{course.courseName}}</h1>
 <div>
     Course details:
@@ -11,5 +11,5 @@
 <h1>Applications</h1>
 <div *ngFor="let application of applications">
     <p>{{application.applicationId}} - {{getUsername(application)}} - {{application.applicationStatus}}</p>
-    <p id="button" routerLink="/user/university/application-view" [queryParams]="{applicationId : [application.applicationId]}"> check out application</p>
+    <button mat-raised-button color="primary" routerLink="/user/university/application-view" [queryParams]="{applicationId : [application.applicationId]}"> check out application</button>
 </div>
