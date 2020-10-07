@@ -10,9 +10,14 @@
         <p>fees: {{course.fees}}</p>
     </mat-card-content>
     <br>
-    <button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===false)" [disabled]="shouldEnable" (click)="addToConsideredCourses()">
+    <button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===false)&&!disableAddConsidered" (click)="addToConsideredCourses()">
         Add to considered courses
     </button>
+
+    <button mat-raised-button color="warn" *ngIf="isStudent&&(isConsidered===false)&&disableAddConsidered" disabled="true">
+        You have already applied to this course
+    </button>
+
     <button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===true)" (click)="removeFromConsideredCourses()">
         Remove from considered courses
     </button>

@@ -82,7 +82,12 @@ export class StudentApplicationManagerComponent implements OnInit {
       } else {
         this.applicationsShown = true;
       }
-    })    
+    })   
+    
+    
+    for (let course of coursesToSend) {
+      this.removeFromConsideredCoursesWhenApplying(course.courseId)
+    }
 
   }
 
@@ -113,6 +118,13 @@ export class StudentApplicationManagerComponent implements OnInit {
 
   getUniversityNameForApplication(application) {
     return this.universitiesForApplications[this.applicationsSent.indexOf(application)].username
+  }
+
+  removeFromConsideredCoursesWhenApplying(courseId) {
+    this.userService.removeFromConsideredCourses(courseId).subscribe(success => {
+      if (!success) {
+        window.alert('Removing course from applications considered failed when sending applications')
+      }});
   }
 
 }

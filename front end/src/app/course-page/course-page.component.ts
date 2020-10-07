@@ -14,7 +14,7 @@ import { UserService } from '../_services/user.service';
 })
 export class CoursePageComponent implements OnInit {
 
-  shouldEnable = false
+  disableAddConsidered = true
   course = new Course(0,'',0,0,0);
   isStudent = false;
   isConsidered = false;
@@ -25,8 +25,8 @@ export class CoursePageComponent implements OnInit {
     private location: Location,
     private courseService: CourseService,
     private authService: UserAuthenticationService,
-    private userService: UserService) { 
-    this.isConsidered = false;
+    private userService: UserService,
+    private applicationService: ApplicationService) { 
   }
 
   ngOnInit(): void {
@@ -46,6 +46,12 @@ export class CoursePageComponent implements OnInit {
         })
         }
       })})
+
+      if (this.studentHasAppliedToCourse()) {
+        this.disableAddConsidered = true
+      } else {
+        this.disableAddConsidered = false
+      }
   }
 
   back() {
@@ -68,6 +74,21 @@ export class CoursePageComponent implements OnInit {
       } else {
         window.alert('Removing from applications failed')
       }});
+  }
+
+  studentHasAppliedToCourse() : boolean {
+    
+    this.applicationService.getApplicationsForStudent().subscribe( applications => {
+      var hasApplied = false
+      for (let application of applications) {
+        if (application.courseId === this.course.courseId) {
+          hasApplied = true
+        }
+      }
+      return hasApplied
+    })
+    
+    return true // if http request fails, default doesn't allow student to add to considered
   }
 
 }
