@@ -4,6 +4,10 @@ li {
     margin: 5px;
 }
 
+ul {
+    text-align: center;
+}
+
 button#websiteName {
     font-size: 20px;
 }

@@ -141,3 +141,9 @@ Implemented university search
 Implemented uni / course search filter with ng2-search-filter
 fixing issues on github
 Implementing better UI with Angular material - buttons, button toggle, tables, reactive forms, form validation,
+
+3/10/20
+finished basic angular material basics
+
+4/10/20
+finalised UI

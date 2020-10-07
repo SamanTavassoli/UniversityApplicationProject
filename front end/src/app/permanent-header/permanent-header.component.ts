@@ -18,7 +18,11 @@ export class PermanentHeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.username = this.authService.userValue.username;
+    if (this.loggedIn()) {
+      this.username = this.authService.userValue.username;
+    } else {
+      this.username = 'profile';
+    }
   }
 
   logout() {

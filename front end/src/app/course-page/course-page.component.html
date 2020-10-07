@@ -1,16 +1,19 @@
 <button mat-raised-button color="primary" (click)="back()">Back</button>
-<h1>{{course.courseName}}</h1>
-<div>
-    Course details:
-    <p>available slots: {{course.availableSlots}}</p>
-    <p>course duration: {{course.courseDuration}}</p>
-    <p>fees: {{course.fees}}</p>
-    <p>course id: {{course.courseId}}</p>
-</div>
-<br>
-<button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===false)" (click)="addToConsideredCourses()">
-    Add to considered courses
-</button>
-<button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===true)" (click)="removeFromConsideredCourses()">
-    Remove from considered courses
-</button>
+
+<mat-card id="coursePage">
+    <mat-card-title>{{course.courseName}}</mat-card-title>
+    <mat-card-subtitle>Id: {{course.courseId}}</mat-card-subtitle>
+    <mat-card-subtitle>Course details</mat-card-subtitle>
+    <mat-card-content>
+        <p>available slots: {{course.availableSlots}}</p>
+        <p>course duration: {{course.courseDuration}}</p>
+        <p>fees: {{course.fees}}</p>
+    </mat-card-content>
+    <br>
+    <button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===false)" (click)="addToConsideredCourses()">
+        Add to considered courses
+    </button>
+    <button mat-raised-button color="primary" *ngIf="isStudent&&(isConsidered===true)" (click)="removeFromConsideredCourses()">
+        Remove from considered courses
+    </button>
+</mat-card>

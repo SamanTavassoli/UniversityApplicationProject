@@ -1,4 +1,8 @@
-button {
-    text-align: center;
-    margin: 5px;
+browseButton {
+    width: 300px!important;
+    min-width: unset!important;
+}
+
+#mainHome {
+    text-align:center;
 }

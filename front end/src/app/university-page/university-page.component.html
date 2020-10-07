@@ -1,4 +1,18 @@
 <button mat-raised-button (click)="back()">Back</button>
-<br><br>
-<h1>University - {{universityPublicInfo.username}}</h1>
-<h1>University Id - {{universityPublicInfo.universityId}}</h1>
+
+<mat-card id="universityPage">
+    <mat-card-title>{{universityPublicInfo.username}}</mat-card-title>
+    <mat-card-subtitle>Id: {{universityPublicInfo.universityId}}</mat-card-subtitle>
+    <mat-card-subtitle>Course details</mat-card-subtitle>
+    <button mat-raised-button color="primary" *ngIf="!coursesShown" (click)="showCourses()">Show Courses</button>
+    <button mat-raised-button color="primary" *ngIf="coursesShown" (click)="hideCourses()">Hide Courses</button>
+</mat-card>
+
+<mat-selection-list [multiple]="false" *ngIf="coursesShown">
+    <mat-list-option id="courseOption" *ngFor="let course of courses" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">
+        <div>
+            <h3>{{course.courseName}}</h3>
+            <p>available slots: {{course.availableSlots}} | course duration: {{course.courseDuration}} | fees: {{course.fees}} | course id: {{course.courseId}}</p>
+        </div>
+    </mat-list-option>
+</mat-selection-list>

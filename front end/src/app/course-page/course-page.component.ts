@@ -14,9 +14,9 @@ import { UserService } from '../_services/user.service';
 })
 export class CoursePageComponent implements OnInit {
 
-  course: Course;
-  isStudent: boolean;
-  isConsidered: boolean;
+  course = new Course(0,'',0,0,0);
+  isStudent = false;
+  isConsidered = false;
   
   
   constructor(
@@ -29,19 +29,22 @@ export class CoursePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isStudent = !(this.authService.userValue === null) && this.authService.userValue.userType === 'Student';
+
     this.route.queryParams
     .subscribe( params => {
       this.courseService.getCourse(params.courseId).subscribe( course => {
         this.course = course
 
-        // check if student is considering course,
-        // must be done after query params gives the courseId
+
+        if (this.isStudent) {
+          // check if student is considering course,
+          // must be done after query params gives the courseId
         this.userService.isConsideredCourse(this.course.courseId).subscribe(isConsidered => {
           this.isConsidered = isConsidered;
         })
+        }
       })})
-
-    this.isStudent = this.authService.userValue.userType === 'Student'
   }
 
   back() {
