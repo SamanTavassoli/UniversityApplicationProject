@@ -34,8 +34,6 @@ public class ApplicationManager {
         application.setDateOfApplication(applicationDate);
         application.setApplicationStatus(ApplicationStatus.APPLIED);
 
-        course.getApplicationsReceived().add(application.getApplicationId());
-
         applicationDao.save(application);
         courseDao.save(course);
     }

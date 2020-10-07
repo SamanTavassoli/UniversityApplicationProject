@@ -49,7 +49,6 @@ public class CourseService {
                 && authenticatedUniversity.equals(universityFromDAO)) {
             return false;
         } else {
-            course.setApplicationsReceived(new ArrayList<>());
             courseDao.save(course);
             return true;
         }

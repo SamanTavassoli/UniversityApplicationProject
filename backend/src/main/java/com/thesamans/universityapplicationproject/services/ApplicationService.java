@@ -110,10 +110,6 @@ public class ApplicationService {
     public boolean deleteApplication(int applicationId) {
         Optional<Application> application = applicationDao.findByApplicationId(applicationId);
         if (application.isPresent()) {
-            int courseId = application.get().getCourseId();
-            if (courseDao.existsByCourseId(courseId)) {
-                courseDao.findByCourseId(courseId).get().getApplicationsReceived().remove(Integer.valueOf(courseId));
-            }
             applicationDao.delete(application.get());
             return true;
         }

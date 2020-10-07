@@ -27,8 +27,6 @@ public class Course implements Serializable {
     /** Yearly fees for this course */
     private int fees;
 
-    private ArrayList<Integer> applicationsReceived;
-
     public int getUniversityId() {
         return universityId;
     }
@@ -77,11 +75,4 @@ public class Course implements Serializable {
         this.fees = fees;
     }
 
-    public ArrayList<Integer> getApplicationsReceived() {
-        return applicationsReceived;
-    }
-
-    public void setApplicationsReceived(ArrayList<Integer> applicationsReceived) {
-        this.applicationsReceived = applicationsReceived;
-    }
 }

@@ -1,2 +1,3 @@
-
+user application -> can't apply again
+sort out addition to courses' applications
 documentation
