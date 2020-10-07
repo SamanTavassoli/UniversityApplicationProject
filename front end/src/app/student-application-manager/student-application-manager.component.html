@@ -1,19 +1,22 @@
 
-<button mat-raised-button color="primary">View Application Details</button> 
+<button mat-raised-button color="accent">View Application Details</button> 
 
 <div>
 
-    <h3>Courses Considered:</h3>
+    <h3>Courses Considered</h3>
     
     
     <div *ngFor="let course of coursesConsidered">
-        <p>course name: {{course.courseName}}</p>
-        <p>available slots: {{course.availableSlots}}</p>
-        <p>course duration: {{course.courseDuration}}</p>
-        <p>fees: {{course.fees}}</p>
-        <p>course id: {{course.courseId}}</p>
+        <mat-card>
+            <mat-card-title>{{course.courseName}}</mat-card-title>
+            <mat-card-subtitle>Id: {{course.courseId}}</mat-card-subtitle>
+            <p>available slots: {{course.availableSlots}}</p>
+            <p>course duration: {{course.courseDuration}}</p>
+            <p>fees: {{course.fees}}</p>
+        </mat-card>
         <button mat-raised-button color="primary" *ngIf="!didChose(course)" (click)="chose(course)">Choose</button>
         <button mat-raised-button color="primary" *ngIf="didChose(course)" (click)="unchose(course)">UnChoose</button>
+        <button mat-raised-button color="accent" routerLink="/course" [queryParams]="{courseId: [course.courseId]}">Course Page</button>
     </div>
     <br> <br> 
     <button mat-raised-button color="primary" (click)="sendApplication()">Send Application</button>

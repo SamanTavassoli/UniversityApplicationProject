@@ -4,6 +4,7 @@ import com.thesamans.universityapplicationproject.dao.ApplicationDao;
 import com.thesamans.universityapplicationproject.model.application.Application;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.*;
+import com.thesamans.universityapplicationproject.services.ApplicationService;
 import com.thesamans.universityapplicationproject.services.CourseService;
 import com.thesamans.universityapplicationproject.services.RegistrationService;
 import com.thesamans.universityapplicationproject.services.UserService;
@@ -17,16 +18,19 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
+    ApplicationDao applicationDao;
+
+    @Autowired
     UserService userService;
 
     @Autowired
     CourseService courseService;
 
     @Autowired
-    ApplicationDao applicationDao;
+    RegistrationService registrationService;
 
     @Autowired
-    RegistrationService registrationService;
+    ApplicationService applicationService;
 
     @GetMapping(value = "/users")
     public List<User> getUserList() {
@@ -46,6 +50,11 @@ public class AdminController {
     @GetMapping(value = "/applications")
     public List<Application> getAllApplications() {
         return applicationDao.findAll();
+    }
+
+    @DeleteMapping(value = "/applications/{appId}")
+    public boolean deleteApplication(@PathVariable int appId) {
+        return applicationService.deleteApplication(appId);
     }
 
     @PostMapping(value = "/admin")

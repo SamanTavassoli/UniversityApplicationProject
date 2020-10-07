@@ -1,15 +1,25 @@
 <button mat-raised-button (click)="back()">Back</button>
 
-<p>username: {{username}}</p>
-<p>applicationId: {{application.applicationId}}</p>
-<p>userId: {{application.userId}}</p>
-<p>courseId: {{application.courseId}}</p>
-<p>dateOfApplication: {{application.dateOfApplication}}</p>
-<p>dateOfReview: {{application.dateOfReview}}</p>
-<p>dateOfDecision: {{application.dateOfDecision}}</p>
-<p>applicationStatus: {{application.applicationStatus}}</p>
+<mat-card>
+    <mat-card-title>User Details</mat-card-title>
+    <br>
+    <p>username: {{username}}</p>
+    <p>applicationId: {{application.applicationId}}</p>
+    <p>userId: {{application.userId}}</p>
+    <p>courseId: {{application.courseId}}</p>
+</mat-card>
 
-<button mat-raised-button color="primary" (click)="reset()">Reset</button>
-<button mat-raised-button color="primary" (click)="setInReview()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.APPLIED]">Set as in Review</button>
-<button mat-raised-button color="primary" (click)="setAccepted()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Accept Application</button>
-<button mat-raised-button color="primary" (click)="setDeclined()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Decline Application</button>
+<mat-card>
+    <mat-card-title>Application Details</mat-card-title>
+    <br>
+    <p>dateOfApplication: {{application.dateOfApplication}}</p>
+    <p>dateOfReview: {{application.dateOfReview}}</p>
+    <p>dateOfDecision: {{application.dateOfDecision}}</p>
+    <p>applicationStatus: {{application.applicationStatus}}</p>
+</mat-card>
+<div id="controlButtons">
+    <button mat-raised-button color="primary" (click)="reset()">Reset</button>
+    <button mat-raised-button color="primary" (click)="setInReview()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.APPLIED]">Set as in Review</button>
+    <button mat-raised-button color="primary" (click)="setAccepted()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Accept Application</button>
+    <button mat-raised-button color="primary" (click)="setDeclined()" *ngIf="application.applicationStatus.toString()==ApplicationStatus[ApplicationStatus.IN_REVIEW]">Decline Application</button>
+</div>

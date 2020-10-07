@@ -35,8 +35,8 @@
 </form>
 
 <h2>List of courses</h2>
-<div *ngFor="let course of courses">
-    <p>{{course.courseName}} id: {{course.courseId}}</p>
+<div id="courses" *ngFor="let course of courses">
+    <p>{{course.courseName}} Id: {{course.courseId}}</p>
     <button mat-raised-button color="primary" routerLink="/user/university/course-view" [queryParams]="{courseId: [course.courseId]}">
         check out course
     </button>

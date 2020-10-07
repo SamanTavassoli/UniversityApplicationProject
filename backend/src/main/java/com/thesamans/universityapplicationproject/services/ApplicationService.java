@@ -99,4 +99,25 @@ public class ApplicationService {
         applicationManager.resetApplication(applicationId);
     }
 
+    /**
+     * Deletes an application
+     * Should only be called by an Admin
+     *
+     * Also deletes reference to application for the course applied to (if it still exists)
+     * @param applicationId application to remove
+     * @return true if application was removed
+     */
+    public boolean deleteApplication(int applicationId) {
+        Optional<Application> application = applicationDao.findByApplicationId(applicationId);
+        if (application.isPresent()) {
+            int courseId = application.get().getCourseId();
+            if (courseDao.existsByCourseId(courseId)) {
+                courseDao.findByCourseId(courseId).get().getApplicationsReceived().remove(Integer.valueOf(courseId));
+            }
+            applicationDao.delete(application.get());
+            return true;
+        }
+        return false;
+    }
+
 }
