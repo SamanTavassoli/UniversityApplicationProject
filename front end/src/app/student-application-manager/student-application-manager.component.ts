@@ -24,6 +24,7 @@ export class StudentApplicationManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getConsideredCourses().subscribe(courses => {
+      this.coursesConsidered = []
       for (let courseId of courses) {
         this.courseService.getCourse(courseId).subscribe( course => {
           this.coursesConsidered.push(course);
@@ -36,6 +37,10 @@ export class StudentApplicationManagerComponent implements OnInit {
       }
     })
 
+    this.reloadApplications()
+  }
+
+  reloadApplications() {
     this.applicationService.getApplicationsForStudent().subscribe( applications => {
       this.applicationsSent = applications
 
@@ -80,15 +85,17 @@ export class StudentApplicationManagerComponent implements OnInit {
       if (response == false) {
         window.alert('Applications did not go through successfully')
       } else {
+
+        for (let courseId of coursesToSend) {
+          this.removeFromConsideredCoursesWhenApplying(courseId)
+        }
+
+        this.reloadApplications()
+
         this.applicationsShown = true;
       }
     })   
     
-    
-    for (let course of coursesToSend) {
-      this.removeFromConsideredCoursesWhenApplying(course.courseId)
-    }
-
   }
 
   viewApplications() {
@@ -97,6 +104,16 @@ export class StudentApplicationManagerComponent implements OnInit {
 
   hideApplications() {
     this.applicationsShown = false;
+  }
+
+  deleteApplication(appId) {
+    this.applicationService.deleteApplication(appId).subscribe(didDelete => {
+      if (!didDelete) {
+        window.alert('couldn\'t withdraw application')
+      } else {
+        this.ngOnInit()
+      }
+    })
   }
 
   addCourse(courseId): Course {
@@ -124,6 +141,9 @@ export class StudentApplicationManagerComponent implements OnInit {
     this.userService.removeFromConsideredCourses(courseId).subscribe(success => {
       if (!success) {
         window.alert('Removing course from applications considered failed when sending applications')
+      } else {
+        this.coursesSelected.splice(this.coursesSelected.indexOf(courseId), 1)
+        this.coursesConsidered.splice(this.coursesConsidered.indexOf(courseId), 1)
       }});
   }
 

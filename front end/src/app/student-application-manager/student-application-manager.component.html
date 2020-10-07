@@ -13,6 +13,8 @@
             <p>Date of Review: {{application.dateOfReview | date: 'longDate'}}</p>
             <p>Date of Decision: {{application.dateOfDecision | date: 'longDate'}}</p>
             <p>Application Status: {{application.applicationStatus}}</p>
+
+            <button mat-raised-button color="warn" (click)="deleteApplication(application.applicationId)">WithDraw Application</button>
         </mat-card>
     </div>
 </div>

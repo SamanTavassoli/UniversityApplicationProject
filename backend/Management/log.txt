@@ -149,3 +149,4 @@ finished basic angular material basics
 finalised UI
 cleaned up applications, courses, universities
 implemented displaying applications for students
+implemented delete application for students

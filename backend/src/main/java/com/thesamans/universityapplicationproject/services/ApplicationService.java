@@ -101,9 +101,7 @@ public class ApplicationService {
 
     /**
      * Deletes an application
-     * Should only be called by an Admin
      *
-     * Also deletes reference to application for the course applied to (if it still exists)
      * @param applicationId application to remove
      * @return true if application was removed
      */

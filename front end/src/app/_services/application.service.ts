@@ -42,4 +42,8 @@ export class ApplicationService {
   resetApplication(applicationId: number) {
     return this.http.post(APPLICATION_API + '/uni/resetApplication/' + applicationId, {});
   }
+
+  deleteApplication(applicationId: number) {
+    return this.http.delete(APPLICATION_API + '/student/deleteApplication/' + applicationId);
+  }
 }

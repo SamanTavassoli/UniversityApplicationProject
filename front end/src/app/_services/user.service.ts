@@ -24,7 +24,7 @@ export class UserService {
   }
 
   removeFromConsideredCourses(courseId: number) {
-    return this.http.post<boolean>(USER_API + '/student/removeFromConsideredCourses/' + courseId + '/' + this.authService.userValue.userId, {})
+    return this.http.delete<boolean>(USER_API + '/student/removeFromConsideredCourses/' + courseId + '/' + this.authService.userValue.userId, {})
   }
 
   isConsideredCourse(courseId: number) {

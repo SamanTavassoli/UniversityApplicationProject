@@ -1,3 +1,2 @@
-user application -> can't apply again
-view applications for users
+
 documentation

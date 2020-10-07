@@ -27,6 +27,7 @@ export class CoursePageComponent implements OnInit {
     private authService: UserAuthenticationService,
     private userService: UserService,
     private applicationService: ApplicationService) { 
+      this.studentHasAppliedToCourse()
   }
 
   ngOnInit(): void {
@@ -47,11 +48,7 @@ export class CoursePageComponent implements OnInit {
         }
       })})
 
-      if (this.studentHasAppliedToCourse()) {
-        this.disableAddConsidered = true
-      } else {
-        this.disableAddConsidered = false
-      }
+      this.studentHasAppliedToCourse()
   }
 
   back() {
@@ -76,7 +73,7 @@ export class CoursePageComponent implements OnInit {
       }});
   }
 
-  studentHasAppliedToCourse() : boolean {
+  studentHasAppliedToCourse() {
     
     this.applicationService.getApplicationsForStudent().subscribe( applications => {
       var hasApplied = false
@@ -85,10 +82,12 @@ export class CoursePageComponent implements OnInit {
           hasApplied = true
         }
       }
-      return hasApplied
+
+      this.disableAddConsidered = hasApplied
+      return
     })
     
-    return true // if http request fails, default doesn't allow student to add to considered
+    this.disableAddConsidered = true // if http request fails, default doesn't allow student to add to considered
   }
 
 }

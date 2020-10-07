@@ -37,7 +37,7 @@ public class UsersController {
         return userService.addToConsideredCourses(courseId, userId);
     }
 
-    @PostMapping(value = "/student/removeFromConsideredCourses/{courseId}/{userId}")
+    @DeleteMapping(value = "/student/removeFromConsideredCourses/{courseId}/{userId}")
     public boolean removeFromConsideredCourses(@PathVariable int courseId, @PathVariable int userId) {
         return userService.removeFromConsideredCourses(courseId, userId);
     }

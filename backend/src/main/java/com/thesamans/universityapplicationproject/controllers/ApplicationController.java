@@ -25,6 +25,11 @@ public class ApplicationController {
         return applicationService.getApplicationsForStudent(userId);
     }
 
+    @DeleteMapping(value = "/student/deleteApplication/{appId}")
+    public boolean deleteApplication(@PathVariable int appId) {
+        return applicationService.deleteApplication(appId);
+    }
+
     @GetMapping(value = "/uni/getApplicationsForCourse/{courseId}")
     public List<Application> getApplicationsForCourse(@PathVariable int courseId) {
         return applicationService.getApplicationsForCourse(courseId);
