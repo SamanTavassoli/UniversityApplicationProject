@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Required class for routing
+ * Profiles, authentication etc. follow this component
+ */
 export class User {
   userId: number;
   username: String;

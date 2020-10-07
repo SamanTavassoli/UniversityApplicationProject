@@ -5,6 +5,9 @@ import { Application } from '../_models/application';
 
 const APPLICATION_API = 'http://localhost:8080/application'
 
+/**
+ * Contains the calls to the backend to handle information about applications
+ */
 @Injectable({
   providedIn: 'root'
 })

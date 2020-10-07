@@ -15,6 +15,9 @@ enum UserType {
   University,
 }
 
+/**
+ * Handles authentication (login and register) for students and universities
+ */
 @Component({
   selector: 'app-user-authentication',
   templateUrl: './user-authentication.component.html',

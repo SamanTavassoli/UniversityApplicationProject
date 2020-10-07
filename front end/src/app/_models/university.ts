@@ -2,7 +2,7 @@ import { Course } from '../_models/course'
 
 /**
  * Different than the university user,
- * this is used to display a university to users
+ * this is used to display a university to users on the University's public page specifically
  */
 export class University {
     

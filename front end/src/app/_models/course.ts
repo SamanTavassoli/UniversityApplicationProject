@@ -1,5 +1,8 @@
 import { University } from '../_models/university'
 
+/**
+ * Course owned by a university to which students can apply
+ */
 export class Course {
     
     /**

@@ -8,6 +8,11 @@ import { LoginRequestUser } from '../_models/login-request-user';
 
 const AUTH_API = 'http://localhost:8080/auth'
 
+/**
+ * Contains the calls to the backend to handle information about authentication
+ * 
+ * Also allows the app to know at any point in time if the user is logged in or not
+ */
 @Injectable({
   providedIn: 'root'
 })

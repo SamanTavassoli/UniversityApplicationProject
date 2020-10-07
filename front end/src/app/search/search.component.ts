@@ -11,6 +11,9 @@ enum SearchType {
   University,
 }
 
+/**
+ * Allows the user to view courses and universities available and sort through them to pick the right one
+ */
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',

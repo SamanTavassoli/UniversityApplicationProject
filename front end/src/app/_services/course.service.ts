@@ -8,6 +8,9 @@ import { UniversityPublicInfo } from '../_models/university-public-info';
 
 const COURSE_API = 'http://localhost:8080/courses'
 
+/**
+ * Contains the calls to the backend to handle information about courses
+ */
 @Injectable({
   providedIn: 'root'
 })

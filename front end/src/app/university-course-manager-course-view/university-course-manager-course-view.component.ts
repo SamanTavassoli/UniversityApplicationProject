@@ -14,6 +14,10 @@ export class UsernameForStudentResponse {
   username: string;
 }
 
+/**
+ * Course view for a specific course that is owned by the university
+ * The university has access to manipulation of the course's details and can view all the applications it has recieved
+ */
 @Component({
   selector: 'app-university-course-manager-course-view',
   templateUrl: './university-course-manager-course-view.component.html',

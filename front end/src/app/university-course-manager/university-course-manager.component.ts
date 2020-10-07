@@ -4,6 +4,10 @@ import { CourseService } from '../_services/course.service'
 import { UserAuthenticationService } from '../_services/user-authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+/**
+ * Allows the university to get an overview of all their different courses
+ * The university has the option to add / remove courses here
+ */
 @Component({
   selector: 'app-university-course-manager',
   templateUrl: './university-course-manager.component.html',
@@ -36,6 +40,8 @@ export class UniversityCourseManagerComponent implements OnInit {
       courseId: new FormControl('')
     })
   }
+
+  // --------- Course management
 
   addCourse() {
     const form = this.courseAdditionForm.value;

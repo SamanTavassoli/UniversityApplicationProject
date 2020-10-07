@@ -4,6 +4,12 @@ import { ApplicationService } from '../_services/application.service';
 import { CourseService } from '../_services/course.service';
 import { UserService } from '../_services/user.service';
 
+/**
+ * Manages applications to different courses for a student
+ * 
+ * Handles how to display considered courses and applied to courses
+ * The student can interact with this component to change consideration preferences or withdraw from an application
+ */
 @Component({
   selector: 'app-student-application-manager',
   templateUrl: './student-application-manager.component.html',
@@ -11,18 +17,24 @@ import { UserService } from '../_services/user.service';
 })
 export class StudentApplicationManagerComponent implements OnInit {
 
+  /** does user want to see their applications? */
   applicationsShown = false;
+  /** applications that have already been sent */
   applicationsSent = []
+  /** courses tied to the applications that have been sent indexed corresponding to applications sent */
   coursesForApplications = []
+  /** universities tied to the applications that have been sent indexed corresponding to applications sent */
   universitiesForApplications = []
 
   coursesConsidered = []
+  /** The user can select courses from the ones they are considering and chose to apply with those ones */
   coursesSelected = []; // holds boolean values for which courses in coursesConsidered have been selected
 
   constructor(private userService: UserService, private courseService: CourseService, private applicationService: ApplicationService) {
   }
 
   ngOnInit(): void {
+    // getting considered courses from back end
     this.userService.getConsideredCourses().subscribe(courses => {
       this.coursesConsidered = []
       for (let courseId of courses) {
@@ -40,19 +52,7 @@ export class StudentApplicationManagerComponent implements OnInit {
     this.reloadApplications()
   }
 
-  reloadApplications() {
-    this.applicationService.getApplicationsForStudent().subscribe( applications => {
-      this.applicationsSent = applications
-
-      this.coursesForApplications = []
-      this.universitiesForApplications = []
-
-      for (let application of applications) {
-        this.addCourse(application.courseId)
-        this.addUniversity(application.courseId)
-      }
-    })
-  }
+  // ------- Course selection
 
   chose(course) {
     this.coursesSelected[this.coursesConsidered.indexOf(course)] = true;
@@ -66,8 +66,9 @@ export class StudentApplicationManagerComponent implements OnInit {
     return this.coursesSelected[this.coursesConsidered.indexOf(course)];
   }
 
+  // ------- Application methods
+  
   // checks that at most 5 courses are selected in the coursesSelected boolean array
-
   sendApplication() {
     var coursesToSend = [];
     for (let pick in this.coursesSelected) {
@@ -116,6 +117,36 @@ export class StudentApplicationManagerComponent implements OnInit {
     })
   }
 
+  /**
+   * Get updated list of applications from back end
+   * Reset the corresponding lists of courses and universities
+   */
+  reloadApplications() {
+    this.applicationService.getApplicationsForStudent().subscribe( applications => {
+      this.applicationsSent = applications
+
+      this.coursesForApplications = []
+      this.universitiesForApplications = []
+
+      for (let application of applications) {
+        this.addCourse(application.courseId)
+        this.addUniversity(application.courseId)
+      }
+    })
+  }
+
+  removeFromConsideredCoursesWhenApplying(courseId) {
+    this.userService.removeFromConsideredCourses(courseId).subscribe(success => {
+      if (!success) {
+        window.alert('Removing course from applications considered failed when sending applications')
+      } else {
+        this.coursesSelected.splice(this.coursesSelected.indexOf(courseId), 1)
+        this.coursesConsidered.splice(this.coursesConsidered.indexOf(courseId), 1)
+      }});
+  }
+
+  // --------- fetching courses and universities from back end for display
+
   addCourse(courseId): Course {
     this.courseService.getCourse(courseId).subscribe(course => {
       this.coursesForApplications.push(course)
@@ -136,15 +167,4 @@ export class StudentApplicationManagerComponent implements OnInit {
   getUniversityNameForApplication(application) {
     return this.universitiesForApplications[this.applicationsSent.indexOf(application)].username
   }
-
-  removeFromConsideredCoursesWhenApplying(courseId) {
-    this.userService.removeFromConsideredCourses(courseId).subscribe(success => {
-      if (!success) {
-        window.alert('Removing course from applications considered failed when sending applications')
-      } else {
-        this.coursesSelected.splice(this.coursesSelected.indexOf(courseId), 1)
-        this.coursesConsidered.splice(this.coursesConsidered.indexOf(courseId), 1)
-      }});
-  }
-
 }

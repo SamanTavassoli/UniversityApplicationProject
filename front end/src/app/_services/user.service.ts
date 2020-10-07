@@ -7,7 +7,9 @@ import { UserAuthenticationService } from './user-authentication.service';
 import { UniversityPublicInfo } from '../_models/university-public-info';
 
 const USER_API = 'http://localhost:8080/user'
-
+/**
+ * Contains the calls to the backend to handle information about users
+ */
 @Injectable({
   providedIn: 'root'
 })

@@ -7,6 +7,12 @@ import { UserAuthenticationService } from '../_services/user-authentication.serv
 import { ApplicationService } from '../_services/application.service';
 import { UserService } from '../_services/user.service';
 
+/**
+ * Course page contains details about the course that any user can see
+ * 
+ * Students specifically can chose to apply if they haven't already by adding this course
+ * to their list of considered courses first
+ */
 @Component({
   selector: 'app-course-page',
   templateUrl: './course-page.component.html',
@@ -33,6 +39,7 @@ export class CoursePageComponent implements OnInit {
   ngOnInit(): void {
     this.isStudent = !(this.authService.userValue === null) && this.authService.userValue.userType === 'Student';
 
+    // fetch the course details given the course Id provided in the query params
     this.route.queryParams
     .subscribe( params => {
       this.courseService.getCourse(params.courseId).subscribe( course => {
@@ -73,6 +80,9 @@ export class CoursePageComponent implements OnInit {
       }});
   }
 
+  /**
+   * If a student has already applied to this course, he can't add the course to his list of considered courses
+   */
   studentHasAppliedToCourse() {
     
     this.applicationService.getApplicationsForStudent().subscribe( applications => {

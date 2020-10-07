@@ -6,6 +6,10 @@ import { ApplicationService } from '../_services/application.service';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../_services/user.service';
 
+/**
+ * Access to detailed information about a specific for a university
+ * Here the university can manage the applicant's application status
+ */
 @Component({
   selector: 'app-university-course-manager-application-view',
   templateUrl: './university-course-manager-application-view.component.html',
@@ -41,6 +45,8 @@ export class UniversityCourseManagerApplicationViewComponent implements OnInit {
   back() {
     this.location.back();
   }
+
+  // -------- Application status management methods
 
   setInReview() {
     this.applicationService.setApplicationToInReview(this.application.applicationId).subscribe(success => {

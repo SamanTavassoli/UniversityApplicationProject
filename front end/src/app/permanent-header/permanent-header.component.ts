@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthenticationService } from '../_services/user-authentication.service';
 
+/**
+ * At the top of the application at all times
+ * Provides a link back the the main page, login, and profile
+ */
 @Component({
   selector: 'app-permanent-header',
   templateUrl: './permanent-header.component.html',
