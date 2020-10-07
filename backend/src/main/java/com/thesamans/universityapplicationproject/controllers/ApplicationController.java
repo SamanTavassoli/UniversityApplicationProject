@@ -20,6 +20,11 @@ public class ApplicationController {
         return applicationService.sendApplications(userId, courseIds);
     }
 
+    @GetMapping(value = "/student/getApplicationsForStudent/{userId}")
+    public List<Application> getApplicationsForStudent(@PathVariable int userId) {
+        return applicationService.getApplicationsForStudent(userId);
+    }
+
     @GetMapping(value = "/uni/getApplicationsForCourse/{courseId}")
     public List<Application> getApplicationsForCourse(@PathVariable int courseId) {
         return applicationService.getApplicationsForCourse(courseId);

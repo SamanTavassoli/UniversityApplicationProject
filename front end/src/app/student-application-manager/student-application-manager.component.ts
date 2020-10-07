@@ -11,12 +11,19 @@ import { UserService } from '../_services/user.service';
 })
 export class StudentApplicationManagerComponent implements OnInit {
 
-  coursesConsidered: Course[];
-  coursesSelected: boolean[]; // holds boolean values for which courses in coursesConsidered have been selected
+  applicationsShown = false;
+  applicationsSent = []
+  coursesForApplications = []
+  universitiesForApplications = []
+
+  coursesConsidered = []
+  coursesSelected = []; // holds boolean values for which courses in coursesConsidered have been selected
 
   constructor(private userService: UserService, private courseService: CourseService, private applicationService: ApplicationService) {
-    this.userService.getConsideredCourses().subscribe( courses => {
-      this.coursesConsidered = [];
+  }
+
+  ngOnInit(): void {
+    this.userService.getConsideredCourses().subscribe(courses => {
       for (let courseId of courses) {
         this.courseService.getCourse(courseId).subscribe( course => {
           this.coursesConsidered.push(course);
@@ -28,9 +35,18 @@ export class StudentApplicationManagerComponent implements OnInit {
         course = false;
       }
     })
-  }
 
-  ngOnInit(): void {
+    this.applicationService.getApplicationsForStudent().subscribe( applications => {
+      this.applicationsSent = applications
+
+      this.coursesForApplications = []
+      this.universitiesForApplications = []
+
+      for (let application of applications) {
+        this.addCourse(application.courseId)
+        this.addUniversity(application.courseId)
+      }
+    })
   }
 
   chose(course) {
@@ -63,8 +79,40 @@ export class StudentApplicationManagerComponent implements OnInit {
     this.applicationService.sendApplications(coursesToSend).subscribe(response => {
       if (response == false) {
         window.alert('Applications did not go through successfully')
+      } else {
+        this.applicationsShown = true;
       }
     })    
+
+  }
+
+  viewApplications() {
+    this.applicationsShown = true;
+  }
+
+  hideApplications() {
+    this.applicationsShown = false;
+  }
+
+  addCourse(courseId): Course {
+    this.courseService.getCourse(courseId).subscribe(course => {
+      this.coursesForApplications.push(course)
+    })
+    return
+  }
+
+  getCourseNameForApplication(application) {
+    return this.coursesForApplications[this.applicationsSent.indexOf(application)].courseName
+  }
+
+  addUniversity(courseId) {
+    this.courseService.getUniversityForCourse(courseId).subscribe(university => {
+      this.universitiesForApplications.push(university);
+    })
+  }
+
+  getUniversityNameForApplication(application) {
+    return this.universitiesForApplications[this.applicationsSent.indexOf(application)].username
   }
 
 }

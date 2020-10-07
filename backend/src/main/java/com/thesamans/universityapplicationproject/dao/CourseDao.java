@@ -16,7 +16,11 @@ public interface CourseDao extends CrudRepository<Course, Integer> {
 
     Optional<Course> findByCourseId(int courseId);
 
+    Optional<Course> findByUniversityId(int universityId);
+
     Boolean existsByCourseName(String courseName);
 
     Boolean existsByCourseId(int courseId);
+
+
 }

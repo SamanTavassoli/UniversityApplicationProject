@@ -5,6 +5,7 @@ import com.thesamans.universityapplicationproject.dao.UserDao;
 import com.thesamans.universityapplicationproject.model.course.Course;
 import com.thesamans.universityapplicationproject.model.users.MyUserDetails;
 import com.thesamans.universityapplicationproject.model.users.University;
+import com.thesamans.universityapplicationproject.model.users.UniversityPublicInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -62,15 +63,20 @@ public class CourseService {
      */
     public boolean deleteCourse(int courseId) {
         Course course = courseDao.findById(courseId).get(); // find registered course
-        University university = (University) userDao.findById(course.getUniversityId()).get();
-        String universityFromDAO = university.getUsername(); // uni specified by course
-        String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName(); // uni authed
+//        University university = (University) userDao.findById(course.getUniversityId()).get();
+//        String universityFromDAO = university.getUsername(); // uni specified by course
+//        String authenticatedUniversity = SecurityContextHolder.getContext().getAuthentication().getName(); // uni authed
         if (courseDao.existsByCourseName(course.getCourseName())
-                && authenticatedUniversity.equals(universityFromDAO)) {
+               /* && authenticatedUniversity.equals(universityFromDAO)*/) {
             courseDao.delete(course);
             return true;
         } else {
             return false;
         }
+    }
+
+    public UniversityPublicInfo getUniversityForCourse(int courseId) {
+        University university = (University) userDao.findById(courseDao.findByCourseId(courseId).get().getUniversityId()).get();
+        return new UniversityPublicInfo(university.getUsername(), university.getUserId());
     }
 }

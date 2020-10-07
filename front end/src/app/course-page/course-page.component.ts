@@ -14,6 +14,7 @@ import { UserService } from '../_services/user.service';
 })
 export class CoursePageComponent implements OnInit {
 
+  shouldEnable = false
   course = new Course(0,'',0,0,0);
   isStudent = false;
   isConsidered = false;

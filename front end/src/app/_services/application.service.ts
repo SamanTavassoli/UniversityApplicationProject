@@ -16,7 +16,7 @@ export class ApplicationService {
     ) { }
 
   sendApplications(coursesToSend: number[]) {
-    return this.http.post<boolean>(APPLICATION_API + '/student/sendApplications/' + this.authService.userValue.userId, coursesToSend)
+    return this.http.post<boolean>(APPLICATION_API + '/student/sendApplications/' + this.authService.userValue.userId, coursesToSend);
   }
 
   getApplicationsForCourse(courseId: number) {
@@ -24,18 +24,22 @@ export class ApplicationService {
   }
 
   getApplication(applicationId: number) {
-    return this.http.get<Application>(APPLICATION_API + '/uni/getApplicationForId/' + applicationId)
+    return this.http.get<Application>(APPLICATION_API + '/uni/getApplicationForId/' + applicationId);
+  }
+
+  getApplicationsForStudent() {
+    return this.http.get<Application[]>(APPLICATION_API + '/student/getApplicationsForStudent/' + this.authService.userValue.userId);
   }
 
   setApplicationToInReview(applicationId: number) {
-    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationToInReview/' + applicationId, {})
+    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationToInReview/' + applicationId, {});
   }
 
   setApplicationDecisionMade(applicationId: number, accepted: boolean) {
-    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationDecisionMade/' + applicationId + '/' + accepted, {} )
+    return this.http.post<boolean>(APPLICATION_API + '/uni/setApplicationDecisionMade/' + applicationId + '/' + accepted, {});
   }
 
   resetApplication(applicationId: number) {
-    return this.http.post(APPLICATION_API + '/uni/resetApplication/' + applicationId, {})
+    return this.http.post(APPLICATION_API + '/uni/resetApplication/' + applicationId, {});
   }
 }

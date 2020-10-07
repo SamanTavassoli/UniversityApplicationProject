@@ -147,3 +147,5 @@ finished basic angular material basics
 
 4/10/20
 finalised UI
+cleaned up applications, courses, universities
+implemented displaying applications for students

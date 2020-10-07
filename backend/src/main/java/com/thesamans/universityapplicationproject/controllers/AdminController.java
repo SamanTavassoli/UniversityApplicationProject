@@ -42,6 +42,11 @@ public class AdminController {
         return userService.getUser(userId);
     }
 
+    @DeleteMapping(value = "/users/{userId}")
+    public boolean deleteUser(@PathVariable int userId) {
+        return userService.deleteUser(userId);
+    }
+
     @GetMapping(value = "/mainAdmin")
     public Admin getMainAdmin() {
         return userService.getUser(UserType.ADMIN, 19);
@@ -55,6 +60,11 @@ public class AdminController {
     @DeleteMapping(value = "/applications/{appId}")
     public boolean deleteApplication(@PathVariable int appId) {
         return applicationService.deleteApplication(appId);
+    }
+
+    @DeleteMapping(value = "/course/{courseId}")
+    public boolean deleteCourse(@PathVariable int courseId) {
+        return courseService.deleteCourse(courseId);
     }
 
     @PostMapping(value = "/admin")

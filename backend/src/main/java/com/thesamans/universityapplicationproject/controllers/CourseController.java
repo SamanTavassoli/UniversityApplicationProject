@@ -1,6 +1,8 @@
 package com.thesamans.universityapplicationproject.controllers;
 
 import com.thesamans.universityapplicationproject.model.course.Course;
+import com.thesamans.universityapplicationproject.model.users.University;
+import com.thesamans.universityapplicationproject.model.users.UniversityPublicInfo;
 import com.thesamans.universityapplicationproject.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +39,11 @@ public class CourseController {
     @GetMapping("/public/allCoursesForUni/{universityId}")
     public List<Course> getAllCoursesForUni(@PathVariable int universityId) {
         return courseService.getAllCoursesForUni(universityId);
+    }
+
+    @GetMapping("public/uniForCourse/{courseId}")
+    public UniversityPublicInfo getUniversityForCourse(@PathVariable int courseId) {
+        return courseService.getUniversityForCourse(courseId);
     }
 
 }

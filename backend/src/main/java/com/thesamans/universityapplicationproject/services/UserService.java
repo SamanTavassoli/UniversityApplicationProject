@@ -125,8 +125,12 @@ public class UserService {
         return userDao.findAll();
     }
 
-    public void deleteUser(int userId) {
-        userDao.deleteById(userId);
+    public boolean deleteUser(int userId) {
+        if (userDao.existsById(userId)) {
+            userDao.deleteById(userId);
+            return true;
+        }
+        return false;
     }
 
     public List<UniversityPublicInfo> getAllUniversityPublicInfo() {

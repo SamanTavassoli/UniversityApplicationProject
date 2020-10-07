@@ -1,9 +1,25 @@
 
-<button mat-raised-button color="accent">View Application Details</button> 
+<button mat-raised-button *ngIf="!applicationsShown" (click)="viewApplications()" color="accent">View Applications</button>
+<button mat-raised-button *ngIf="applicationsShown" (click)="hideApplications()" color="accent">Hide Applications</button>
+
+<div *ngIf="applicationsShown">
+    <div *ngFor="let application of applicationsSent">
+        <mat-card>
+            <mat-card-title>{{getUniversityNameForApplication(application)}}</mat-card-title>
+            <mat-card-subtitle>Course: {{getCourseNameForApplication(application)}}</mat-card-subtitle>
+            
+            <p>Application Id: {{application.applicationId}}</p>
+            <p>Date of Application: {{application.dateOfApplication | date: 'longDate'}}</p>
+            <p>Date of Review: {{application.dateOfReview | date: 'longDate'}}</p>
+            <p>Date of Decision: {{application.dateOfDecision | date: 'longDate'}}</p>
+            <p>Application Status: {{application.applicationStatus}}</p>
+        </mat-card>
+    </div>
+</div>
 
 <div>
-
-    <h3>Courses Considered</h3>
+    <br>
+    <h2>Courses Considered</h2>
     
     
     <div *ngFor="let course of coursesConsidered">

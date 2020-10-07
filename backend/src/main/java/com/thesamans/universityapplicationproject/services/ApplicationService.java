@@ -116,4 +116,8 @@ public class ApplicationService {
         return false;
     }
 
+    public List<Application> getApplicationsForStudent(int userId) {
+        return applicationDao.findAllByUserId(userId);
+    }
+
 }
