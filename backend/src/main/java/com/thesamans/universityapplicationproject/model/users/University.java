@@ -9,6 +9,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Universities can create courses, to which students apply
+ * They are responsible for managing applications to their different courses
+ * They have access to the tools they need to manage their applications in their profile
+ */
 @Entity
 public class University extends User {
 

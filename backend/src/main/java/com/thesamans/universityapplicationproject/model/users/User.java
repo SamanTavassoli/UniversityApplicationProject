@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 /**
  * A User can log in the website and has access to further resources depending on it's type
+ * This is a base class that shouldn't be instantiated unless for testing
  */
 public class User {
 

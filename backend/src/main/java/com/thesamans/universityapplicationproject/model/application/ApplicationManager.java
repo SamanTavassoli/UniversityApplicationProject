@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Objects;
+import java.util.Optional;
 
 @Component
 public class ApplicationManager {
@@ -39,6 +40,25 @@ public class ApplicationManager {
     }
 
     /**
+     * Deletes an application
+     *
+     *
+     *
+     * @param applicationId application to remove
+     * @return true if application was removed
+     */
+    public boolean deleteApplication(int applicationId) {
+        Optional<Application> application = applicationDao.findByApplicationId(applicationId);
+        if (application.isPresent()) {
+            applicationDao.delete(application.get());
+            return true;
+        }
+        return false;
+    }
+
+    // ------------- Setting application status methods
+
+    /**
      * Finds the application through the application Id and sets it to in review for that date
      */
     public boolean applicationInReview(int applicationId) {
@@ -64,6 +84,11 @@ public class ApplicationManager {
         return true; // can return false if setting fails
     }
 
+    /**
+     * Sets the applications status back to APPLIED
+     * The dates of review and decision are erased as they are no longer applicable
+     * @param applicationId application to reset
+     */
     public void resetApplication(int applicationId) {
         Application application = applicationDao.findByApplicationId(applicationId).get();
         application.setApplicationStatus(ApplicationStatus.APPLIED);

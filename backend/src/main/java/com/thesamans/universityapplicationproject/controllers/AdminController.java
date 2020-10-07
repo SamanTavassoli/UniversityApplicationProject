@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller for admin users
+ * Lots of access to most apis is given
+ */
 @RestController
 @RequestMapping(value = "/admin")
 public class AdminController {

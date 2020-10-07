@@ -2,6 +2,9 @@ package com.thesamans.universityapplicationproject.model.users;
 
 import javax.persistence.Entity;
 
+/**
+ * Has a wide range of apis that they can call to manager users, applications and courses
+ */
 @Entity
 public class Admin extends User {
 

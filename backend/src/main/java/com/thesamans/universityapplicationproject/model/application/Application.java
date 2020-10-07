@@ -7,7 +7,13 @@ import javax.persistence.Id;
 import java.util.Date;
 
 /**
- * Application that a student makes for a University
+ * Application that a student makes for a specific course at a University
+ *
+ * A student can only apply to a course once
+ * For a student to apply, they first need to add the applications they are considering
+ * to their list of applications considered
+ *
+ * A student can withdraw their application and send a new one
  */
 @Entity
 public class Application {

@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = { UserDao.class, CourseDao.class, ApplicationDao.class }) // TODO not sure what this does
+@EnableJpaRepositories(basePackageClasses = { UserDao.class, CourseDao.class, ApplicationDao.class })
 public class UniversityApplicationProjectApplication {
 
 	public static void main(String[] args) {

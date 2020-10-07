@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Students are users that can apply to courses
+ * They can view other courses, make/withdraw their applications, and monitor the progress on their application
+ */
 @Entity
 public class Student extends User {
 

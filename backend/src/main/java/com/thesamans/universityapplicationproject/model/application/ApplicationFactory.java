@@ -11,6 +11,7 @@ import java.util.Optional;
 
 /**
  * Handles the creation of Applications
+ * Performs checks such as looking for duplicate applications
  */
 @Component
 public class ApplicationFactory {
@@ -34,8 +35,7 @@ public class ApplicationFactory {
 
         return application;
     }
-
-    // TODO: make it so creation of new application automatically calls this method (doesn't need to be called on it's own)
+    
     /**
      * Does checks on application before it gets created
      * Should be called before creation of new application

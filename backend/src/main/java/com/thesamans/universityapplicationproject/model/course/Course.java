@@ -11,6 +11,11 @@ import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Courses can be created by Universities
+ * Students can apply to courses through Applications
+ * The Universities decide if a student has or has not been accepted to a course
+ */
 @Entity
 public class Course implements Serializable {
 

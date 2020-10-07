@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Provides services related to applications
+ * Application controller directly calls this service
+ */
 @Service
 public class ApplicationService {
 
@@ -35,6 +39,37 @@ public class ApplicationService {
 
     @Autowired
     ApplicationFactory applicationFactory;
+
+    // ------------- Getters
+
+    /**
+     * Returns a list of applications from applicants to the specified course
+     */
+    public List<Application> getApplicationsForCourse(int courseId) {
+
+        ArrayList<Application> applications = new ArrayList<Application>();
+        List<Optional<Application>> optApplications = applicationDao.findByCourseId(courseId);
+//        for (Optional<Application> optApplication : optApplications) {
+//            applications.add(optApplication.get());
+//        }
+        return optApplications.stream().map(Optional::get).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns an application given it's application Id
+     */
+    public Application getApplicationForId(int applicationId) {
+        return applicationDao.findByApplicationId(applicationId).get();
+    }
+
+    /**
+     * Returns a list of applications that the student has made based on their userId
+     */
+    public List<Application> getApplicationsForStudent(int userId) {
+        return applicationDao.findAllByUserId(userId);
+    }
+
+    // ------------- Methods requiring application manipulation delegated to Application Manager
 
     /**
      * Creates Application through application factory,
@@ -60,25 +95,7 @@ public class ApplicationService {
             applicationManager.sendApplication(application);
         }
 
-        // comment out the 3 lines below when testing
-//        Student student = (Student) userDao.findById(userId).get();
-//        student.setHasApplied(true);
-//        userDao.save(student);
         return true;
-    }
-
-    public List<Application> getApplicationsForCourse(int courseId) {
-
-        ArrayList<Application> applications = new ArrayList<Application>();
-        List<Optional<Application>> optApplications = applicationDao.findByCourseId(courseId);
-//        for (Optional<Application> optApplication : optApplications) {
-//            applications.add(optApplication.get());
-//        }
-        return optApplications.stream().map(Optional::get).collect(Collectors.toList());
-    }
-
-    public Application getApplicationForId(int applicationId) {
-        return applicationDao.findByApplicationId(applicationId).get();
     }
 
     public boolean setApplicationToInReview(int applicationId) {
@@ -99,23 +116,8 @@ public class ApplicationService {
         applicationManager.resetApplication(applicationId);
     }
 
-    /**
-     * Deletes an application
-     *
-     * @param applicationId application to remove
-     * @return true if application was removed
-     */
     public boolean deleteApplication(int applicationId) {
-        Optional<Application> application = applicationDao.findByApplicationId(applicationId);
-        if (application.isPresent()) {
-            applicationDao.delete(application.get());
-            return true;
-        }
-        return false;
-    }
-
-    public List<Application> getApplicationsForStudent(int userId) {
-        return applicationDao.findAllByUserId(userId);
+        return applicationManager.deleteApplication(applicationId);
     }
 
 }

@@ -13,6 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Utils Class for registration of users
+ * Provides utility methods such as checking if a user can be created given the provided username, pass etc.
+ * Provides validation methods for the different fields of the user classes
+ */
 @Service
 public class RegistrationUtil {
 

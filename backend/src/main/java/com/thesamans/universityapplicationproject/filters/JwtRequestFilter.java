@@ -53,7 +53,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             username = jwtUtil.extractUsername(jwt); // we get 'a' username, not sure if it is the right one
         }
 
-        // TODO: why do we check that user is not already authenticated
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             // fetch user details to check if we extracted a correct username

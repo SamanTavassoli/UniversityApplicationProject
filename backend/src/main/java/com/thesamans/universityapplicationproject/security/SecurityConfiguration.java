@@ -18,6 +18,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * Decides how to authenticate and authorise users to perform different tasks
+ */
 @EnableWebSecurity // added for web applications
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
@@ -33,7 +36,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
         auth.userDetailsService(userDetailsService);
     }
 
-    // TODO: Set up who passwords should be encoded
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();

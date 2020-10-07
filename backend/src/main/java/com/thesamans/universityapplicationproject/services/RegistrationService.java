@@ -7,6 +7,10 @@ import com.thesamans.universityapplicationproject.utils.RegistrationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Provides services related to user registration
+ * Registration controller directly calls this service
+ */
 @Service
 public class RegistrationService {
 

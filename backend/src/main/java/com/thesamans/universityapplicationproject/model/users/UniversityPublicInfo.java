@@ -3,6 +3,9 @@ package com.thesamans.universityapplicationproject.model.users;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Public info about universities visible by any user
+ */
 @Entity
 public class UniversityPublicInfo {
     @Id

@@ -15,7 +15,8 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Generic class to handle students, universities and admins
+ * Provides services related to users
+ * Users controller directly calls this service
  * Handles the appropriate level of detail to be added and retrieved to the userDao based on the type of user
  */
 @Service
@@ -27,8 +28,12 @@ public class UserService {
     @Autowired
     private CourseDao courseDao;
 
-    public String getStudentUsername(int studentId) {
-        return userDao.findById(studentId).get().getUsername();
+    // ------------- Getters
+
+    // all users
+
+    public List<User> getUserList() {
+        return userDao.findAll();
     }
 
     /**
@@ -73,10 +78,47 @@ public class UserService {
         return user.get();
     }
 
+    // students
+
+    /**
+     * Returns the student's username given a student Id
+     */
+    public String getStudentUsername(int studentId) {
+        return userDao.findById(studentId).get().getUsername();
+    }
+
+    /**
+     * Returns the courses that the student is considering at the moment given a student Id
+     */
     public List<Integer> getConsideredCourses(int studentId) {
         Student student = (Student) userDao.findById(studentId).get();
         return student.getCoursesConsidered();
     }
+
+    // universities
+
+    /**
+     * Returns the public information related to all registered universities
+     * This kind of method is typically called when displaying a list of all the universities
+     * such as on the search page of the website
+     */
+    public List<UniversityPublicInfo> getAllUniversityPublicInfo() {
+        List<UniversityPublicInfo> universityPublicInfo = userDao.findAll().stream()
+                .filter(user -> user instanceof University)
+                .map(user -> new UniversityPublicInfo(user.getUsername(), user.getUserId()))
+                .collect(Collectors.toList());
+        return universityPublicInfo;
+    }
+
+    /**
+     * Returns the public information related to a particular university given a university Id
+     */
+    public UniversityPublicInfo getUniversityPublicInfo(int universityId) {
+        University university = (University) userDao.findById(universityId).get();
+        return new UniversityPublicInfo(university.getUsername(), universityId);
+    }
+
+    // ------------- Considered courses manipulation for students
 
     /**
      * Adds a courseId to a student's list of considered courses
@@ -101,6 +143,13 @@ public class UserService {
         }
     }
 
+    /**
+     * Removes a course from a user's list of considered courses,
+     * given a user Id and a course Id for the course to be removed
+     *
+     * Performs checks to make sure course and student exist and that the course is
+     * in the student's courses considered list
+     */
     public boolean removeFromConsideredCourses(int courseId, int userId) {
         Student student = (Student) getUser(UserType.STUDENT, userId);
         if (!Objects.isNull(student)
@@ -114,6 +163,10 @@ public class UserService {
         }
     }
 
+    /**
+     * Checks if the course specified by the course Id is in the student's list of considered
+     * courses given their user Id
+     */
     public boolean isConsideredCourse(int courseId, int userId) {
         Student student = (Student) getUser(UserType.STUDENT, userId);
         return !Objects.isNull(student)
@@ -121,9 +174,7 @@ public class UserService {
                 && student.getCoursesConsidered().contains(courseId);
     }
 
-    public List<User> getUserList() {
-        return userDao.findAll();
-    }
+    // ------------- User removal
 
     public boolean deleteUser(int userId) {
         if (userDao.existsById(userId)) {
@@ -131,19 +182,6 @@ public class UserService {
             return true;
         }
         return false;
-    }
-
-    public List<UniversityPublicInfo> getAllUniversityPublicInfo() {
-        List<UniversityPublicInfo> universityPublicInfo = userDao.findAll().stream()
-                .filter(user -> user instanceof University)
-                .map(user -> new UniversityPublicInfo(user.getUsername(), user.getUserId()))
-                .collect(Collectors.toList());
-        return universityPublicInfo;
-    }
-
-    public UniversityPublicInfo getUniversityPublicInfo(int universityId) {
-        University university = (University) userDao.findById(universityId).get();
-        return new UniversityPublicInfo(university.getUsername(), universityId);
     }
 
 }

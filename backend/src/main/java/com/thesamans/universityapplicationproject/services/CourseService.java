@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Provides services related to courses
+ * Courses controller directly calls this service
+ */
 @Service
 public class CourseService {
 
@@ -23,6 +27,7 @@ public class CourseService {
     @Autowired
     UserDao userDao;
 
+    // ------------- Getters
     public Course getCourse(int courseId) {
         return courseDao.findById(courseId).get();
     }
@@ -35,6 +40,13 @@ public class CourseService {
     public List<Course> getAllCourses() {
         return courseDao.findAll();
     }
+
+    public UniversityPublicInfo getUniversityForCourse(int courseId) {
+        University university = (University) userDao.findById(courseDao.findByCourseId(courseId).get().getUniversityId()).get();
+        return new UniversityPublicInfo(university.getUsername(), university.getUserId());
+    }
+
+    // ------------- Course Manipulation
 
     /**
      * Adds a course if not other course shares that course name
@@ -73,10 +85,5 @@ public class CourseService {
         } else {
             return false;
         }
-    }
-
-    public UniversityPublicInfo getUniversityForCourse(int courseId) {
-        University university = (University) userDao.findById(courseDao.findByCourseId(courseId).get().getUniversityId()).get();
-        return new UniversityPublicInfo(university.getUsername(), university.getUserId());
     }
 }

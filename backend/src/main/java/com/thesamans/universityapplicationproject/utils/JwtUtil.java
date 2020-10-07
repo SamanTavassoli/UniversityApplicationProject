@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * Allows the creation of jwt tokens to be sent back to users for authentication
+ *
+ * Can generate tokens, validate them, and check if they are expired
+ */
 @Service
 public class JwtUtil {
 

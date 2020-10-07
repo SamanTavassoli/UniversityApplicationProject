@@ -1,5 +1,8 @@
 package com.thesamans.universityapplicationproject.model.requests_responses;
 
+/**
+ * Template for authentication requests coming in to know what format to expect
+ */
 public class AuthenticationRequest {
 
     private String username;

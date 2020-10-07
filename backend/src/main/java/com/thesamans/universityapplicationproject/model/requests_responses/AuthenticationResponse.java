@@ -1,7 +1,10 @@
 package com.thesamans.universityapplicationproject.model.requests_responses;
 
 /**
+ * Template for what to send back to the user once they have been authenticated
  * Corresponds to LoggedInUser on front end
+ *
+ * Important authentication component is the jwt token, to remember who has or hasn't authenticated
  */
 public class AuthenticationResponse {
 

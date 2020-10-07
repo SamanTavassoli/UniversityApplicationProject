@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * This class is used to authenticate users
+ * This class is used to authenticate users through spring security
+ *
+ * NOTE - The fields in this class are returned back to the front end when authenticated
  */
 public class MyUserDetails implements UserDetails {
 
